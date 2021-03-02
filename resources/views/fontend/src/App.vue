@@ -4,7 +4,7 @@
             <navigation></navigation>
         </div>
 
-        <div id="main-content">
+        <div id="main-content" class="px-4 md:px-0">
             <router-view></router-view>
         </div>
 

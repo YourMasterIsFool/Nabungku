@@ -1,11 +1,5 @@
 <template>
     <div id="navigation">
-        <Register
-            v-show="showRegister"
-            @close="showRegister = false"
-            @login="showLogin = true"
-        />
-        <Login v-show="showLogin" @close="showLogin = false" />
         <div
             style="height:100px"
             class="h-full lg:items-center px-4 md:px-6 md:flex md:justify-center w-full"
@@ -28,7 +22,7 @@
                     >
                         <li class="px-6">
                             <router-link
-                                to=""
+                                to="learn"
                                 class="capitalize hover:text-black transition-all duration-300"
                             >
                                 Learn

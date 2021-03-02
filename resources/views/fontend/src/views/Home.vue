@@ -169,7 +169,7 @@
                 Beberapa tips berguna buat kamu!
             </h1>
             <div class="w-full md:w-3/4 flex-col items-center">
-                <div class="grid grid-cols-1 md:grid-cols-2  md:gap-2 ">
+                <div class="md:grid flex flex-col md:grid-cols-2  md:gap-2 ">
                     <div class="flex flex-col md:p-8 justify-center">
                         <h1
                             class="block text-center space-x-reverse text-gray lg:mb-8 md:mb-6 mb-4 font-bold capitalize lg:text-xl md:text-lg text-base"
@@ -186,7 +186,7 @@
                         <div class="flex justify-center">
                             <a
                                 @click="showRegister = true"
-                                class="md:px-8 capitalize cursor-pointer font-semibold rounded-3xl lg:px-12 px-6 md:py-3 lg:py-4 py-2 lg:text-base md:text-sm text-xs bg-indigo-600 hover:bg-indigo-500 transition-all duration-300 text-white"
+                                class="md:px-8 text-sm capitalize cursor-pointer font-semibold rounded-3xl lg:px-12 px-8  lg:py-4 py-3 lg:text-base md:text-sm text-xs bg-indigo-600 hover:bg-indigo-500 transition-all duration-300 text-white"
                             >
                                 get started
                             </a>
