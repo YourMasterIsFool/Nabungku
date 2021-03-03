@@ -78,6 +78,12 @@
                             :key="i"
                             class="bg-gray-300 w-full md:h-24 h-22 lg:h-28 rounded-xl"
                         ></div>
+                        <div class="mt-2 flex justify-end">
+                            <pagination
+                                :pagination="pagination"
+                                :offset="offset"
+                            ></pagination>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -87,12 +93,21 @@
 
 <script>
 import icon2 from "../assets/images/icon2.png";
+
+import Pagination from "../components/Pagination.vue";
 export default {
     name: "Learn",
     data() {
         return {
-            icon2: icon2
+            icon2: icon2,
+            offset: 4,
+            pagination: {
+                yo: 4
+            }
         };
+    },
+    components: {
+        Pagination
     }
 };
 </script>

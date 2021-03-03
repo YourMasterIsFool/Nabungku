@@ -3,6 +3,7 @@ import Learn from "../views/Learn";
 
 import Login from "../views/Login.vue";
 import About from "../views/About";
+import Feature from "../views/Feature";
 
 const routers = [
     {
@@ -24,6 +25,12 @@ const routers = [
         path: "/learn",
         name: "learn",
         component: Learn
+    },
+
+    {
+        path: "/feature",
+        name: "feature",
+        component: Feature
     }
 ];
 

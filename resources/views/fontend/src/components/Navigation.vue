@@ -30,7 +30,7 @@
                         </li>
                         <li class="px-6">
                             <router-link
-                                to=""
+                                to="feature"
                                 class="capitalize hover:text-black transition-all duration-300"
                             >
                                 feature
