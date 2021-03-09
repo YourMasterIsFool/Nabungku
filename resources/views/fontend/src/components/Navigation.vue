@@ -1,6 +1,7 @@
 <template>
-    <div id="navigation">
+    <div>
         <div
+            
             style="height:100px"
             class="h-full lg:items-center px-4 md:px-6 md:flex md:justify-center w-full"
         >
@@ -56,7 +57,7 @@
                     <router-link
                         to="/register"
                         class="px-6 mx-2 font-semibold border-2 hover:border-none border-indigo-400 text-indigo-400 hover:bg-indigo-400 hover:text-white transition-all duration-300 rounded-2xl py-2 bg-none text-black text-sm capitalize"
-                        @click="showRegister = true"
+                        @click="$emit('navigation')"
                     >
                         sign up
                     </router-link>

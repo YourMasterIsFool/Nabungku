@@ -101,7 +101,80 @@
                 </section>
             </div>
         </div>
-        <section class="py-16 flex justify-center"></section>
+        <section class="py-16 flex justify-center">
+            <div class="w-full md:w-3/4">
+                <div class="grid grid-cols-2 gap-8">
+                    <div class="flex flex-col justify-center">
+                        <div class=" w-3/4">
+                            <h1
+                                class="text-2xl mb-4 md:mb-6 capitalize font-bold"
+                            >
+                                financial check up
+                            </h1>
+                            <p class="">
+                                Untuk mengetahui kondisi keuangan (likuiditas,
+                                tabungan, utang) supaya dapat membuat
+                                perencanaan keuangan yang lebih baik
+                            </p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="p-12 rounded-2xl bg-red-300">
+                            <h3
+                                class="capitalize font-semibold text-lg block mb-4 md:mb-6"
+                            >
+                                penghasilan
+                            </h3>
+                            <div class="flex flex-col items-start">
+                                <div
+                                    class="form-group md:mb-4 mb-2 grid grid-cols-12"
+                                >
+                                    <label
+                                        align-middle
+                                        for=""
+                                        class="col-span-4 font-semibold self-center text-black capitalize"
+                                    >
+                                        gaji</label
+                                    >
+                                    <input
+                                        type="text"
+                                        class="bg-white col-span-8 rounded-xl px-4 py-3"
+                                    />
+                                </div>
+                                <div
+                                    class="form-group md:mb-4 mb-2 grid grid-cols-12"
+                                >
+                                    <label
+                                        align-middle
+                                        for=""
+                                        class="col-span-4 font-semibold self-center text-black capitalize"
+                                    >
+                                        Bunga atau investasi</label
+                                    >
+                                    <input
+                                        type="text"
+                                        class="bg-white col-span-8 rounded-xl px-4 py-3"
+                                    />
+                                </div>
+                                <div class="form-group grid grid-cols-12">
+                                    <label
+                                        align-middle
+                                        for=""
+                                        class="col-span-4 font-semibold self-center text-black capitalize"
+                                    >
+                                        pendapatan pasif</label
+                                    >
+                                    <input
+                                        type="text"
+                                        class="bg-white col-span-8 rounded-xl px-4 py-3"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 </template>
 

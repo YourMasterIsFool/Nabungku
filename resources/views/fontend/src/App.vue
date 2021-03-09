@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <div style="height: 100px" id="navigation">
+        <div v-show="homepage" style="height: 100px" id="navigation">
             <navigation></navigation>
         </div>
 
@@ -8,7 +8,7 @@
             <router-view></router-view>
         </div>
 
-        <div id="footer">
+        <div v-show="defaultMenu" id="footer">
             <Footer></Footer>
         </div>
     </div>
@@ -19,11 +19,29 @@ import Home from "./views/Home.vue";
 import Footer from "./components/Footer.vue";
 import Navigation from "./components/Navigation.vue";
 export default {
+    data() {
+        return {
+            defaultMenu: false
+        };
+    },
     components: {
         Home,
         Navigation,
         Footer
-    }
+    },
+    computed: {
+        homepage() {
+            if (
+                this.$route.path == "/login" ||
+                this.$route.path == "/register"
+            ) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    },
+    created() {}
 };
 </script>
 
