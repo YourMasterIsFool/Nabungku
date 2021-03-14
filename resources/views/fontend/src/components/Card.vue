@@ -10,4 +10,8 @@
 export default {};
 </script>
 
-<style></style>
+<style>
+.card-content {
+    background-image: url("../assets/images/icon_box.png");
+}
+</style>

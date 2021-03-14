@@ -19,10 +19,17 @@
                     <h1 class="text-2xl text-center font-bold ">
                         Login
                     </h1>
+
+                    <p
+                        v-if="success == false"
+                        class="mt-4 md:mt-6 text-red-400"
+                    >
+                        <span class="text-xs">* {{ message }}</span>
+                    </p>
                     <form
                         @submit="submit"
                         id="form"
-                        class="pt-8 flex flex-col "
+                        class="pt-6 flex flex-col "
                     >
                         <div class="form-group mb-4 flex flex-col">
                             <label for="" class="text-gray-500 mb-2  text-xs">
@@ -33,6 +40,9 @@
                                 v-model="form.email"
                                 placeholder="input your email"
                                 style="border-width:1px;"
+                                :class="[
+                                    success ? '' : 'border-red-300 text-red-300'
+                                ]"
                                 class="bg-white focus:shadow-lg focus:border-blue-500 focus:outline-none border-gray-300 rounded-md text-xs text-gray-700 flex-1 py-3 px-4"
                             />
                         </div>
@@ -41,7 +51,10 @@
                                 Password *
                             </label>
                             <input
-                                type="text"
+                                type="password"
+                                :class="[
+                                    success ? '' : 'border-red-300 text-red'
+                                ]"
                                 v-model="form.password"
                                 placeholder="input your password"
                                 style="border-width:1px;"
@@ -96,7 +109,8 @@ export default {
                 email: null,
                 password: null
             },
-            message: null
+            message: null,
+            success: true
         };
     },
     components: {
@@ -110,9 +124,15 @@ export default {
             e.preventDefault();
             console.log(this.form);
             this.login(this.form)
-                .then(res => console.log(res))
+                .then(res => {
+                    this.$router.push({
+                        name: "dashboard"
+                    });
+                })
                 .catch(err => {
+                    this.success = false;
                     console.log(err);
+                    this.message = err.data.message;
                 });
         }
     }

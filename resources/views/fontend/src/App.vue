@@ -33,7 +33,8 @@ export default {
         homepage() {
             if (
                 this.$route.path == "/login" ||
-                this.$route.path == "/register"
+                this.$route.path == "/register" ||
+                this.$route.path == "/dashboard"
             ) {
                 return false;
             } else {

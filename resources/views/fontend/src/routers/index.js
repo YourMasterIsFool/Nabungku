@@ -13,7 +13,7 @@ const routers = [
         component: Home
     },
     {
-        path: "dashboard",
+        path: "/dashboard",
         name: "dashboard",
         component: Dashboard
     },

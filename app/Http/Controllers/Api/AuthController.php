@@ -52,7 +52,7 @@ class AuthController extends Controller
             $response['success'] = false;
             $response['message'] = "Username or password incorrected";
             return response()->json([
-                'data' => $data
+                'data' => $response
             ],
             401
         );

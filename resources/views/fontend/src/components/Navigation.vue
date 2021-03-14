@@ -1,7 +1,7 @@
 <template>
     <div>
         <div
-            
+            v-show="showDashboard"
             style="height:100px"
             class="h-full lg:items-center px-4 md:px-6 md:flex md:justify-center w-full"
         >
@@ -86,6 +86,15 @@ export default {
             showRegister: false,
             showLogin: false
         };
+    },
+    computed: {
+        showDashboard() {
+            if (this.$route.path == "/dashboard") {
+                return false;
+            } else {
+                return true;
+            }
+        }
     }
 };
 </script>
