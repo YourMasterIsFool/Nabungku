@@ -1,6 +1,6 @@
 <template>
     <div id="card">
-        <div id="card-content" class="w-full p-4 md:p-6 ">
+        <div id="card-content" class="">
             <slot name="content"></slot>
         </div>
     </div>
@@ -10,8 +10,4 @@
 export default {};
 </script>
 
-<style>
-.card-content {
-    background-image: url("../assets/images/icon_box.png");
-}
-</style>
+<style></style>

@@ -160,28 +160,11 @@
                                 >
                                     <template v-slot:content>
                                         <div class="relative">
-                                            <div class="absolute">
-                                                <div
-                                                    style="z-index:-100px;"
-                                                    :style="{
-                                                        'background-image': icon_box
-                                                    }"
-                                                    class="background relative"
-                                                >
-                                                    <div
-                                                        style="top:16px;"
-                                                        class=" w-full p-4"
-                                                    >
-                                                        dqwdqwdqwd
-                                                        <div class="flex">
-                                                            <input
-                                                                type="text"
-                                                                class="w-full rounded-xl border-2 py-2 px-3"
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <img
+                                                :src="icon_box"
+                                                class="absolute w-64 h-24 bottom-0 left-0"
+                                                alt=""
+                                            />
                                         </div>
                                     </template>
                                 </card-vue>
