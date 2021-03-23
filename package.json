@@ -18,6 +18,7 @@
     },
     "dependencies": {
         "@ocrv/vue-tailwind-pagination": "^0.0.4",
+        "chart.js": "^2.9.4",
         "stylus": "^0.54.8",
         "stylus-loader": "^5.0.0",
         "tailwindcss": "^2.0.3",

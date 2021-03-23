@@ -26,11 +26,59 @@
                                     type="date"
                                     class="bg-white px-3 text-xs py-1 w-full rounded-3xl col-span-3"
                                 />
-                                <a
-                                    class="bg-white text-gray-600 hover:text-gray-800 duration-300 transition-all flex justify-center items-center py-2 w-full rounded-xl col-span-1"
-                                >
-                                    <i class="far fa-bell"></i>
-                                </a>
+                                <div class="relative">
+                                    <a
+                                        @click="showNotif = !showNotif"
+                                        class="bg-white cursor-pointer text-gray-600 hover:text-gray-800 duration-300 transition-all flex justify-center items-center py-2 w-full rounded-xl col-span-1"
+                                    >
+                                        <i class="far fa-bell"></i>
+                                    </a>
+                                    <div
+                                        :class="[
+                                            showNotif
+                                                ? 'opacity-100'
+                                                : 'opacity-0'
+                                        ]"
+                                        id="modal-notification"
+                                        style="right:0px; top:40px; "
+                                        class="bg-white transition-all duration-300  shadow-2xl text-xs rounded-xl right-0 absolute w-64"
+                                    >
+                                        <h1
+                                            class="text-sm ml-4 mt-4 font-semibold capitalize"
+                                        >
+                                            notifications
+                                        </h1>
+                                        <div
+                                            style="height:300px;"
+                                            class="flex overflow-y-scroll mt-4  flex-col py-2 text-xs"
+                                        >
+                                            <a
+                                                class="flex cursor-pointer py-2 px-4 hover:bg-gray-200 items-center py-2"
+                                                v-for="i in 10"
+                                                :key="i"
+                                            >
+                                                <span class="text-blue-400">
+                                                    <i
+                                                        class="fas fa-circle text-blue-700"
+                                                    ></i>
+                                                </span>
+
+                                                <span class="pl-4">
+                                                    <span
+                                                        class="font-bold capitalize"
+                                                    >
+                                                        reminder
+                                                    </span>
+
+                                                    <span>
+                                                        : Don’t forget to track
+                                                        your expense!
+                                                    </span>
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -101,7 +149,16 @@
                                             <select
                                                 style="border-width:1px;"
                                                 class="w-full text-gray-600 bg-gray-50 rounded-lg border-gray-200 text-xs py-1 focus:outline-none px-4 "
-                                            ></select>
+                                            >
+                                                <optgroup class="py-2 font-semibold capitalize " v-for="category in categories" :key="category.index" :label="category.category_name">
+                                                    <option :value="sub_category.id" class="py-3 hover:bg-green-100" v-for="sub_category in category.sub_categories">
+                                                        <span class="py-2">
+                                                            {{sub_category.sub_category_name}}
+                                                        </span>
+                                                    </option>
+                                                </optgroup>
+
+                                            </select>
                                         </div>
                                         <div
                                             class="form-group grid gap-1 grid-cols-1"
@@ -144,36 +201,53 @@
                         <div class="bg-white rounded-xl ">
                             <div
                                 style="border-bottom-width:1px;"
-                                class="header p-6 relative flex items-center  border-gray-200"
+                                class="header p-6 flex items-center  border-gray-200"
                             >
-                                <a href="" class="">
-                                    <i class="pr-4 fas fa-plus"> </i>
-                                    <span class="font-semibold capitalize">
-                                        category group
-                                    </span>
-                                </a>
-                                <card-vue
-                                    id="card"
-                                    style="bottom: -1px;"
-                                    :style="{ backgroundImage: icon_box }"
-                                    class=" absolute"
-                                >
-                                    <template v-slot:content>
-                                        <div class="relative">
-                                            <img
-                                                :src="icon_box"
-                                                class="absolute w-64 h-24 bottom-0 left-0"
-                                                alt=""
-                                            />
+                                <div class="relative">
+                                    <a
+                                        @click="modalCategoryGroup = true"
+                                        class="cursor-pointer"
+                                    >
+                                        <i class="pr-4 fas fa-plus"> </i>
+                                        <span class="font-semibold capitalize">
+                                            category group
+                                        </span>
+                                    </a>
+                                    <div
+                                        v-if="modalCategoryGroup"
+                                        class="absolute left-0 p-4  rounded-lg shadow-xl bg-white z-20"
+                                    >
+                                        <input
+                                            type="text"
+                                            v-model="
+                                                form.category.name_category
+                                            "
+                                            placeholder="new category group"
+                                            style="border-width:2px;"
+                                            class="w-64 outline-none focus:border-green-200 px-4  border-blue-200 py-2 rounded-lg text-xs "
+                                        />
+
+                                        <div class="flex mt-4 justify-between">
+                                            <a
+                                                @click="
+                                                    modalCategoryGroup = false
+                                                "
+                                                class="capitalize cursor-pointer text-gray-700"
+                                            >
+                                                cancel
+                                            </a>
+                                            <a
+                                                @click="addCategory"
+                                                class="px-2 py-1 rounded-lg bg-blue-400 text-white text-xs font-semibold"
+                                            >
+                                                add
+                                            </a>
                                         </div>
-                                    </template>
-                                </card-vue>
+                                    </div>
+                                </div>
                             </div>
-                            <div
-                                class="body py-6 overflow-y-auto"
-                                style="height:450px;"
-                            >
-                                <div class="">
+                            <div class="body py-6 " style="">
+                                <div style="" class="">
                                     <div
                                         class="header px-6 text-gray-800 font-semibold capitalize py-2 grid grid-cols-12"
                                     >
@@ -192,12 +266,17 @@
                                             >available</span
                                         >
                                     </div>
-                                    <category
-                                        v-for="(item, index) in categorys"
-                                        :key="index"
-                                        :item="item"
-                                        :index="index"
-                                    ></category>
+                                    <div
+                                        style="height:600px;"
+                                        class="pb-12 overflow-y-scroll flex flex-col"
+                                    >
+                                        <category
+                                            v-for="(item, index) in categories"
+                                            :key="index"
+                                            :item="item"
+                                            :index="index"
+                                        ></category>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -206,11 +285,229 @@
             </div>
             <sidebar-vue class="bg-white col-span-3 p-8 text-xs">
                 <template v-slot:content>
-                    <div class="flex flex-col">
+                    <div class="flex flex-col relative">
                         <div
                             id="profile"
-                            class="flex items-center justify-between"
+                            class="flex relative items-center justify-between"
                         >
+                            <modal v-show="showNewBudget">
+                                <template v-slot:content>
+                                    <div
+                                        class="flex items-center justify-center h-screen w-screen"
+                                    >
+                                        <div
+                                            style=""
+                                            class="py-6 px-6 rounded-xl bg-white"
+                                        >
+                                            <div
+                                                class="flex justify-between items-center"
+                                            >
+                                                <h1
+                                                    class="font-semibold  capitalize text-base"
+                                                >
+                                                    create new budget
+                                                </h1>
+
+                                                <a
+                                                    @click="
+                                                        showNewBudget = false
+                                                    "
+                                                    class="cursor-pointer hover:text-gray-800 duration-300 transition-all text-gray-700"
+                                                >
+                                                    <svg
+                                                        class="w-4 h-4"
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        viewBox="0 0 24 24"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                    >
+                                                        <path
+                                                            stroke-linecap="round"
+                                                            stroke-linejoin="round"
+                                                            stroke-width="2"
+                                                            d="M6 18L18 6M6 6l12 12"
+                                                        ></path>
+                                                    </svg>
+                                                </a>
+                                            </div>
+
+                                            <div
+                                                class="flex mt-4 text-xs flex-col"
+                                            >
+                                                <form @submit="createNewBudget">
+                                                    <div class="mb-4">
+                                                        <label
+                                                            for=""
+                                                            class="block mb-2 capitalize"
+                                                        >
+                                                            Budget Name
+                                                        </label>
+
+                                                        <input
+                                                            v-model="
+                                                                form.budget
+                                                                    .new_budget
+                                                            "
+                                                            style="border-width:1px;"
+                                                            type="text"
+                                                            class="px-6 py-2 rounded-xl outline-none border-gray-300 focus:border-blue-300"
+                                                        />
+                                                    </div>
+                                                    <div
+                                                        class="flex items-center justify-between"
+                                                    >
+                                                        <a
+                                                            @click="
+                                                                showNewBudget = false
+                                                            "
+                                                            class="capitalize cursor-pointer"
+                                                        >
+                                                            cancel
+                                                        </a>
+
+                                                        <button
+                                                            type="submit"
+                                                            class="uppercase cursor-pointer rounded-2xl font-bold bg-blue-400 hover:bg-blue-500 text-white py-2 px-6"
+                                                        >
+                                                            create
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
+                            </modal>
+
+                            <modal
+                                id="profile-setting"
+                                v-show="showProfileSetting"
+                            >
+                                <template v-slot:content>
+                                    <div
+                                        class="flex  items-center justify-center h-screen w-screen"
+                                    >
+                                        <div
+                                            style=""
+                                            class="py-8 px-6 w-2/6 rounded-xl bg-white"
+                                        >
+                                            <div
+                                                class="flex justify-between items-center"
+                                            >
+                                                <h1
+                                                    class="font-semibold  capitalize text-base"
+                                                >
+                                                    profile settings
+                                                </h1>
+
+                                                <a
+                                                    @click="
+                                                        showProfileSetting = false
+                                                    "
+                                                    class="cursor-pointer hover:text-gray-800 duration-300 transition-all text-gray-700"
+                                                >
+                                                    <svg
+                                                        class="w-4 h-4"
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        viewBox="0 0 24 24"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                    >
+                                                        <path
+                                                            stroke-linecap="round"
+                                                            stroke-linejoin="round"
+                                                            stroke-width="2"
+                                                            d="M6 18L18 6M6 6l12 12"
+                                                        ></path>
+                                                    </svg>
+                                                </a>
+                                            </div>
+
+                                            <div
+                                                class="flex mt-4 text-xs flex-col"
+                                            >
+                                                <div
+                                                    class="py-8 flex justify-center"
+                                                >
+                                                    <img
+                                                        :src="icon_ayam"
+                                                        class="w-24 h-24 rounded-full"
+                                                        alt=""
+                                                    />
+                                                </div>
+                                                <div class="py-2">
+                                                    <label
+                                                        for=""
+                                                        class="block mb-2 capitalize"
+                                                    >
+                                                        Name
+                                                    </label>
+
+                                                    <input
+                                                        style="border-width:1px;"
+                                                        placeholder="Verrandy"
+                                                        type="text"
+                                                        class="px-4 py-2 w-full rounded-xl outline-none border-gray-300 focus:border-blue-300"
+                                                    />
+                                                </div>
+                                                <div class="py-2">
+                                                    <label
+                                                        for=""
+                                                        class="block mb-2 capitalize"
+                                                    >
+                                                        email
+                                                    </label>
+
+                                                    <input
+                                                        style="border-width:1px;"
+                                                        type="text"
+                                                        class="px-4 py-2 w-full rounded-xl outline-none border-gray-300 focus:border-blue-300"
+                                                    />
+                                                </div>
+                                                <div class="py-2">
+                                                    <label
+                                                        for=""
+                                                        class="block mb-2 capitalize"
+                                                    >
+                                                        password
+                                                    </label>
+
+                                                    <input
+                                                        style="border-width:1px;"
+                                                        type="password"
+                                                        class="px-4 py-2 w-full rounded-xl outline-none border-gray-300 focus:border-blue-300"
+                                                    />
+                                                </div>
+                                                <div class="py-2">
+                                                    <label
+                                                        for=""
+                                                        class="block mb-2 capitalize"
+                                                    >
+                                                        create new password
+                                                    </label>
+
+                                                    <input
+                                                        style="border-width:1px;"
+                                                        placeholder="Verrandy"
+                                                        type="password"
+                                                        class="px-4 py-2 w-full rounded-xl outline-none border-gray-300 focus:border-blue-300"
+                                                    />
+                                                </div>
+                                                <div
+                                                    class="flex items-center justify-end"
+                                                >
+                                                    <a
+                                                        class="uppercase cursor-pointer rounded-2xl font-bold bg-blue-400 hover:bg-blue-500 text-white py-2 px-6"
+                                                    >
+                                                        save
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
+                            </modal>
+
                             <div class="flex items-center">
                                 <div class="w-12 flex items-center h-12">
                                     <img
@@ -228,9 +525,149 @@
                                     </p>
                                 </div>
                             </div>
-                            <a href="">
+                            <a
+                                class="cursor-pointer transition-all duration-500 "
+                                :style="[
+                                    showProfileMenu
+                                        ? { transform: 'rotate(0deg)' }
+                                        : { transform: 'rotate(180deg)' }
+                                ]"
+                                @click="showProfileMenu = !showProfileMenu"
+                            >
                                 <i class="fas fa-chevron-down"> </i>
                             </a>
+                            <div
+                                :style="[
+                                    showProfileMenu
+                                        ? {
+                                              height: '350px',
+                                              opacity: '100'
+                                          }
+                                        : {
+                                              'max-height': '0px',
+                                              overflow: 'hidden',
+                                              opacity: '0'
+                                          }
+                                ]"
+                                style="top:64px; left:0px; "
+                                class="bg-white overflow-y-scroll duration-1000 transition-all pt-4 shadow-xl w-64 absolute   rounded-lg"
+                            >
+                                <ul
+                                    class="transition-all duration-1000"
+                                    :class="[
+                                        showProfileMenu
+                                            ? 'opacity-100 '
+                                            : 'opacity-0'
+                                    ]"
+                                >
+                                    <li v-for="row in budgets" :key="row.id">
+                                        <a
+                                            @click="fetchCategory(row.id)"
+                                            class="py-4 cursor-pointer flex px-4 items-center block hover:bg-gray-200"
+                                            ><span class="">
+                                                <svg
+                                                    width="24"
+                                                    height="24"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                >
+                                                    <path
+                                                        d="M6.25 3C5.38805 3 4.5614 3.34241 3.9519 3.9519C3.34241 4.5614 3 5.38805 3 6.25V17.75C3 18.612 3.34241 19.4386 3.9519 20.0481C4.5614 20.6576 5.38805 21 6.25 21H17.75C18.612 21 19.4386 20.6576 20.0481 20.0481C20.6576 19.4386 21 18.612 21 17.75V6.25C21 5.38805 20.6576 4.5614 20.0481 3.9519C19.4386 3.34241 18.612 3 17.75 3H6.25ZM4.5 6.25C4.5 5.284 5.284 4.5 6.25 4.5H17.75C18.716 4.5 19.5 5.284 19.5 6.25V8.5H4.5V6.25ZM10 10H14V14H10V10ZM8.5 10V14H4.5V10H8.5ZM8.5 15.5V19.5H6.25C5.78587 19.5 5.34075 19.3156 5.01256 18.9874C4.68437 18.6592 4.5 18.2141 4.5 17.75V15.5H8.5ZM10 19.5V15.5H14V19.5H10ZM15.5 14V10H19.5V14H15.5ZM15.5 15.5H19.5V17.75C19.5 18.2141 19.3156 18.6592 18.9874 18.9874C18.6592 19.3156 18.2141 19.5 17.75 19.5H15.5V15.5Z"
+                                                        fill="#333333"
+                                                    />
+                                                </svg>
+                                            </span>
+                                            <span class="pl-4 capitalize"
+                                                >{{
+                                                    row.name_budget
+                                                }}
+                                                Budget</span
+                                            ></a
+                                        >
+                                    </li>
+
+                                    <li>
+                                        <a
+                                            @click="showNewBudget = true"
+                                            class="py-4 cursor-pointer flex px-4 items-center block hover:bg-gray-200"
+                                            ><span class="">
+                                                <svg
+                                                    width="24"
+                                                    height="24"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                >
+                                                    <path
+                                                        d="M11.9999 7C12.1989 7 12.3896 7.07902 12.5303 7.21967C12.6709 7.36032 12.7499 7.55109 12.7499 7.75V11.25H16.2499C16.4489 11.25 16.6396 11.329 16.7803 11.4697C16.9209 11.6103 16.9999 11.8011 16.9999 12C16.9999 12.1989 16.9209 12.3897 16.7803 12.5303C16.6396 12.671 16.4489 12.75 16.2499 12.75H12.7499V16.25C12.7499 16.4489 12.6709 16.6397 12.5303 16.7803C12.3896 16.921 12.1989 17 11.9999 17C11.801 17 11.6103 16.921 11.4696 16.7803C11.329 16.6397 11.2499 16.4489 11.2499 16.25V12.75H7.74994C7.55103 12.75 7.36026 12.671 7.21961 12.5303C7.07896 12.3897 6.99994 12.1989 6.99994 12C6.99994 11.8011 7.07896 11.6103 7.21961 11.4697C7.36026 11.329 7.55103 11.25 7.74994 11.25H11.2499V7.75C11.2499 7.55109 11.329 7.36032 11.4696 7.21967C11.6103 7.07902 11.801 7 11.9999 7Z"
+                                                        fill="#333333"
+                                                    />
+                                                    <path
+                                                        d="M3 6.25C3 5.38805 3.34241 4.5614 3.9519 3.9519C4.5614 3.34241 5.38805 3 6.25 3H17.75C18.612 3 19.4386 3.34241 20.0481 3.9519C20.6576 4.5614 21 5.38805 21 6.25V17.75C21 18.612 20.6576 19.4386 20.0481 20.0481C19.4386 20.6576 18.612 21 17.75 21H6.25C5.38805 21 4.5614 20.6576 3.9519 20.0481C3.34241 19.4386 3 18.612 3 17.75V6.25ZM6.25 4.5C5.78587 4.5 5.34075 4.68437 5.01256 5.01256C4.68437 5.34075 4.5 5.78587 4.5 6.25V17.75C4.5 18.716 5.284 19.5 6.25 19.5H17.75C18.2141 19.5 18.6592 19.3156 18.9874 18.9874C19.3156 18.6592 19.5 18.2141 19.5 17.75V6.25C19.5 5.78587 19.3156 5.34075 18.9874 5.01256C18.6592 4.68437 18.2141 4.5 17.75 4.5H6.25Z"
+                                                        fill="#333333"
+                                                    />
+                                                </svg>
+                                            </span>
+                                            <span class="pl-4"
+                                                >Create New Budget</span
+                                            ></a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                            @click="showProfileSetting = true"
+                                            class="py-4 flex px-4 items-center block hover:bg-gray-200"
+                                            ><span class="">
+                                                <svg
+                                                    width="24"
+                                                    height="24"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                >
+                                                    <path
+                                                        d="M12 8.14307C11.4935 8.14307 10.9919 8.24283 10.524 8.43667C10.056 8.63051 9.63078 8.91463 9.27261 9.2728C8.91445 9.63097 8.63033 10.0562 8.43649 10.5241C8.24265 10.9921 8.14288 11.4937 8.14288 12.0002C8.14288 12.5067 8.24265 13.0083 8.43649 13.4763C8.63033 13.9442 8.91445 14.3695 9.27261 14.7276C9.63078 15.0858 10.056 15.3699 10.524 15.5637C10.9919 15.7576 11.4935 15.8574 12 15.8574C13.023 15.8574 14.0041 15.451 14.7274 14.7276C15.4508 14.0043 15.8572 13.0232 15.8572 12.0002C15.8572 10.9772 15.4508 9.99615 14.7274 9.2728C14.0041 8.54944 13.023 8.14307 12 8.14307ZM9.4286 12.0002C9.4286 11.6625 9.49511 11.3281 9.62434 11.0162C9.75356 10.7042 9.94297 10.4207 10.1818 10.1819C10.4205 9.94316 10.704 9.75375 11.016 9.62452C11.328 9.49529 11.6623 9.42878 12 9.42878C12.3377 9.42878 12.6721 9.49529 12.9841 9.62452C13.2961 9.75375 13.5795 9.94316 13.8183 10.1819C14.0571 10.4207 14.2465 10.7042 14.3757 11.0162C14.5049 11.3281 14.5715 11.6625 14.5715 12.0002C14.5715 12.6822 14.3005 13.3362 13.8183 13.8185C13.3361 14.3007 12.682 14.5716 12 14.5716C11.318 14.5716 10.664 14.3007 10.1818 13.8185C9.69952 13.3362 9.4286 12.6822 9.4286 12.0002Z"
+                                                        fill="#333333"
+                                                    />
+                                                    <path
+                                                        d="M18.6086 19.1958L17.1274 18.5452C16.9166 18.4536 16.6873 18.4126 16.4578 18.4254C16.2284 18.4382 16.005 18.5045 15.8057 18.6189C15.4054 18.8504 15.15 19.2592 15.0994 19.7195L14.9211 21.3309C14.9032 21.4929 14.8357 21.6453 14.7278 21.7674C14.62 21.8895 14.477 21.9754 14.3186 22.0132C12.7937 22.3767 11.2046 22.3767 9.67972 22.0132C9.52141 21.9752 9.37867 21.8893 9.27099 21.7672C9.1633 21.6451 9.09591 21.4927 9.078 21.3309L8.89972 19.7221C8.87412 19.4957 8.79581 19.2784 8.67107 19.0877C8.54633 18.897 8.37863 18.7382 8.18143 18.6241C7.98444 18.5101 7.76342 18.4441 7.53622 18.4313C7.30901 18.4185 7.08198 18.4593 6.87343 18.5504L5.39229 19.2009C5.24256 19.2667 5.07609 19.2843 4.91592 19.2513C4.75574 19.2183 4.6098 19.1363 4.49829 19.0166C3.43223 17.8742 2.63893 16.5051 2.178 15.0121C2.12954 14.8551 2.13105 14.687 2.18235 14.531C2.23364 14.375 2.33216 14.2388 2.46429 14.1412L3.77315 13.1744C3.95741 13.039 4.10722 12.8621 4.21048 12.6581C4.31375 12.4541 4.36755 12.2287 4.36755 12.0001C4.36755 11.7714 4.31375 11.546 4.21048 11.342C4.10722 11.138 3.95741 10.9612 3.77315 10.8258L2.46429 9.8615C2.33199 9.76388 2.23336 9.62752 2.18206 9.47132C2.13076 9.31512 2.12934 9.14683 2.178 8.98978C2.63989 7.49807 3.43376 6.13041 4.5 4.9895C4.61161 4.87002 4.75761 4.78818 4.91777 4.75532C5.07794 4.72245 5.24436 4.74019 5.394 4.80607L6.86829 5.45493C7.07806 5.54521 7.30605 5.58514 7.53402 5.57151C7.76199 5.55788 7.9836 5.49108 8.18113 5.37645C8.37865 5.26182 8.54659 5.10254 8.67152 4.91136C8.79645 4.72019 8.8749 4.50242 8.90058 4.2755L9.08058 2.66578C9.0987 2.50203 9.1675 2.34802 9.27736 2.22524C9.38723 2.10247 9.53269 2.01706 9.69343 1.98093C10.4486 1.81293 11.2191 1.72378 12.0111 1.71436C12.7843 1.72293 13.554 1.81293 14.3083 1.98093C14.4692 2.01699 14.6148 2.10249 14.7247 2.22546C14.8346 2.34842 14.9033 2.50269 14.9211 2.66664L15.1003 4.27636C15.1389 4.63334 15.3079 4.96351 15.5749 5.20361C15.8419 5.4437 16.1881 5.57684 16.5471 5.5775C16.7469 5.5775 16.9449 5.5355 17.13 5.45407L18.6043 4.80521C18.7539 4.73933 18.9204 4.7216 19.0805 4.75446C19.2407 4.78732 19.3867 4.86916 19.4983 4.98864C20.5643 6.1296 21.3579 7.49727 21.8194 8.98893C21.868 9.14576 21.8666 9.31382 21.8155 9.46983C21.7643 9.62585 21.666 9.76212 21.534 9.85978L20.2269 10.8258C19.854 11.1001 19.6286 11.5364 19.6286 12.0001C19.6286 12.4629 19.854 12.8992 20.2277 13.1744L21.5357 14.1395C21.8066 14.3401 21.9214 14.6898 21.822 15.0112C21.3605 16.5027 20.5672 17.8703 19.5017 19.0115C19.3902 19.1311 19.2443 19.2131 19.0841 19.2461C18.9239 19.2792 18.7574 19.2616 18.6077 19.1958H18.6086ZM13.9397 19.0261C14.1442 18.3855 14.5796 17.8439 15.1611 17.5064C15.5353 17.2908 15.9548 17.166 16.3859 17.142C16.817 17.1181 17.2477 17.1956 17.6434 17.3684L18.7954 17.8741C19.5354 17.0173 20.1082 16.0294 20.484 14.9615L19.4649 14.2098V14.2089C19.1179 13.9542 18.8356 13.6215 18.6407 13.2377C18.4458 12.8539 18.3438 12.4297 18.3429 11.9992C18.3429 11.1189 18.7689 10.3021 19.4632 9.79121L19.4649 9.79035L20.4823 9.03864C20.1062 7.97097 19.5331 6.98332 18.7929 6.12693L17.6503 6.62921L17.6486 6.63007C17.3006 6.78436 16.926 6.86321 16.5463 6.86321C15.871 6.8622 15.2199 6.61229 14.7173 6.16129C14.2148 5.71028 13.8961 5.08985 13.8223 4.41864V4.41693L13.6826 3.1655C13.1312 3.0628 12.572 3.00746 12.0111 3.00007C11.4334 3.00778 10.8711 3.0635 10.3183 3.1655L10.1786 4.41778C10.1305 4.84512 9.98289 5.25523 9.74753 5.61514C9.51216 5.97504 9.19564 6.27471 8.82341 6.49005C8.45118 6.70539 8.03361 6.83039 7.60428 6.855C7.17495 6.87962 6.74584 6.80316 6.35143 6.63178L5.20629 6.12778C4.466 6.98415 3.89294 7.97181 3.51686 9.0395L4.53686 9.79121C4.88311 10.0462 5.16457 10.379 5.35856 10.7628C5.55254 11.1465 5.65361 11.5705 5.65361 12.0005C5.65361 12.4305 5.55254 12.8545 5.35856 13.2382C5.16457 13.622 4.88311 13.9548 4.53686 14.2098L3.51686 14.9624C3.89223 16.0317 4.46501 17.0212 5.20543 17.8792L6.35829 17.3735C6.75145 17.2014 7.17956 17.1241 7.60807 17.148C8.03658 17.1718 8.45349 17.296 8.82515 17.5106C9.19665 17.7253 9.51263 18.024 9.74768 18.3829C9.98274 18.7418 10.1303 19.1509 10.1786 19.5772V19.5815L10.3174 20.8364C11.4291 21.0549 12.5717 21.0549 13.6834 20.8364L13.8223 19.5789C13.8429 19.3904 13.8823 19.2044 13.9406 19.0261H13.9397Z"
+                                                        fill="#333333"
+                                                    />
+                                                </svg>
+                                            </span>
+                                            <span class="pl-4"
+                                                >Profile Settings</span
+                                            ></a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                            href=""
+                                            class="py-4 flex px-4 items-center block hover:bg-gray-200"
+                                            ><span class="">
+                                                <svg
+                                                    width="24"
+                                                    height="24"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                >
+                                                    <path
+                                                        d="M4.5 22.5H13.5C13.8977 22.4996 14.279 22.3414 14.5602 22.0602C14.8414 21.779 14.9996 21.3977 15 21V18.75H13.5V21H4.5V3H13.5V5.25H15V3C14.9996 2.6023 14.8414 2.221 14.5602 1.93978C14.279 1.65856 13.8977 1.5004 13.5 1.5H4.5C4.1023 1.5004 3.721 1.65856 3.43978 1.93978C3.15856 2.221 3.0004 2.6023 3 3V21C3.0004 21.3977 3.15856 21.779 3.43978 22.0602C3.721 22.3414 4.1023 22.4996 4.5 22.5Z"
+                                                        fill="#333333"
+                                                    />
+                                                    <path
+                                                        d="M15.4395 15.4395L18.129 12.75H7.5V11.25H18.129L15.4395 8.5605L16.5 7.5L21 12L16.5 16.5L15.4395 15.4395Z"
+                                                        fill="#333333"
+                                                    />
+                                                </svg>
+                                            </span>
+                                            <span class="pl-4">Logout</span></a
+                                        >
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                         <div class="mt-4 md:mt-8">
                             <h1 class="text-black capitalize font-semibold">
@@ -415,6 +852,154 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="mt-4">
+                            <canvas id="pie-chart"> </canvas>
+                        </div>
+                        <div class="pt-8">
+                            <h1 class="text-sm font-semibold">
+                                Where I spent my money?
+                            </h1>
+                            <div class="mt-4 flex flex-col">
+                                <div v-for="category in categories" :key="category.id" class="py-2">
+                                    <div
+                                        class="flex justify-between items-center"
+                                    >
+                                        <h2
+                                            class="text-gray-900 font-semibold text-xs"
+                                        >
+                                            {{category.category_name}}
+                                        </h2>
+                                        <h4 class="text-gray-800 text-xs">
+                                            Rp200.000
+                                        </h4>
+                                    </div>
+                                    <div
+                                        style="width:70%;"
+                                        class=" h-4 mt-2 bg-red-200 rounded-full"
+                                    ></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="bottom:16px; right:6px;" class="fixed">
+                            <div id="helper" class="relative text-xs">
+                                <div
+                                    v-show="showMenuHelper"
+                                    style="bottom:86px; right:8px;"
+                                    class="bg-white pt-4 shadow-xl w-64 absolute   rounded-lg"
+                                >
+                                    <ul>
+                                        <li>
+                                            <a
+                                                href=""
+                                                class="py-4 px-4 block hover:bg-gray-200"
+                                                >Add New Transaction</a
+                                            >
+                                        </li>
+                                        <li>
+                                            <a
+                                                href=""
+                                                class="py-4 px-4 block hover:bg-gray-200"
+                                                >Change Category Names</a
+                                            >
+                                        </li>
+                                        <li>
+                                            <a
+                                                href=""
+                                                class="py-4 px-4 block hover:bg-gray-200"
+                                                >Transaction History</a
+                                            >
+                                        </li>
+                                        <li>
+                                            <a
+                                                href=""
+                                                class="py-4 px-4 block hover:bg-gray-200"
+                                                >Monthly Saving Goals</a
+                                            >
+                                        </li>
+                                        <li>
+                                            <a
+                                                href=""
+                                                style="border-top-width:1px;"
+                                                class=" border-gray-200 py-4 px-4 block hover:bg-gray-200"
+                                                >Show All Guides</a
+                                            >
+                                        </li>
+                                    </ul>
+                                </div>
+                                <a
+                                    @click="showMenuHelper = !showMenuHelper"
+                                    style="font-size:50px; right:0px; bottom:16px;"
+                                    class="absolute"
+                                >
+                                    <svg
+                                        width="64"
+                                        height="64"
+                                        viewBox="0 0 64 64"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <g filter="url(#filter0_d)">
+                                            <path
+                                                d="M28 4C14.7448 4 4 14.7443 4 27.9988C4 41.2533 14.7448 51.9976 28 51.9976C31.8304 52.0029 35.606 51.0876 39.0088 49.3289L48.1912 51.8896C48.7035 52.0326 49.2446 52.0368 49.759 51.9018C50.2735 51.7668 50.7428 51.4974 51.1189 51.1214C51.495 50.7453 51.7644 50.276 51.8994 49.7616C52.0344 49.2471 52.0302 48.7061 51.8872 48.1938L49.324 39.019C51.0871 35.6135 52.005 31.8337 52 27.9988C52 14.7443 41.2552 4 28 4ZM28 7.59982C33.4104 7.59982 38.5992 9.74899 42.425 13.5745C46.2507 17.4001 48.4 22.5886 48.4 27.9988C48.4 31.5266 47.5048 34.9176 45.8248 37.9271L45.4648 38.5751L48.1336 48.1362L38.5648 45.4675L37.9168 45.8275C35.1943 47.3411 32.1613 48.2111 29.0504 48.3709C25.9394 48.5307 22.8333 47.976 19.97 46.7493C17.1067 45.5226 14.5624 43.6565 12.5321 41.2941C10.5019 38.9318 9.0396 36.1359 8.25745 33.1208C7.4753 30.1057 7.39404 26.9516 8.01991 23.9003C8.64577 20.8489 9.96214 17.9814 11.8681 15.5177C13.774 13.0539 16.2188 11.0593 19.0152 9.68681C21.8115 8.31433 24.885 7.60042 28 7.59982Z"
+                                                fill="#5E81F4"
+                                            />
+                                            <path
+                                                d="M28 7.59982C33.4104 7.59982 38.5992 9.74899 42.425 13.5745C46.2507 17.4001 48.4 22.5886 48.4 27.9988C48.4 31.5266 47.5048 34.9176 45.8248 37.9271L45.4648 38.5751L48.1336 48.1362L38.5648 45.4675L37.9168 45.8275C35.1943 47.3411 32.1613 48.2111 29.0504 48.3709C25.9394 48.5307 22.8333 47.976 19.97 46.7493C17.1067 45.5226 14.5624 43.6565 12.5321 41.2941C10.5019 38.9318 9.0396 36.1359 8.25745 33.1208C7.4753 30.1057 7.39404 26.9516 8.01991 23.9003C8.64577 20.8489 9.96214 17.9814 11.8681 15.5177C13.774 13.0539 16.2188 11.0593 19.0152 9.68681C21.8115 8.31433 24.885 7.60042 28 7.59982Z"
+                                                fill="#5E81F4"
+                                            />
+                                        </g>
+                                        <path
+                                            d="M29.697 37.1013C29.2469 36.6512 28.6364 36.3984 27.9999 36.3984C27.3634 36.3984 26.7529 36.6512 26.3028 37.1013C25.8528 37.5513 25.5999 38.1617 25.5999 38.7982C25.5999 39.4347 25.8528 40.0451 26.3028 40.4952C26.7529 40.9453 27.3634 41.1981 27.9999 41.1981C28.6364 41.1981 29.2469 40.9453 29.697 40.4952C30.147 40.0451 30.3999 39.4347 30.3999 38.7982C30.3999 38.1617 30.147 37.5513 29.697 37.1013Z"
+                                            fill="white"
+                                        />
+                                        <path
+                                            d="M32.6668 17.3324C31.4291 16.0947 29.7503 15.3994 27.9999 15.3994C26.2495 15.3994 24.5707 16.0947 23.333 17.3324C22.0953 18.5701 21.3999 20.2487 21.3999 21.9991C21.3999 22.4764 21.5895 22.9343 21.9271 23.2718C22.2647 23.6094 22.7225 23.799 23.1999 23.799C23.6773 23.799 24.1351 23.6094 24.4727 23.2718C24.8103 22.9343 24.9999 22.4764 24.9999 21.9991L25.0167 21.6919C25.0978 20.9289 25.4681 20.2259 26.0516 19.7276C26.6351 19.2293 27.3874 18.9735 28.1537 19.0129C28.9201 19.0522 29.6422 19.3837 30.1716 19.9392C30.701 20.4946 30.9974 21.2318 30.9999 21.9991C30.9999 23.4006 30.6207 24.0342 29.1279 25.5269L28.7223 25.9373C26.9127 27.8212 26.1999 29.1747 26.1999 31.5986C26.1999 32.076 26.3895 32.5338 26.7271 32.8713C27.0647 33.2089 27.5225 33.3985 27.9999 33.3985C28.4773 33.3985 28.9351 33.2089 29.2727 32.8713C29.6103 32.5338 29.7999 32.076 29.7999 31.5986C29.7999 30.1971 30.1791 29.5635 31.6719 28.0708L32.0775 27.6604C33.8871 25.7765 34.5999 24.423 34.5999 21.9991C34.5999 20.2487 33.9045 18.5701 32.6668 17.3324Z"
+                                            fill="white"
+                                        />
+                                        <defs>
+                                            <filter
+                                                id="filter0_d"
+                                                x="0"
+                                                y="0"
+                                                width="64"
+                                                height="64"
+                                                filterUnits="userSpaceOnUse"
+                                                color-interpolation-filters="sRGB"
+                                            >
+                                                <feFlood
+                                                    flood-opacity="0"
+                                                    result="BackgroundImageFix"
+                                                />
+                                                <feColorMatrix
+                                                    in="SourceAlpha"
+                                                    type="matrix"
+                                                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                                                />
+                                                <feOffset dx="4" dy="4" />
+                                                <feGaussianBlur
+                                                    stdDeviation="4"
+                                                />
+                                                <feColorMatrix
+                                                    type="matrix"
+                                                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.3 0"
+                                                />
+                                                <feBlend
+                                                    mode="normal"
+                                                    in2="BackgroundImageFix"
+                                                    result="effect1_dropShadow"
+                                                />
+                                                <feBlend
+                                                    mode="normal"
+                                                    in="SourceGraphic"
+                                                    in2="effect1_dropShadow"
+                                                    result="shape"
+                                                />
+                                            </filter>
+                                        </defs>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </template>
             </sidebar-vue>
@@ -424,99 +1009,158 @@
 
 <script>
 import brand from "../../assets/images/ruang.png";
+import Chart from "chart.js";
+import Modal from "../../components/Modal";
 import icon_calendar from "../../assets/images/icon_calendar.png";
 import icon_box from "../../assets/images/icon_box.png";
 import icon_ayam from "../../assets/images/ayam.png";
 import Category from "../../components/Category.vue";
 import SidebarVue from "../../components/Sidebar.vue";
 import CardVue from "../../components/Card.vue";
+
+import { mapActions, mapGetters } from "vuex";
+
 export default {
     components: {
         Category,
         SidebarVue,
-        CardVue
+        CardVue,
+        Modal
     },
     data() {
         return {
+            modalCategoryGroup: false,
             brand: brand,
+            showProfileSetting: false,
+            showNewBudget: false,
             icon_ayam: icon_ayam,
             icon_calendar: icon_calendar,
             icon_box: icon_box,
-            categorys: [
-                {
-                    category: 1,
-                    budget: 1000,
-                    activity: 20000,
-                    available: 100000,
-                    subcategorys: [
-                        {
-                            category: 1,
-                            budget: 20000,
-                            activity: 20000,
-                            available: 100000
-                        }
-                    ]
+            showProfileMenu: false,
+            showMenuHelper: false,
+            showNotif: false,
+
+            form: {
+                budget: {
+                    name_budget: null
                 },
-                {
-                    category: 1,
-                    budget: 1000,
-                    activity: 20000,
-                    available: 100000,
-                    subcategorys: [
-                        {
-                            category: 1,
-                            budget: 20000,
-                            activity: 20000,
-                            available: 100000
-                        },
-                        {
-                            category: 3,
-                            budget: 20040,
-                            activity: 20000,
-                            available: 11320000
-                        }
-                    ]
-                },
-                {
-                    category: 1,
-                    budget: 1000,
-                    activity: 20000,
-                    available: 100000,
-                    subcategorys: [
-                        {
-                            category: 1,
-                            budget: 20000,
-                            activity: 20000,
-                            available: 100000
-                        },
-                        {
-                            category: 1,
-                            budget: 20000,
-                            activity: 20000,
-                            available: 100000
-                        },
-                        {
-                            category: 1,
-                            budget: 20000,
-                            activity: 20000,
-                            available: 100000
-                        },
-                        {
-                            category: 1,
-                            budget: 20000,
-                            activity: 20000,
-                            available: 100000
-                        }
-                    ]
+                category: {
+                    name_category: null
                 }
-            ]
+            }
         };
-    }
+    },
+    methods: {
+        ...mapActions({
+            //budget
+            createBudget: "budget/createBudget",
+            fetchData: "budget/fetchData",
+
+            //category
+            fetchCategoryData: "category/fetchData",
+            addNewCategory: "category/addNewCategory"
+        }),
+        createNewBudget(e) {
+            const data = {
+                name_budget: this.form.budget.new_budget
+            };
+            this.createBudget(data)
+                .then(res => {
+                    console.log(res.data);
+                    this.showNewBudget = false;
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+            e.preventDefault();
+        },
+        fetchCategory(budget_id) {
+            console.log(budget_id);
+            this.fetchCategoryData(budget_id).then(res => {
+                console.log(res);
+            });
+        },
+        addCategory() {
+            const data = {
+                name_category: this.form.category.name_category,
+                budget_id: localStorage.getItem("budget_id")
+            };
+            this.addNewCategory(data);
+
+            this.modalCategoryGroup = false;
+        }
+    },
+    computed: {
+        ...mapGetters({
+            budgets: "budget/budget",
+            categories: "category/categories"
+        }),
+        dataChart() {
+            const chartData = {
+                datasets: [
+                    {
+                        data: [10, 20, 30],
+                        backgroundColor: [
+                            "#FF6384",
+                            "#63FF84",
+                            "#84FF63",
+                            "#8463FF",
+                            "#6384FF"
+                        ]
+                    }
+                ],
+
+                // These labels appear in the legend and in the tooltips when hovering different arcs
+                labels: ["Red", "Yellow", "Blue"]
+            };
+            const option = {
+                aspectRatio: 1,
+                layout: {
+                    padding: {
+                        left: 0,
+                        right: 0,
+                        top: 0,
+                        bottom: 0
+                    }
+                },
+                responsive: true,
+                cutoutPercentage: 75,
+                legend: {
+                    display: false
+                },
+                title: {
+                    display: false
+                }
+            };
+            const chart = {
+                type: "doughnut",
+                data: chartData,
+                options: option
+            };
+            return chart;
+        }
+    },
+    mounted() {
+        const pieChart = document.getElementById("pie-chart");
+        new Chart(pieChart, this.dataChart);
+        if (this.budgets.length == 0) {
+            this.fetchData();
+        }
+        if (this.categories.length == 0) {
+            this.fetchCategoryData(localStorage.getItem("budget_id"));
+        }
+        console.log(this.budgets);
+    },
+    created() {}
 };
 </script>
 
-<style>
+<style lang="css">
 .card {
     background-image: url("../../assets/images/icon_box.png");
+}
+
+select option:hover {
+    background-color: green;
 }
 </style>

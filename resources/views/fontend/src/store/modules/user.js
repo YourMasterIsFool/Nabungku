@@ -57,5 +57,9 @@ export default {
             commit(SET_TOKEN, token);
         }
     },
-    getters: {}
+    getters: {
+        budgets: state => {
+            return state.budgets;
+        }
+    }
 };

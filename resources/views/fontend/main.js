@@ -6,8 +6,6 @@ import axios from "axios";
 import routers from "./src/routers";
 import store from "./src/store";
 
-axios.defaults.baseURL = "http://localhost:8000/";
-Vue.prototype.axios = axios;
 Vue.use(VueRouter);
 
 const router = new VueRouter({
