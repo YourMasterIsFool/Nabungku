@@ -135,21 +135,20 @@
                     </div>
                 </div>
                 <div class="col-span-2">
-                    <a href=""> Rp. {{ item.budget_id }} </a>
+                    <a href=""> {{budgeted}} </a>
                 </div>
                 <div class="col-span-2">activity</div>
                 <div class="col-span-2">available</div>
             </div>
         </div>
         <sub-category-vue
-            class="transition-all duration-1000"
+            class="transition-all relative duration-1000"
             :style="[
                 dropdownSubCategory
                     ? { height: 'auto', overflow: 'auto' }
                     : { overflow: 'hidden', height: '0px' }
             ]"
             id="category"
-            :category-id="item.id"
             v-for="sub_category in item.sub_categories"
             :item="sub_category"
             :key="sub_category.id"
@@ -196,7 +195,16 @@ export default {
         ...mapGetters({
             getIndex: "category/getIndex",
             sub_categories: 'sub_category/sub_categories' 
-        })
+        }),
+        budgeted() {
+            if(this.item.sub_categories.length > 0) {
+                return this.item.sub_categories.reduce((sum, obj) => {
+                    sum + obj.budgeted;
+                },0);
+            }
+
+            return 0;
+        }
     },
     methods: {
         ...mapActions({

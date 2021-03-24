@@ -2093,7 +2093,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2124,10 +2123,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.error = null;
     }
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapGetters)({
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapGetters)({
     getIndex: "category/getIndex",
     sub_categories: 'sub_category/sub_categories'
-  })),
+  })), {}, {
+    budgeted: function budgeted() {
+      if (this.item.sub_categories.length > 0) {
+        return this.item.sub_categories.reduce(function (sum, obj) {
+          sum + obj.budgeted;
+        }, 0);
+      }
+
+      return 0;
+    }
+  }),
   methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapActions)({
     deleteCategory: "category/removeCategory",
     editCategoryName: "category/updateCategoryName",
@@ -2571,21 +2580,150 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["categoryId", "item"],
+  props: ["item"],
   data: function data() {
-    return {};
+    return {
+      showModalBudgeted: false,
+      showModalSubCategory: false,
+      showModalActivity: false,
+      showModalAvailable: false,
+      form: {
+        inputBudgeted: this.item.budgeted,
+        inputActivity: this.item.activity,
+        inputAvailable: this.item.available,
+        sub_category_name: this.item.sub_category_name
+      },
+      error: null
+    };
+  },
+  computed: {
+    available: function available() {
+      return this.item.budgeted - this.item.activity;
+    }
   },
   methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)({
-    fectDataSubCategory: "sub_category/fetchSubCategory"
+    fectDataSubCategory: "sub_category/fetchSubCategory",
+    update_Sub_Category: 'category/updateSubCategory'
   })), {}, {
     fetchData: function fetchData(categoryId) {
       this.fectDataSubCategory(categoryId);
+    },
+    focusChanged: function focusChanged(event) {
+      var data = {
+        'sub_category_name': this.form.sub_category_name,
+        'budgeted': this.form.inputBudgeted,
+        'activity': this.form.inputActivity,
+        'available': this.form.inputAvailable,
+        'id': this.item.id,
+        'category_id': this.item.category_id
+      };
+      this.updateSubCategory(data);
+    },
+    updateSubCategory: function updateSubCategory(data) {
+      var _this = this;
+
+      console.log(data);
+      this.update_Sub_Category(data).then(function (resp) {
+        console.log(resp);
+        _this.showModalBudgeted = false;
+        _this.showModalActivity = false;
+        _this.showModalAvailable = false;
+        _this.showModalSubCategory = false;
+      })["catch"](function (error) {
+        _this.error = "".concat(_this.form.sub_category_name, " ").concat(error.data.data);
+        console.log(_this.error);
+      });
+    },
+    closeModal: function closeModal(e) {
+      var el = this.$refs.sub_category;
+      var elBudgeted = this.$refs.modalBudgeted;
+      var elActivtiy = this.$refs.modalActivity;
+      var elAvailable = this.$refs.modalAvailable;
+      var elSubCategory = this.$refs.modalSubCategory;
+      var target = e.target;
+
+      if (el == target || el.contains(target)) {
+        if (elBudgeted !== target && !elBudgeted.contains(target)) {
+          this.showModalBudgeted = false;
+        }
+
+        if (elActivtiy !== target && !elActivtiy.contains(target)) {
+          this.showModalActivity = false;
+        }
+
+        if (elAvailable !== target && !elAvailable.contains(target)) {
+          this.showModalAvailable = false;
+        }
+
+        if (elSubCategory !== target && !elSubCategory.contains(target)) {
+          this.showModalSubCategory = false;
+        }
+      } else {
+        this.showModalBudgeted = false;
+        this.showModalActivity = false;
+        this.showModalAvailable = false;
+        this.showModalSubCategory = false;
+      }
     }
   }),
   mounted: function mounted() {
     this.fetchData();
+    console.log(this.showModalBudgeted);
+  },
+  created: function created() {
+    document.addEventListener('click', this.closeModal);
   }
 });
 
@@ -4995,6 +5133,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _sub_category__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sub_category */ "./resources/views/fontend/src/store/modules/sub_category.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 var _mutations;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -5007,6 +5146,8 @@ var UPDATE_CATEGORY_NAME = "UPDATE_CATEGORY_NAME";
 var ADD_CATEGORY = "ADD_CATEGORY";
 var REMOVE_CATEGORY = "REMOVE_CATEGORY";
 var ADD_SUB_CATEGORY = "ADD_SUB_CATEGORY";
+var UPDATE_SUB_CATEGORY = 'UPDATE_SUB_CATEGORY';
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   namespaced: true,
   state: {
@@ -5036,6 +5177,16 @@ var ADD_SUB_CATEGORY = "ADD_SUB_CATEGORY";
     }
 
     state.categories[index].sub_categories.push(data);
+  }), _defineProperty(_mutations, UPDATE_SUB_CATEGORY, function (state, payload) {
+    console.log(payload.category_id);
+    var index = state.categories.findIndex(function (item) {
+      return item.id == payload.category_id;
+    });
+    var subCategoryIndex = state.categories[index].sub_categories.findIndex(function (item) {
+      return item.id === payload.id;
+    });
+    state.categories[index].sub_categories[subCategoryIndex] = payload;
+    vue__WEBPACK_IMPORTED_MODULE_2__.default.set(state.categories[index].sub_categories, subCategoryIndex, payload); // console.log(state.categories)
   }), _mutations),
   actions: {
     fetchData: function fetchData(_ref, data) {
@@ -5047,8 +5198,8 @@ var ADD_SUB_CATEGORY = "ADD_SUB_CATEGORY";
             budget_id: localStorage.getItem("budget_id")
           }
         }).then(function (res) {
+          var data = res.dat;
           commit(SET_CATEGORY, res.data.data);
-          console.log(res.data.data);
           resolve(res);
         })["catch"](function (err) {
           if (err.response) {
@@ -5114,6 +5265,23 @@ var ADD_SUB_CATEGORY = "ADD_SUB_CATEGORY";
             console.log(err.response);
           } else {
             reject(err);
+          }
+        });
+      });
+    },
+    updateSubCategory: function updateSubCategory(_ref6, payload) {
+      var commit = _ref6.commit;
+      console.log(payload);
+      return new Promise(function (resolve, reject) {
+        axios__WEBPACK_IMPORTED_MODULE_0___default().patch('api/sub_category/' + payload.id, payload).then(function (res) {
+          commit(UPDATE_SUB_CATEGORY, res.data.data);
+          resolve(res);
+        })["catch"](function (err) {
+          if (err.response) {
+            reject(err.response);
+            console.log(err.response);
+          } else {
+            console.log(err);
           }
         });
       });
@@ -5185,23 +5353,8 @@ var ADD_SUB_CATEGORY = 'ADD_SUB_CATEGORY';
         }).then(function (res) {
           console.log(res);
         })["catch"](function (err) {
-          console.log(err.response);
-        });
-      });
-    },
-    storeSubCategory: function storeSubCategory(_ref2, data) {
-      var commit = _ref2.commit;
-      return new Promise(function (resolve, reject) {
-        axios__WEBPACK_IMPORTED_MODULE_0___default().post("api/sub_category", data).then(function (res) {
-          console.log(res);
-          resolve(res);
-          commit(ADD_SUB_CATEGORY, res.data);
-        })["catch"](function (err) {
-          if (err.response) {
-            reject(error.response);
+          if (err) {
             console.log(err.response);
-          } else {
-            reject(err);
           }
         });
       });
@@ -62773,7 +62926,7 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "col-span-2" }, [
               _c("a", { attrs: { href: "" } }, [
-                _vm._v(" Rp. " + _vm._s(_vm.item.budget_id) + " ")
+                _vm._v(" " + _vm._s(_vm.budgeted) + " ")
               ])
             ]),
             _vm._v(" "),
@@ -62787,17 +62940,13 @@ var render = function() {
       _vm._l(_vm.item.sub_categories, function(sub_category) {
         return _c("sub-category-vue", {
           key: sub_category.id,
-          staticClass: "transition-all duration-1000",
+          staticClass: "transition-all relative duration-1000",
           style: [
             _vm.dropdownSubCategory
               ? { height: "auto", overflow: "auto" }
               : { overflow: "hidden", height: "0px" }
           ],
-          attrs: {
-            id: "category",
-            "category-id": _vm.item.id,
-            item: sub_category
-          }
+          attrs: { id: "category", item: sub_category }
         })
       })
     ],
@@ -63324,27 +63473,317 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "text-xs", attrs: { id: "sub-category" } }, [
-    _c("div", { staticClass: "grid grid-cols-12  text-gray-700 py-4 px-6" }, [
-      _vm._m(0),
+  return _c(
+    "div",
+    {
+      ref: "sub_category",
+      staticClass: "text-xs",
+      attrs: { id: "sub-category" }
+    },
+    [
+      _c("div", { staticClass: "modal absolute" }, [_vm._t("modal")], 2),
       _vm._v(" "),
-      _c("span", { staticClass: "col-span-5 text-xs  capitalize" }, [
-        _vm._v("\n            " + _vm._s(_vm.item.sub_category_name))
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-span-2" }, [
-        _vm._v("Rp" + _vm._s(_vm.item.budgeted))
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-span-2" }, [
-        _vm._v("Rp" + _vm._s(_vm.item.activity))
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-span-2" }, [
-        _vm._v("Rp" + _vm._s(_vm.item.available))
+      _c("div", { staticClass: "grid grid-cols-12  text-gray-700 py-4 px-6" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "col-span-5 relative",
+            on: {
+              click: function($event) {
+                _vm.showModalSubCategory = true
+              }
+            }
+          },
+          [
+            _c(
+              "div",
+              { ref: "modalSubCategory", staticClass: " overflow-hidden" },
+              [
+                _c(
+                  "a",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.showModalSubCategory == false,
+                        expression: "showModalSubCategory == false"
+                      }
+                    ],
+                    staticClass: "capitalize block"
+                  },
+                  [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(_vm.item.sub_category_name) +
+                        "\n                "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.error != null,
+                        expression: "error != null"
+                      }
+                    ],
+                    staticClass: " text-xs text-red-400",
+                    staticStyle: { "font-size": "11px" }
+                  },
+                  [
+                    _vm._v(
+                      "\n                      " +
+                        _vm._s(_vm.error) +
+                        "  \n                "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.showModalSubCategory,
+                      expression: "showModalSubCategory"
+                    },
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.sub_category_name,
+                      expression: "form.sub_category_name"
+                    }
+                  ],
+                  staticClass:
+                    "py-2 w-32 outline-none pl-2 absolute focus:bg-gray-100 rounded-lg border-2 border-gray-100",
+                  staticStyle: { top: "-10px" },
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.form.sub_category_name },
+                  on: {
+                    blur: _vm.focusChanged,
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.form,
+                        "sub_category_name",
+                        $event.target.value
+                      )
+                    }
+                  }
+                })
+              ]
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "col-span-2 relative",
+            on: {
+              click: function($event) {
+                _vm.showModalBudgeted = true
+              }
+            }
+          },
+          [
+            _c(
+              "div",
+              { ref: "modalBudgeted", staticClass: " overflow-hidden" },
+              [
+                _c(
+                  "a",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.showModalBudgeted == false,
+                        expression: "showModalBudgeted == false"
+                      }
+                    ],
+                    staticClass: "capitalize"
+                  },
+                  [
+                    _vm._v(
+                      "\n                    Rp" +
+                        _vm._s(_vm.item.budgeted) +
+                        "\n                "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.showModalBudgeted,
+                      expression: "showModalBudgeted"
+                    },
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.inputBudgeted,
+                      expression: "form.inputBudgeted"
+                    }
+                  ],
+                  staticClass:
+                    "py-1 w-full outline-none pl-4 absolute focus:bg-gray-100 rounded-lg border-2 border-gray-100",
+                  staticStyle: { top: "-5px" },
+                  attrs: { type: "number" },
+                  domProps: { value: _vm.form.inputBudgeted },
+                  on: {
+                    blur: _vm.focusChanged,
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "inputBudgeted", $event.target.value)
+                    }
+                  }
+                })
+              ]
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "col-span-2",
+            on: {
+              click: function($event) {
+                _vm.showModalActivity = true
+              }
+            }
+          },
+          [
+            _c("div", { ref: "modalActivity", staticClass: "relative" }, [
+              _c(
+                "a",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.showModalActivity == false,
+                      expression: "showModalActivity == false"
+                    }
+                  ],
+                  staticClass: "capitalize "
+                },
+                [
+                  _vm._v(
+                    "\n                    Rp" +
+                      _vm._s(_vm.item.activity) +
+                      "\n                "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.showModalActivity,
+                    expression: "showModalActivity"
+                  },
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.inputActivity,
+                    expression: "form.inputActivity"
+                  }
+                ],
+                staticClass:
+                  "py-1 w-full outline-none pl-4 absolute focus:bg-gray-100 rounded-lg border-2 border-gray-100",
+                staticStyle: { top: "-5px" },
+                attrs: { type: "number" },
+                domProps: { value: _vm.form.inputActivity },
+                on: {
+                  blur: _vm.focusChanged,
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "inputActivity", $event.target.value)
+                  }
+                }
+              })
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-span-2 " }, [
+          _c("div", { ref: "modalAvailable", staticClass: "relative" }, [
+            _c(
+              "a",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.showModalAvailable == false,
+                    expression: "showModalAvailable == false"
+                  }
+                ],
+                staticClass: "capitalize"
+              },
+              [
+                _vm._v(
+                  "\n                    Rp" +
+                    _vm._s(_vm.available) +
+                    "\n                "
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.showModalAvailable,
+                  expression: "showModalAvailable"
+                },
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.inputAvailable,
+                  expression: "form.inputAvailable"
+                }
+              ],
+              staticClass:
+                "py-1 w-full outline-none pl-4 absolute focus:bg-gray-100 rounded-lg border-2 border-gray-100",
+              staticStyle: { top: "-5px" },
+              attrs: { type: "number" },
+              domProps: { value: _vm.form.inputAvailable },
+              on: {
+                blur: _vm.focusChanged,
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "inputAvailable", $event.target.value)
+                }
+              }
+            })
+          ])
+        ])
       ])
-    ])
-  ])
+    ]
+  )
 }
 var staticRenderFns = [
   function() {

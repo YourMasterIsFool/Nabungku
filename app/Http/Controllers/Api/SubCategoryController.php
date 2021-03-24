@@ -61,7 +61,6 @@ class SubCategoryController extends Controller
                 'sub_category_name' => $request->input('sub_category_name'),
                 'budgeted' => 0,
                 'activity' => 0,
-                'available' => 0
             ]);
             return response()->json([
                 'data' => $data
@@ -102,6 +101,48 @@ class SubCategoryController extends Controller
     public function update(Request $request, $id)
     {
         //
+           $payload = [
+            'activity' => $request->input('activity'),
+            'sub_category_name' => $request->input('sub_category_name'),
+            'budgeted' => $request->input('budgeted'),
+            
+            ];
+        
+        if(SubCategory::where([
+            ['id', '=', $id],
+            ['sub_category_name', '=', $request->input('sub_category_name')]
+            ])->count() > 0) {
+              
+
+            SubCategory::where('id', $id)->update($payload);
+
+            $data = SubCategory::where('id',$id)->first();
+
+            return response()->json([
+                'data' => $data
+                    
+            ], 200); 
+            }
+        else if(SubCategory::where([
+            ['sub_category_name', '=', $request->input('sub_category_name')]
+            ])->count() > 0) {
+            $error = "sub category name has been used";
+            return response()->json([
+                'data' => $error
+            ], 400);
+        }
+        else {
+
+            SubCategory::where('id', $id)->update($payload);
+
+            $data = SubCategory::where('id',$id)->first();
+
+            return response()->json([
+                'data' => $data
+                    
+            ], 200); 
+        }
+        
     }
 
     /**

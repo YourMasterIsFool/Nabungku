@@ -6,6 +6,9 @@ const UPDATE_CATEGORY_NAME = "UPDATE_CATEGORY_NAME";
 const ADD_CATEGORY = "ADD_CATEGORY";
 const REMOVE_CATEGORY = "REMOVE_CATEGORY";
 const ADD_SUB_CATEGORY = "ADD_SUB_CATEGORY";
+const UPDATE_SUB_CATEGORY = 'UPDATE_SUB_CATEGORY';
+
+import Vue from 'vue';
 
 export default {
     namespaced: true,
@@ -37,6 +40,19 @@ export default {
                 state.categories[index].sub_categories = [];
             }
             state.categories[index].sub_categories.push(data);
+        },
+        [UPDATE_SUB_CATEGORY](state, payload) {
+            console.log(payload.category_id);
+            const index = state.categories.findIndex(
+                item => item.id == payload.category_id
+            );
+            const subCategoryIndex = state.categories[index].sub_categories.findIndex(
+                item => item.id === payload.id
+            );
+            state.categories[index].sub_categories[subCategoryIndex] = payload;
+            Vue.set(state.categories[index].sub_categories, subCategoryIndex, payload)
+            // console.log(state.categories)
+
         }
     },
     actions: {
@@ -50,8 +66,10 @@ export default {
                         }
                     })
                     .then(res => {
+                        
+                        const data = res.dat
                         commit(SET_CATEGORY, res.data.data);
-                        console.log(res.data.data);
+                        
                         resolve(res);
                     })
                     .catch(err => {
@@ -132,6 +150,28 @@ export default {
                         }
                     });
             });
+        },
+        updateSubCategory({commit}, payload) {
+            console.log(payload);
+            return new Promise((resolve, reject) => {
+
+                axios.patch('api/sub_category/'+payload.id, payload)
+                .then((res) => {
+                    
+                   commit(UPDATE_SUB_CATEGORY, res.data.data);
+                   resolve(res);
+                })
+                .catch((err) => {
+                    if(err.response) {
+                        reject(err.response);
+                        console.log(err.response);
+                    }
+                    else {
+                        console.log(err);
+                    }
+                })
+
+            })
         }
     },
     getters: {
