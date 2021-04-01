@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\core\SubCategory;
 use Illuminate\Http\Request;
+use DB;
 
 class SubCategoryController extends Controller
 {
@@ -18,7 +19,7 @@ class SubCategoryController extends Controller
         $data = SubCategory::where('category_id', $request->input('category_id'))->get();
 
         return response()->json([
-            $data
+            'data' => $data
         ]);
     }
 
@@ -60,8 +61,9 @@ class SubCategoryController extends Controller
                 'category_id' => $request->input('category_id'),
                 'sub_category_name' => $request->input('sub_category_name'),
                 'budgeted' => 0,
-                'activity' => 0,
             ]);
+            $data['available'] = 0;
+            $data['activity'] = 0;
             return response()->json([
                 'data' => $data
             ], 200);
@@ -102,7 +104,6 @@ class SubCategoryController extends Controller
     {
         //
            $payload = [
-            'activity' => $request->input('activity'),
             'sub_category_name' => $request->input('sub_category_name'),
             'budgeted' => $request->input('budgeted'),
             
@@ -116,7 +117,9 @@ class SubCategoryController extends Controller
 
             SubCategory::where('id', $id)->update($payload);
 
-            $data = SubCategory::where('id',$id)->first();
+             $data = SubCategory::withCount(['activity as activity' => function($query) {
+                $query->select(DB::raw('sum(income-expense)'));
+             }])->where('id',$id)->first();
 
             return response()->json([
                 'data' => $data
@@ -135,8 +138,9 @@ class SubCategoryController extends Controller
 
             SubCategory::where('id', $id)->update($payload);
 
-            $data = SubCategory::where('id',$id)->first();
-
+                  $data = SubCategory::withCount(['activity as activity' => function($query) {
+                $query->select(DB::raw('sum(income-expense)'));
+             }])->where('id',$id)->first();
             return response()->json([
                 'data' => $data
                     

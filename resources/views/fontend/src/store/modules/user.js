@@ -39,9 +39,10 @@ export default {
                 axios
                     .post("api/login", data)
                     .then(res => {
-                        console.log(res.data);
+                        commit(SET_USER, res.data.data.user_detail);
                         dispatch("attempt", res.data.data.token);
                         resolve(res.data);
+                        console.log(res.data);
                     })
                     .catch(err => {
                         if (err.response) {
@@ -52,14 +53,42 @@ export default {
                     });
             });
         },
-        attempt({ commit }, token) {
-            localStorage.setItem("token", token);
-            commit(SET_TOKEN, token);
+        async attempt({ commit }, token) {
+            if(token) {
+                commit(SET_TOKEN, token);
+            }
+
+            try {
+                let response = await axios.get('api/users_me');
+                console.log(token);
+                console.log(response.data);
+                commit(SET_USER, response.data.data);
+            }
+            catch (e) {
+                commit(SET_TOKEN, null);
+                commit(SET_USER, null);
+            }
+        },
+        logout({commit, state}) {
+            try {
+                
+                commit(SET_TOKEN, null)
+                commit(SET_USER, null);
+            } catch(e) {
+                // statements
+                console.log(e);
+            }
         }
     },
     getters: {
         budgets: state => {
             return state.budgets;
+        },
+        token: state => {
+            return state.token;
+        },
+        user: state => {
+            return state.user ? state.user : null;
         }
     }
 };

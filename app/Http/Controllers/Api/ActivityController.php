@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\core\MasterBudget;
 use Illuminate\Http\Request;
+use App\Models\core\Activity;
 
-class BudgetController extends Controller
+class ActivityController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +15,13 @@ class BudgetController extends Controller
      */
     public function index(Request $request)
     {
-        $data = MasterBudget::with(['category'])->where('user_id', $request->user()->id)->get();
-
+        $activity = Activity::where('sub_category_id', $request->input('sub_category_id'))
+        ->get();
         return response()->json([
-            'data' => $data
+            'data' => $activity
         ]);
+
+
     }
 
     /**
@@ -40,13 +42,15 @@ class BudgetController extends Controller
      */
     public function store(Request $request)
     {
-        $item = MasterBudget::create([
-            'user_id' => $request->user()->id,
-            'name_budget' => $request->input('name_budget')
+        $activity = Activity::create([
+            'sub_category_id' => $request->input('sub_category'),
+            'expense' => (boolval($request->input('expense')) ? $request->input('expense') : 0),
+
+            'income' => (boolval($request->input('income')) ? $request->input('income') : 0),
         ]);
-        
+
         return response()->json([
-            'data' => $item
+            "data" => $activity,
         ]);
     }
 

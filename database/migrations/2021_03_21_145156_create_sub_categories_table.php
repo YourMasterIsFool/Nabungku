@@ -13,14 +13,14 @@ class CreateSubCategoriesTable extends Migration
      */
     public function up()
     {
+      
+        Schema::dropIfExists('sub_categories');
         Schema::create('sub_categories', function (Blueprint $table) {
             $table->id();
-            $table->integer('category_id');
             $table->string('sub_category_name');
             $table->float('budgeted', 16, 2)->default(0);
-            $table->float('activity',16, 2)->default(0);
-            $table->float('available',16, 2)->default(0);
             $table->timestamps();
+            $table->foreignId('category_id')->references('id')->on('master_categories')->onDelete('cascade');
         });
     }
 

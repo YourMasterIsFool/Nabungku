@@ -50,6 +50,12 @@ export default {
     getters: {
         budget: state => {
             return state.budgets;
+        },
+        fetchBudgetById: state => id => {
+            const index = state.budgets.findIndex( item => item.id = id);
+
+            return state.budgets[index];
         }
+
     }
 };

@@ -13,9 +13,11 @@ class MasterCategory extends Model
         'id',
         'budget_id',
         'category_name',
-        'sub_categories'
+       
         
     ];
+
+ 
 
     public function budget() { 
         return $this->belongsTo(MasterBudget::class, 'budget_id', 'id');
@@ -24,6 +26,8 @@ class MasterCategory extends Model
     public function sub_categories() {
         return $this->hasMany(SubCategory::class, 'category_id', 'id');
     }
+
+
 
     
 }

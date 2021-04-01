@@ -6,6 +6,10 @@ import About from "../views/About";
 import Feature from "../views/Feature";
 import Dashboard from "../views/core/Dashboard";
 
+
+import store from '../store';
+
+
 const routers = [
     {
         path: "/",
@@ -15,7 +19,15 @@ const routers = [
     {
         path: "/dashboard",
         name: "dashboard",
-        component: Dashboard
+        component: Dashboard,
+        beforeEnter:(to, from, next) => {
+            if(!store.getters['user/token']) {
+                return next({
+                    name: 'login'
+                })
+            }
+            next()
+        }
     },
 
     {

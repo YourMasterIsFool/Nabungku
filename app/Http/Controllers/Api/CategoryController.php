@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\core\MasterCategory;
 use Illuminate\Http\Request;
+use DB;
 
 class CategoryController extends Controller
 {
@@ -15,8 +16,24 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-        $data = MasterCategory::with(['sub_categories'])
+        $data = MasterCategory::with(['sub_categories' => function($query) {
+            $query->withCount(['activity as activity'=> function ($q) {
+                $q->select(DB::raw('COALESCE(sum(income-expense), 0)'));
+            }]);
+         },
+        ])
+        ->withCount(['sub_categories as budgeted' => function($query) {
+
+            $query->select(DB::raw('COALESCE(sum(budgeted), 0)'));
+        },
+        'sub_categories as activity' => function($query) {
+             $query->withCount(['activity'=> function ($q) {
+                $q->select(DB::raw('COALESCE(sum(income-expense), 0)'));
+             }]);
+        }
+        ])
         ->where('budget_id', $request->input('budget_id'))->get();
+
         return response()->json([
             'data' => $data
         ]);
@@ -44,8 +61,12 @@ class CategoryController extends Controller
             'category_name' => $request->input('name_category'),
             'budget_id' => $request->input('budget_id'),
         ]);
+
+        $category['budgeted'] = 0;
+        $category['activity'] = 0;
+
         return response()->json([
-            'data' => $category
+            'data' => $category->load('sub_categories')
         ]);
     }
 

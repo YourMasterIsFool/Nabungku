@@ -27,6 +27,7 @@
                 </a>
             </div>
             <div class="col-span-11 grid grid-cols-11">
+
                 <div
                     class="col-span-5 relative text-xs flex  items-center font-bold capitalize"
                 >
@@ -135,35 +136,93 @@
                     </div>
                 </div>
                 <div class="col-span-2">
-                    <a href=""> {{budgeted}} </a>
+                    <a href=""><format-rupiah :item="budgeted"></format-rupiah> </a>
                 </div>
-                <div class="col-span-2">activity</div>
-                <div class="col-span-2">available</div>
+                <div class="col-span-2"> <format-rupiah :item="activity"></format-rupiah></div>
+                <div class="col-span-2"><format-rupiah :item="available"></format-rupiah></div>
             </div>
         </div>
-        <sub-category-vue
-            class="transition-all relative duration-1000"
+        <div class="relative" v-for="(sub_category, index) in item.sub_categories">
+            
+                <div id="modal-activity" style="z-index: 10; display: none;" ref="showActivity" class="absolute overflow-hidden bg-white py-6 px-4">
+                    <simple-modal >
+                        <template #content>
+                            <div class="py-8 px-2">
+                        <div class="flex justify-between">
+                            <span class="font-bold capitalize">
+                                dqwdq
+                            </span>
+
+                            <a @click="closeActivityModal(index)" class="text-gray-500">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </a>
+                        </div>
+                        <div style="height: 200px;" class="mt-3 mr-2 pb-6 overflow-y-scroll h-full">
+
+                            <table class="w-full ">
+                                <tr class="text-left ">
+                                    <th>Date</th>
+                                    <th>Income</th>
+                                    <th>Expense</th>
+                                </tr>
+                                
+                                <tbody>
+                                    
+                                </tbody>
+                                <tr class="pb-2" v-for="activity in activities">
+                                    <td style="padding-right: 6px;">
+                                        {{activity.created_at}}
+                                    </td>
+                                   <td style="padding-right: 6px;">
+                                       <format-rupiah :item="activity.income"></format-rupiah>
+                                   </td>
+                                   <td style="padding-right: 6px;">
+                                           <format-rupiah :item="activity.expense"></format-rupiah>
+
+                                   </td>
+
+                                </tr>
+                            </table>
+                            
+                        </div>
+                    </div>
+                        </template>
+                    </simple-modal>
+                </div> 
+            <sub-category-vue
+
+                style="
+                top:0px;
+                "
+             @open_modal="showModalActivity(index, sub_category.id, event)"
+            class="transition-all absolute relative duration-1000"
             :style="[
                 dropdownSubCategory
                     ? { height: 'auto', overflow: 'auto' }
                     : { overflow: 'hidden', height: '0px' }
             ]"
             id="category"
-            v-for="sub_category in item.sub_categories"
+           
             :item="sub_category"
             :key="sub_category.id"
         >
         </sub-category-vue>
+        </div>
     </div>
 </template>
 
 <script>
+import SimpleModal from './SimpleModal';
+import FormatRupiah from './FormatRupiah';
 import { mapActions, mapGetters } from "vuex";
 import SubCategoryVue from "./SubCategory.vue";
 export default {
     props: ["item", "index"],
     components: {
-        SubCategoryVue
+        SubCategoryVue,
+        FormatRupiah,
+        SimpleModal,
+
     },
 
     data() {
@@ -173,6 +232,7 @@ export default {
             dropdown: false,
             showSubCategory: false,
             dropdownSubCategory: false,
+            showActivity: false,
 
             form: {
                 category: {
@@ -189,29 +249,53 @@ export default {
         if (this.editCategory == false) {
             this.error = null;
         }
+        this.fetchActivityBySubCategory
         
     },
     computed: {
         ...mapGetters({
             getIndex: "category/getIndex",
-            sub_categories: 'sub_category/sub_categories' 
+            sub_categories: 'sub_category/sub_categories',
+            activities : 'activity/activities', 
         }),
         budgeted() {
             if(this.item.sub_categories.length > 0) {
-                return this.item.sub_categories.reduce((sum, obj) => {
-                    sum + obj.budgeted;
-                },0);
+                let total = this.item.sub_categories.reduce((acc, obj) => {
+                   return acc + obj.budgeted
+                }, 0);
+
+                return total;
+            }
+            return 0;
+        },
+
+        activity() {
+            if(this.item.sub_categories.length > 0) {
+                let total = this.item.sub_categories.reduce((acc, obj) => {
+                   return acc + obj.activity
+                }, 0);
+
+                return total;
             }
 
             return 0;
-        }
+        },
+      
+
+        available() {
+            return this.budgeted - this.activity;
+        },
     },
     methods: {
         ...mapActions({
+            // category
             deleteCategory: "category/removeCategory",
             editCategoryName: "category/updateCategoryName",
             storeSubCategory: "category/storeSubCategory",
-         
+            
+            //ACTIVITY
+            fetchActivityBySubCategory: 'activity/fetchDataBySubCategory',
+            removeActivity: 'activity/removeActivityData'
         }),
         click() {
             this.clicked = true;
@@ -246,6 +330,10 @@ export default {
         closeModal(e) {
             let elCategory = this.$refs.categoryEdit;
             let elSubCategory = this.$refs.modalNewSubCategory;
+            let refs = this.$refs.showActivity;
+
+            console.log(elCategory);
+
             let target = e.target;
             if (elCategory !== target && !elCategory.contains(target)) {
                 this.editCategory = false;
@@ -255,6 +343,17 @@ export default {
                 this.error = null;
                 this.showSubCategory = false;
             }
+
+                
+              for(let i=0; i < refs.length; i++ ) 
+                {   
+                     if (refs[i] !== target && !refs.contains(target)) {
+                            refs[i].style.display = 'none';
+                        }
+                    
+                }            
+
+
         },
         addNewSubCategory(category_id) {
             const data  = {
@@ -272,15 +371,44 @@ export default {
             .catch((err) => {
                 this.error = err.data.data
             });  
+        },
+          showModalActivity(index, id, event) {
+            const refs = this.$refs.showActivity;
+            this.fetchActivityBySubCategory(id);
+
+            for(let i=0; i < refs.length; i++ ) 
+            {
+                refs[i].style.display = 'none';
+            }
+
+            this.$refs.showActivity[index].style.display = "block" ; 
+
+                
+        },
+        closeActivityModal(index) {
+
+           this.$refs.showActivity[index].style.display = "none"
+           this.removeActivity();
         }
     },
     created() {
         document.addEventListener("click", this.closeModal);
-        
+        this.$refs;
 
     }
 };
 </script>
 
 <style lang="css"> 
+    #modal-activity {
+        background: url('../assets/images/icon_box.png');
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        width: 370px;
+        height: 300px;
+        z-index: 10px;
+        position: absolute;
+        top: 10px;
+        right: 50px;
+    }
 </style>

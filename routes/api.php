@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BudgetController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\SubCategoryController;
+use App\Http\Controllers\Api\ActivityController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -38,13 +39,16 @@ Route::post('login', [AuthController::class, 'login']);
 
 
 
+
+// After Auth
+Route::group(['middleware' => 'auth:api'], function() {
+   
+Route::get('users_me', [AuthController::class, 'me']);   
 Route::resource('budget', BudgetController::class);
 
 Route::resource('category', CategoryController::class);
 
 Route::resource('sub_category', SubCategoryController::class);
 
-// After Auth
-Route::group(['middleware' => 'auth:api'], function() {
-   
+Route::resource('activity', ActivityController::class);
 });

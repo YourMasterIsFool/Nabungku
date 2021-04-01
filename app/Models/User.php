@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use App\Models\core\UserDetail;
+
 
 class User extends Authenticatable
 {
@@ -45,5 +47,9 @@ class User extends Authenticatable
 
     public function budget() {
         return $this->hasMany(MasterBudget::class, 'user_id', 'id');
+    }
+
+    public function user_detail () {
+        return $this->hasOne(UserDetail::class, 'user_id', 'id');
     }
 }

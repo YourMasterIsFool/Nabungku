@@ -29,20 +29,20 @@
                          
                         v-show="showModalBudgeted == false"
                     >
-                        Rp{{item.budgeted}}
+                        <format-rupiah :item="item.budgeted"></format-rupiah>
                     </a>
               
                     <input type="number" v-on:blur="focusChanged" v-show="showModalBudgeted" v-model="form.inputBudgeted"  style="top:-5px;" class="py-1 w-full outline-none pl-4 absolute focus:bg-gray-100 rounded-lg border-2 border-gray-100">
                 </div>
             </div>
-            <div class="col-span-2"  @click="showModalActivity = true" >
+            <div class="col-span-2"  @click="openModalActivity($event)" >
                 
                  <div class="relative" ref="modalActivity" >
                     <a class="capitalize "
                        
-                        v-show="showModalActivity == false"
+                        @click="$emit('open_modal')"
                     >
-                        Rp{{item.activity}}
+                        <format-rupiah :item="item.activity"></format-rupiah>
                     </a>
                      <input type="number" v-on:blur="focusChanged" v-show="showModalActivity"  v-model="form.inputActivity"  style="top:-5px;" class="py-1 w-full outline-none pl-4 absolute focus:bg-gray-100 rounded-lg border-2 border-gray-100">
                 </div>
@@ -55,7 +55,8 @@
                        
                         v-show="showModalAvailable == false"
                     >
-                        Rp{{available}}
+                        <format-rupiah :item="available"></format-rupiah>
+                        
                     </a>
                       <input type="number" v-on:blur="focusChanged" v-show="showModalAvailable" v-model="form.inputAvailable"  style="top:-5px;" class="py-1 w-full outline-none pl-4 absolute focus:bg-gray-100 rounded-lg border-2 border-gray-100">
                 </div>
@@ -65,10 +66,14 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import FormatRupiah from './FormatRupiah';
+import { mapActions, mapState } from "vuex";
 
 export default {
     props: ["item"],
+    components: {
+        FormatRupiah
+    },
     data(){
         return {
             showModalBudgeted : false,
@@ -123,6 +128,10 @@ export default {
                 this.error = `${this.form.sub_category_name} ${error.data.data}`;
                 console.log(this.error);
             });
+        },
+        openModalActivity(event) {
+            event.preventDevault();
+            this.$emit('open_modal', event);
         },
         closeModal(e) {
             let el = this.$refs.sub_category;

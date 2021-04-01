@@ -42,6 +42,7 @@ class AuthController extends Controller
             $user = Auth::user();
             $response['token'] = $user->createToken('Laravel')->accessToken;
             $response['success'] = true;
+            $response['user_detail'] = $user->load('user_detail');
 
             return response()->json([
                 'data' => $response
@@ -57,5 +58,13 @@ class AuthController extends Controller
             401
         );
         }
+    }
+
+    public function me(Request $request) {
+
+
+        return response()->json([
+            'data' => $request->user()
+        ]);
     }
 }

@@ -4,7 +4,6 @@
             class="bg-gray-100 h-screen w-screen fixed top-0 left-0"
             style="z-index:-100;"
         ></div>
-
         <div id="main-content" class="grid grid-cols-12  ">
             <div class="col-span-9 p-8">
                 <div id="nav">
@@ -114,7 +113,7 @@
                                             >
                                             <input
                                                 type="date"
-                                                value=""
+                                                v-model="form.transaction.date"
                                                 style="border-width:1px;"
                                                 class="w-full text-gray-600 bg-gray-50 rounded-lg border-gray-200 text-xs py-1 focus:outline-none px-3 "
                                             />
@@ -128,8 +127,8 @@
                                                 >expense</label
                                             >
                                             <input
-                                                type="text"
-                                                value=""
+                                                type="number"
+                                                v-model="form.transaction.expense"
                                                 style="border-width:1px;"
                                                 class="w-full text-gray-600 bg-gray-50 rounded-lg border-gray-200 text-xs py-1 focus:outline-none px-3 "
                                             />
@@ -148,6 +147,7 @@
                                             >
                                             <select
                                                 style="border-width:1px;"
+                                                v-model="form.transaction.sub_category"
                                                 class="w-full text-gray-600 bg-gray-50 rounded-lg border-gray-200 text-xs py-1 focus:outline-none px-4 "
                                             >
                                                 <optgroup class="py-2 font-semibold capitalize " v-for="category in categories" :key="category.index" :label="category.category_name">
@@ -173,12 +173,14 @@
                                                 action=""
                                             >
                                                 <input
-                                                    type="text"
-                                                    value=""
+                                                    type="number"
+                                                    v-model="form.transaction.income"
                                                     style="border-width:1px;"
                                                     class="w-full col-span-3 text-gray-600 bg-gray-50 rounded-lg border-gray-200 text-xs py-1 focus:outline-none px-3 "
                                                 />
                                                 <button
+                                                    @click="addTransaction"
+                                                    type="button"
                                                     class="border-blue-400 duration-300 transition-all hover:text-white hover:border-transparent hover:bg-blue-400 text-blue-400 border-2 col-span-1 rounded text-white py-1 text-xs"
                                                 >
                                                     <i class="fas fa-plus"> </i>
@@ -201,7 +203,7 @@
                         <div class="bg-white rounded-xl ">
                             <div
                                 style="border-bottom-width:1px;"
-                                class="header p-6 flex items-center  border-gray-200"
+                                class="header p-6 flex items-center justify-between border-gray-200"
                             >
                                 <div class="relative">
                                     <a
@@ -245,6 +247,8 @@
                                         </div>
                                     </div>
                                 </div>
+
+                               
                             </div>
                             <div class="body py-6 " style="">
                                 <div style="" class="">
@@ -290,6 +294,8 @@
                             id="profile"
                             class="flex relative items-center justify-between"
                         >
+
+                            <!-- modal profile  -->
                             <modal v-show="showNewBudget">
                                 <template v-slot:content>
                                     <div
@@ -439,14 +445,15 @@
                                                     <label
                                                         for=""
                                                         class="block mb-2 capitalize"
-                                                    >
+                                                    >  
                                                         Name
+                                                        
                                                     </label>
 
                                                     <input
                                                         style="border-width:1px;"
-                                                        placeholder="Verrandy"
                                                         type="text"
+                                                        v-model="form.user.name"
                                                         class="px-4 py-2 w-full rounded-xl outline-none border-gray-300 focus:border-blue-300"
                                                     />
                                                 </div>
@@ -460,6 +467,7 @@
 
                                                     <input
                                                         style="border-width:1px;"
+                                                        v-model="form.user.email"
                                                         type="text"
                                                         class="px-4 py-2 w-full rounded-xl outline-none border-gray-300 focus:border-blue-300"
                                                     />
@@ -475,6 +483,7 @@
                                                     <input
                                                         style="border-width:1px;"
                                                         type="password"
+                                                        v-model="form.user.password"
                                                         class="px-4 py-2 w-full rounded-xl outline-none border-gray-300 focus:border-blue-300"
                                                     />
                                                 </div>
@@ -489,9 +498,17 @@
                                                     <input
                                                         style="border-width:1px;"
                                                         placeholder="Verrandy"
+                                                        v-model="form.user.password_confirmation"
+                                                        @keydown="password_confirmation"
+                                                        
+                                                        :class="[error != null ? 'border-red-400': 'border-gray-300 focus:border-blue-300']"
                                                         type="password"
-                                                        class="px-4 py-2 w-full rounded-xl outline-none border-gray-300 focus:border-blue-300"
+                                                        class="px-4 py-2 w-full rounded-xl outline-none "
                                                     />
+                                                    <p v-if="error != null" class="text-red-400 text-xs mt-2">
+                                                        
+                                                        {{error}}
+                                                    </p>
                                                 </div>
                                                 <div
                                                     class="flex items-center justify-end"
@@ -518,7 +535,7 @@
                                 </div>
                                 <div class="pl-4 flex items-center">
                                     <p class=" text-sm font-bold">
-                                        Verrandy's
+                                        {{user.name}}
                                         <span>
                                             Budgets
                                         </span>
@@ -643,7 +660,7 @@
                                     </li>
                                     <li>
                                         <a
-                                            href=""
+                                            @click="userLogout"
                                             class="py-4 flex px-4 items-center block hover:bg-gray-200"
                                             ><span class="">
                                                 <svg
@@ -696,7 +713,10 @@
                                             daily spend limit
                                         </span>
                                         <span class="font-semibold">
-                                            Rp120.000
+                                         
+                                            <format-rupiah :item="daily_spend_limit">
+                                                
+                                            </format-rupiah>
                                         </span>
                                     </div>
                                 </div>
@@ -721,7 +741,7 @@
                                             budget available
                                         </span>
                                         <span class="font-semibold">
-                                            Rp120.000
+                                            <format-rupiah :item="total_available"></format-rupiah>
                                         </span>
                                     </div>
                                 </div>
@@ -802,7 +822,7 @@
                                             total budget
                                         </span>
                                         <span class="font-semibold">
-                                            Rp120.000
+                                            <format-rupiah :item="total_budget"></format-rupiah>
                                         </span>
                                     </div>
                                 </div>
@@ -1008,6 +1028,7 @@
 </template>
 
 <script>
+import FormatRupiah from '../../components/FormatRupiah';
 import brand from "../../assets/images/ruang.png";
 import Chart from "chart.js";
 import Modal from "../../components/Modal";
@@ -1020,12 +1041,31 @@ import CardVue from "../../components/Card.vue";
 
 import { mapActions, mapGetters } from "vuex";
 
+
+
+function formatDate(date){
+    const dd = date.getDay();
+    const mm = date.getMonth()+1;
+    const yy = date.getFullYear();
+
+    if(mm > 9 || dd > 9) {
+
+        return `${yy}-${mm}-${dd}`;
+    }
+    return `${yy}-0${mm}-0${dd}`;
+}
+
+
+const currentDate = formatDate(new Date());
+
+
 export default {
     components: {
         Category,
         SidebarVue,
         CardVue,
-        Modal
+        Modal,
+        FormatRupiah
     },
     data() {
         return {
@@ -1039,6 +1079,8 @@ export default {
             showProfileMenu: false,
             showMenuHelper: false,
             showNotif: false,
+            budgeted:[],
+            activity:[],
 
             form: {
                 budget: {
@@ -1046,7 +1088,21 @@ export default {
                 },
                 category: {
                     name_category: null
-                }
+                },
+                transaction: {
+                    date: currentDate,
+                    expense: null,
+                    income: null,
+                    sub_category:null,
+                },
+                user: {
+                    name: null,
+                    email: null,
+                    password: null,
+                    password_confirmation: null,
+
+                },
+                error: null
             }
         };
     },
@@ -1056,10 +1112,31 @@ export default {
             createBudget: "budget/createBudget",
             fetchData: "budget/fetchData",
 
+
             //category
             fetchCategoryData: "category/fetchData",
-            addNewCategory: "category/addNewCategory"
+            addNewCategory: "category/addNewCategory",
+
+            //transaction
+            storeActivity : "activity/storeActivity",
+
+
+            //auth
+            logout: 'user/logout',
         }),
+
+        userLogout() {
+            this.logout().then(()=> {
+                this.$router.push({
+                    name: 'login'
+                })
+            })
+        },
+        addTransaction() {
+            console.log(this.form.transaction);
+
+            this.storeActivity(this.form.transaction);
+        },
         createNewBudget(e) {
             const data = {
                 name_budget: this.form.budget.new_budget
@@ -1075,7 +1152,7 @@ export default {
             e.preventDefault();
         },
         fetchCategory(budget_id) {
-            console.log(budget_id);
+         
             this.fetchCategoryData(budget_id).then(res => {
                 console.log(res);
             });
@@ -1088,13 +1165,56 @@ export default {
             this.addNewCategory(data);
 
             this.modalCategoryGroup = false;
-        }
+        },
+         password_confirmation(key) {
+
+            console.log(key);
+            if(this.form.user.password != this.form.user.password_confirmation) {
+                console.log("password salah");
+                this.error = "password confirmation incorrected"
+            }
+            else {
+                console.log('password benar');
+                console.log(this.error);
+
+                this.error = null;
+            }
+        },
     },
     computed: {
         ...mapGetters({
             budgets: "budget/budget",
-            categories: "category/categories"
+            categories: "category/categories",
+            user: 'user/user',
+            budgetsById: 'budget/fetchBudgetById',
         }),
+       
+        total_budget() {
+            let total = this.categories != null ? this.categories.reduce((acc, obj) => {
+                return acc + obj.budgeted;
+            }, 0) : 0;
+
+            return total;
+        },  
+        total_activity() {
+            let total = this.categories.reduce((acc, obj)=> {
+                return acc + obj.activity;
+            }, 0);
+
+            return total;
+        },
+
+        total_available() {
+            return this.total_budget + this.total_activity;
+        },
+        daily_spend_limit() {
+
+            const date = new Date()
+            const day = new Date(date.getFullYear(), date.getMonth()+1, 0).getDate();
+
+            const daily_spend = this.total_available / day;
+            return daily_spend;
+        },
         dataChart() {
             const chartData = {
                 datasets: [
@@ -1151,7 +1271,10 @@ export default {
         }
         console.log(this.budgets);
     },
-    created() {}
+    created() {
+
+        this.form.user = this.user;
+    }
 };
 </script>
 

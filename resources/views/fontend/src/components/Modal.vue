@@ -6,7 +6,7 @@
         ></div>
 
         <div class="modal-wrapper z-50">
-            <slot name="content"></slot>
+            <slot name="content" ></slot>
         </div>
     </div>
 </template>
