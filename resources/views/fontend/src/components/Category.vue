@@ -142,7 +142,7 @@
                 <div class="col-span-2"><format-rupiah :item="available"></format-rupiah></div>
             </div>
         </div>
-        <div class="relative" v-for="(sub_category, index) in item.sub_categories">
+        <div class="relative" @click.prevent="$emit('open_sub_detail', sub_category.id)" v-for="(sub_category, index) in item.sub_categorys">
             
                 <div id="modal-activity" style="z-index: 10; display: none;" ref="showActivity" class="absolute overflow-hidden bg-white py-6 px-4">
                     <simple-modal >
@@ -150,7 +150,7 @@
                             <div class="py-8 px-2">
                         <div class="flex justify-between">
                             <span class="font-bold capitalize">
-                                dqwdq
+                                {{sub_category.sub_category_name}}
                             </span>
 
                             <a @click="closeActivityModal(index)" class="text-gray-500">
@@ -194,7 +194,7 @@
                 style="
                 top:0px;
                 "
-             @open_modal="showModalActivity(index, sub_category.id, event)"
+             @open_modal="showModalActivity(index, sub_category.id)"
             class="transition-all absolute relative duration-1000"
             :style="[
                 dropdownSubCategory
@@ -216,8 +216,9 @@ import SimpleModal from './SimpleModal';
 import FormatRupiah from './FormatRupiah';
 import { mapActions, mapGetters } from "vuex";
 import SubCategoryVue from "./SubCategory.vue";
+
 export default {
-    props: ["item", "index"],
+    props: ["item", "index", 'categoryId'],
     components: {
         SubCategoryVue,
         FormatRupiah,
@@ -233,6 +234,7 @@ export default {
             showSubCategory: false,
             dropdownSubCategory: false,
             showActivity: false,
+            activities: null,
 
             form: {
                 category: {
@@ -249,41 +251,53 @@ export default {
         if (this.editCategory == false) {
             this.error = null;
         }
-        this.fetchActivityBySubCategory
+       
         
     },
     computed: {
         ...mapGetters({
             getIndex: "category/getIndex",
             sub_categories: 'sub_category/sub_categories',
-            activities : 'activity/activities', 
+            activitiesBySub : 'activity/activitiesBySubCategory', 
         }),
-        budgeted() {
-            if(this.item.sub_categories.length > 0) {
-                let total = this.item.sub_categories.reduce((acc, obj) => {
-                   return acc + obj.budgeted
-                }, 0);
+        sub() {
+            const sub = this.$store.state.sub_category.sub_categories.filter(
+                sub => sub.category_id === this.item.id
+            ).map(
+                sub => ({
+                    ...sub,
+                    activity_total: this.$store.state.activity.activities.filter(
+                        act => act.sub_category_id === sub.id
+                    ).reduce((act, obj) => {
+                        return act + (obj.income - obj.expense);
+                    }, 0),
+                })
+            )
 
-                return total;
-            }
-            return 0;
+            return sub
+
         },
 
         activity() {
-            if(this.item.sub_categories.length > 0) {
-                let total = this.item.sub_categories.reduce((acc, obj) => {
-                   return acc + obj.activity
+            const total = this.sub.reduce((total, sub) => {
+                return total + parseInt(sub.activity_total);
+            }, 0)
+
+            return total;
+        },
+        budgeted() {
+            if(this.item.sub_categorys.length > 0) {
+                let total = this.item.sub_categorys.reduce((acc, obj) => {
+                   return acc + parseInt(obj.budgeted)
                 }, 0);
 
                 return total;
             }
-
             return 0;
         },
-      
 
         available() {
-            return this.budgeted - this.activity;
+            return this.budgeted + this.activity;
         },
     },
     methods: {
@@ -291,12 +305,17 @@ export default {
             // category
             deleteCategory: "category/removeCategory",
             editCategoryName: "category/updateCategoryName",
-            storeSubCategory: "category/storeSubCategory",
+            storeSubCategory: "sub_category/storeSubCategory",
             
             //ACTIVITY
             fetchActivityBySubCategory: 'activity/fetchDataBySubCategory',
-            removeActivity: 'activity/removeActivityData'
+            // removeActivity: 'activity/removeActivityData',
+
+            // sub_category
+
+            // fetch_categories: 'sub_category/fetchSubCategoryByCategoryId',
         }),
+       
         click() {
             this.clicked = true;
         },
@@ -331,9 +350,6 @@ export default {
             let elCategory = this.$refs.categoryEdit;
             let elSubCategory = this.$refs.modalNewSubCategory;
             let refs = this.$refs.showActivity;
-
-            console.log(elCategory);
-
             let target = e.target;
             if (elCategory !== target && !elCategory.contains(target)) {
                 this.editCategory = false;
@@ -372,9 +388,11 @@ export default {
                 this.error = err.data.data
             });  
         },
-          showModalActivity(index, id, event) {
+          showModalActivity(index, sub_id, event) {
+            this.activities = this.activitiesBySub(sub_id);
             const refs = this.$refs.showActivity;
-            this.fetchActivityBySubCategory(id);
+            console.log(refs);
+            console.log('open_modal');
 
             for(let i=0; i < refs.length; i++ ) 
             {
@@ -388,14 +406,14 @@ export default {
         closeActivityModal(index) {
 
            this.$refs.showActivity[index].style.display = "none"
-           this.removeActivity();
+           // this.removeActivity();
         }
     },
     created() {
         document.addEventListener("click", this.closeModal);
         this.$refs;
-
-    }
+    },
+    mixins:[]
 };
 </script>
 

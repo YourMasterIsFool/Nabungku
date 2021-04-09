@@ -78,7 +78,21 @@ export default {
                 // statements
                 console.log(e);
             }
-        }
+        },
+
+        update({commit}, data) {
+            return new Promise((resolve, reject) => {
+                axios.post('api/edit_user', data)
+                .then((res) => {
+                    commit(SET_USER, res.data.data);
+
+                    resolve(res)
+                })
+                .catch((err) => {
+                    console.log(err.response);
+                }) 
+            })
+        } 
     },
     getters: {
         budgets: state => {

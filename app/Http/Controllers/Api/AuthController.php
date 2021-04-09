@@ -25,6 +25,26 @@ class AuthController extends Controller
 
     }
 
+    public function editUser(Request $request) {
+        
+
+
+        if($request->filled('password')) {
+            User::where('id', $request->user()->id)->update([
+            'name' => $request->input('name'),
+            'password' => Hash::make($request->input('password')),
+        ]);
+        }
+            User::where('id', $request->user()->id)->update([
+                'name' => $request->input('name'),
+            ]);
+
+        $user = User::findOrFail($request->user()->id);
+        return response()->json([
+            'data' => $user
+        ]);
+    }
+
     public function login(Request $request) {
         $rules = [
             'email' => 'required',

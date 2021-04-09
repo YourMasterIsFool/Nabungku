@@ -1,5 +1,7 @@
 <template>
     <div id="dashboard" class="">
+
+
         <div
             class="bg-gray-100 h-screen w-screen fixed top-0 left-0"
             style="z-index:-100;"
@@ -72,6 +74,9 @@
                                                     <span>
                                                         : Don’t forget to track
                                                         your expense!
+
+
+
                                                     </span>
                                                 </span>
                                             </a>
@@ -111,11 +116,12 @@
                                                 class="text-xs capitalize"
                                                 >date</label
                                             >
-                                            <input
+                                            <input    
                                                 type="date"
+
                                                 v-model="form.transaction.date"
                                                 style="border-width:1px;"
-                                                class="w-full text-gray-600 bg-gray-50 rounded-lg border-gray-200 text-xs py-1 focus:outline-none px-3 "
+                                                class="w-full text-gray-600 bg-gray-50 rounded-lg border-gray-200 px-3 text-xs py-1 focus:outline-none  "
                                             />
                                         </div>
                                         <div
@@ -151,7 +157,7 @@
                                                 class="w-full text-gray-600 bg-gray-50 rounded-lg border-gray-200 text-xs py-1 focus:outline-none px-4 "
                                             >
                                                 <optgroup class="py-2 font-semibold capitalize " v-for="category in categories" :key="category.index" :label="category.category_name">
-                                                    <option :value="sub_category.id" class="py-3 hover:bg-green-100" v-for="sub_category in category.sub_categories">
+                                                    <option :value="sub_category.id" class="py-3 hover:bg-green-100" v-for="sub_category in category.sub_categorys">
                                                         <span class="py-2">
                                                             {{sub_category.sub_category_name}}
                                                         </span>
@@ -198,6 +204,9 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div>
+                        
                     </div>
                     <div class="w-full py-8 text-sm">
                         <div class="bg-white rounded-xl ">
@@ -275,6 +284,7 @@
                                         class="pb-12 overflow-y-scroll flex flex-col"
                                     >
                                         <category
+                                            @open_sub_detail="subCategoryDetail"
                                             v-for="(item, index) in categories"
                                             :key="index"
                                             :item="item"
@@ -514,6 +524,7 @@
                                                     class="flex items-center justify-end"
                                                 >
                                                     <a
+                                                        @click="updateUser()"
                                                         class="uppercase cursor-pointer rounded-2xl font-bold bg-blue-400 hover:bg-blue-500 text-white py-2 px-6"
                                                     >
                                                         save
@@ -550,6 +561,7 @@
                                         : { transform: 'rotate(180deg)' }
                                 ]"
                                 @click="showProfileMenu = !showProfileMenu"
+                                ref="profileMenu"
                             >
                                 <i class="fas fa-chevron-down"> </i>
                             </a>
@@ -686,7 +698,127 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="mt-4 md:mt-8">
+                        <div  v-if="showSubCategoryDetail && sub_category_detail !== null" :class="" class=" mt-4 md:mt-8 relative  bg-gray w-full h-full">
+             
+                            <div id="sub-category-detail"class="w-full">
+                                <div class="header mb-4 flex justify-between w-full">
+                                    
+                                    <span  style="line-height: 24px;"class="text-black font-medium capitalize text-base">
+                                                    {{sub_category_detail.sub_category_name}}
+                                                </span>
+
+                                    <a style="font-size: 14px" @click="showSubCategoryDetail = false" class="text-gray-600 cursor-pointer px-4  ">
+                                        <i class="fas fa-times"></i>
+                                    </a>
+                    
+                                </div>
+                                <div style="border-bottom:1px solid lightgray" class="body text-sm py-4 border-b text-gray-700">
+                                   <div class="flex pb-4 items-center justify-between">
+                                        <span >
+                                            Last Month’s Left Over
+                                        </span>
+
+                                         <span class="px-4">
+                                            Rp200.000
+                                        </span>
+                                    </div>
+                                    <div class="flex pb-4 items-center justify-between">
+                                        <span >
+                                           This Month’s Budget
+                                        </span>
+
+                                        <span class="px-4">
+                                            Rp200.000
+                                        </span>
+                                    </div>
+                                  <div class="flex pb-4 items-center justify-between">
+                                        <span >
+                                           Money Spent
+                                        </span>
+
+                                        <span class="px-4">
+                                            Rp200.000
+                                        </span>
+                                    </div>
+                                    <div class="flex pb-4 items-center justify-between">
+                                        <span class="text-black">
+                                           Available
+                                        </span>
+
+                                        <span class="bg-green-400 rounded-2xl py-1 px-4">
+                                            Rp200.000
+                                        </span>
+                                    </div>
+
+                                </div>
+
+                                <div class="pt-8">
+                                    <h1 class="block mb-6 text-black text-base capitalize">
+                                        saving goals
+                                    </h1>
+
+                                    <div class="flex items-center  relative cursor-pointer">
+                                        <a class="rounded-full w-6  text-white flex justify-center items-center mr-6 text-white h-6 bg-blue-400">
+                                            <span class="material-icons">
+                                                add
+                                            </span>
+                                        </a>
+
+                                        <span class="font-semibold capitalize text-blue-400">
+                                            create new goals
+                                        </span>
+
+                                        <div class="absolute bg-white w-full h-full top-0 z-10">
+                                            <div class="flex-col">
+                                                <div class="mt-2">
+                                                    <label for="" class="pb-2 capitalize block">
+                                                        Amount
+                                                    </label>
+
+                                                    <input style="border-width: 1px;" type="number" class="py-2 outline-none rounded-lg focus:border-blue-300 border-gray-300 px-4 block" >
+                                                </div>
+                                                  <div class="mt-2">
+                                                    <label for="" class="pb-2 block capitalize">
+                                                        finish by
+                                                    </label>
+
+                                                    <date-picker class="py-2 outline-none rounded-lg focus:border-blue-300 border-gray-300 block" :value="new Date()" type="date">
+                                                        
+                                                    </date-picker>
+                                                   <!--  <input style="border-width: 1px;" type="date" class="" > -->
+                                                </div>
+                                                <div class="mt-2">
+                                                    <div class="flex-col ">
+                                                        <label for="" class="pb-2 block capitalize">
+                                                        period
+                                                    </label>
+
+                                                    <select style="border-width: 1px;" type="text" class="py-2 outline-none bg-white rounded-lg focus:border-blue-300 border-white-300 px-4 block" >
+                                                        <option value="">
+                                                            dqwdqw
+                                                        </option>
+                                                    </select>
+                                                    </div>
+
+                                                     <div class="mt-4 flex outline-none justify-between">
+                                                        <a href="" class="py-2 rounded-lg px-3 bg-red-400 capitalize text-white text-sm">
+                                                            cancel
+                                                        </a>
+                                                       <a href="" class="py-2 rounded-lg px-3 capitalize bg-blue-400 text-white text-sm">
+                                                            add
+                                                        </a>
+                                                      </div>
+                                                </div>
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div v-show="showSubCategoryDetail == false" class="mt-4 md:mt-8">
+                            <div class="">
                             <h1 class="text-black capitalize font-semibold">
                                 Monthly Report
                             </h1>
@@ -766,7 +898,7 @@
                                             total income
                                         </span>
                                         <span class="font-semibold">
-                                            Rp120.000
+                                           <format-rupiah :item="total_income"></format-rupiah>
                                         </span>
                                     </div>
                                 </div>
@@ -873,14 +1005,16 @@
                             </div>
                         </div>
                         <div class="mt-4">
-                            <canvas id="pie-chart"> </canvas>
+                            <doughnut-chart :chart-data="dataChart" :options="optionChart"  ></doughnut-chart>
                         </div>
                         <div class="pt-8">
                             <h1 class="text-sm font-semibold">
                                 Where I spent my money?
+                              
+                               <!--  {{categoryChart}} -->
                             </h1>
                             <div class="mt-4 flex flex-col">
-                                <div v-for="category in categories" :key="category.id" class="py-2">
+                                <div v-for="category in categoryChart" :key="category.id" :category-id="category.id" class="py-2">
                                     <div
                                         class="flex justify-between items-center"
                                     >
@@ -890,17 +1024,19 @@
                                             {{category.category_name}}
                                         </h2>
                                         <h4 class="text-gray-800 text-xs">
-                                            Rp200.000
+                                            <format-rupiah :item="category.chartData"></format-rupiah>
                                         </h4>
                                     </div>
                                     <div
-                                        style="width:70%;"
-                                        class=" h-4 mt-2 bg-red-200 rounded-full"
+                                        :style="{ width: category.bar+'%' }"
+                                        class=" h-4 mt-2 bg-red-200 transition-all duration-700 rounded-full"
                                     ></div>
                                 </div>
                             </div>
                         </div>
-                        <div style="bottom:16px; right:6px;" class="fixed">
+                            
+                        </div>
+                        <div style="bottom:16px; right:6px;" class="fixed z-30">
                             <div id="helper" class="relative text-xs">
                                 <div
                                     v-show="showMenuHelper"
@@ -1030,7 +1166,7 @@
 <script>
 import FormatRupiah from '../../components/FormatRupiah';
 import brand from "../../assets/images/ruang.png";
-import Chart from "chart.js";
+// import Chart from "chart.js";
 import Modal from "../../components/Modal";
 import icon_calendar from "../../assets/images/icon_calendar.png";
 import icon_box from "../../assets/images/icon_box.png";
@@ -1038,8 +1174,13 @@ import icon_ayam from "../../assets/images/ayam.png";
 import Category from "../../components/Category.vue";
 import SidebarVue from "../../components/Sidebar.vue";
 import CardVue from "../../components/Card.vue";
+import DatePicker from 'vue2-datepicker';
+import BudgetDetail from '../../mixins/BudgetDetailMixins';
+// import FormatLocaleDateMixins from '../../mixins/FormatLocaleDate  Mixins.js';
+// import DoughnutChart from '../../components/chart/Dougnut.vue';
+import DoughnutChart from '../../components/chart/donat.js';
 
-import { mapActions, mapGetters } from "vuex";
+import { mapActions, mapGetters, mapState } from "vuex";
 
 
 
@@ -1065,7 +1206,9 @@ export default {
         SidebarVue,
         CardVue,
         Modal,
-        FormatRupiah
+        FormatRupiah,
+        DoughnutChart,
+        DatePicker
     },
     data() {
         return {
@@ -1076,9 +1219,11 @@ export default {
             icon_ayam: icon_ayam,
             icon_calendar: icon_calendar,
             icon_box: icon_box,
+            sub_category_id: null,
             showProfileMenu: false,
             showMenuHelper: false,
             showNotif: false,
+            showSubCategoryDetail: false, 
             budgeted:[],
             activity:[],
 
@@ -1120,11 +1265,26 @@ export default {
             //transaction
             storeActivity : "activity/storeActivity",
 
+            userUpdate: 'user/update',
 
             //auth
             logout: 'user/logout',
         }),
+        subCategoryDetail(id) {
+            console.log(id);
+            this.showSubCategoryDetail = true
 
+            if(this.showSubCategoryDetail) {
+                this.sub_category_id = id
+            }
+        },
+        updateUser() {
+            const data = this.form.user
+            this.userUpdate(data)
+            .then(() => {
+                this.showProfileSetting = false
+            })
+        },
         userLogout() {
             this.logout().then(()=> {
                 this.$router.push({
@@ -1134,8 +1294,18 @@ export default {
         },
         addTransaction() {
             console.log(this.form.transaction);
+            const transaction = this.form.transaction
+                  
 
-            this.storeActivity(this.form.transaction);
+            this.storeActivity(this.form.transaction).then((res)=> {
+                     for (const key of Object.keys(transaction)) {
+                        if(transaction[key] !== 'date') {
+                          transaction[key] = null  
+                        }
+                        
+                        console.log(transaction[key]);
+                   }
+            });
         },
         createNewBudget(e) {
             const data = {
@@ -1180,31 +1350,76 @@ export default {
                 this.error = null;
             }
         },
+         updateChart() {
+
+            this.categoryChart.forEach( function(element, index) {
+                this.chart.push(element);
+            });
+        },
+         closeModal(event) {
+
+             let profile_menu = this.$refs.profileMenu;
+            
+            let target = event.target;
+
+            if (profile_menu !== target && !profile_menu.contains(target)) {
+                this.showProfileMenu = false
+            }
+            
+         }
+
     },
     computed: {
+
+       
         ...mapGetters({
             budgets: "budget/budget",
-            categories: "category/categories",
+            // category: "category/categories",
+            categories: 'category/categories',
+            sub_categories: "sub_category/sub_categories",
+            subCategoryById: 'sub_category/subCategoryById',
+            activities: 'activity/activities',
             user: 'user/user',
             budgetsById: 'budget/fetchBudgetById',
         }),
-       
+        sub_category_detail() {
+            
+            return this.sub_categories.find(item => item.id == this.sub_category_id);
+           
+        },
         total_budget() {
-            let total = this.categories != null ? this.categories.reduce((acc, obj) => {
-                return acc + obj.budgeted;
-            }, 0) : 0;
+            let total = this.categories.length > 0 ? this.categories.reduce((totalBudget , cat) => {
+               
+                if(!cat.sub_categories.length == 0) {
+                   const budgeted = cat.sub_categorys.reduce((total, sub) => {
+                        return total + parseInt(sub['budgeted']);
+                    }, 0)
+
+                    return totalBudget + parseInt(budgeted);
+                }
+
+                
+                return 0
+              
+
+            }, 0): 0;
+            // let total = this.sub_categories != null ? this.sub_categories.reduce((acc, obj) => {
+            //     return acc + obj.budgeted;
+            // }, 0) : 0;
 
             return total;
-        },  
+        }, 
+
         total_activity() {
-            let total = this.categories.reduce((acc, obj)=> {
-                return acc + obj.activity;
-            }, 0);
+            let total = this.activities.length > 0 ? this.activities.reduce((acc, obj) => {
+                return acc+parseInt(obj['income'] - obj['expense']);
+            }, 0) : 0;
 
             return total;
         },
 
         total_available() {
+            console.log()
             return this.total_budget + this.total_activity;
         },
         daily_spend_limit() {
@@ -1215,24 +1430,61 @@ export default {
             const daily_spend = this.total_available / day;
             return daily_spend;
         },
-        dataChart() {
-            const chartData = {
-                datasets: [
-                    {
-                        data: [10, 20, 30],
-                        backgroundColor: [
-                            "#FF6384",
-                            "#63FF84",
-                            "#84FF63",
-                            "#8463FF",
-                            "#6384FF"
-                        ]
-                    }
-                ],
+        categoryChart() {
 
-                // These labels appear in the legend and in the tooltips when hovering different arcs
-                labels: ["Red", "Yellow", "Blue"]
-            };
+            const category = this.categories.map(
+                cat => ({
+                    ...cat,
+                    chartData: cat.sub_categorys.reduce((totalAll, sub) => {
+                        const activity = sub['activities'].reduce((total, act) => {
+                            return total + parseInt(act['income'] - act['expense'])
+                        }, 0);
+
+                        const budgeted = sub['budgeted']
+
+                        return totalAll + parseInt(budgeted + activity);
+                    }, 0),
+                    bar: ((cat.sub_categorys.reduce((totalAll, sub) => {
+                        const activity = sub['activities'].reduce((total, act) => {
+                            return total + parseInt(act['income'] - act['expense'])
+                        }, 0);
+
+                        const budgeted = sub['budgeted']
+
+                        return totalAll + parseInt(budgeted + activity);
+                    }, 0) / this.total_available) * 100)
+
+                })
+            )
+
+
+            return category
+        },
+
+        chart() { 
+            const chart = []
+            this.categoryChart.forEach( function(element, index) {
+                // statements
+
+                chart.push(element['chartData']);
+            });
+
+
+            return chart
+        },
+
+        label() {
+            const label = []
+            this.categoryChart.forEach( function(element, index) {
+                label.push(element.category_name);
+            });
+
+            return label
+        },
+       
+
+        optionChart() {
+
             const option = {
                 aspectRatio: 1,
                 layout: {
@@ -1250,31 +1502,65 @@ export default {
                 },
                 title: {
                     display: false
+                },
+                tooltips: {
+                    enabled:true,
+                    callbacks: {
+                        label: function(tooltipItem, data) {
+                            var label = data.labels[tooltipItem.index];
+                            var val = data.datasets[tooltipItem.dataset.index].data[tooltipItem.index];
+
+                            return label + `: ${val}`
+                        }
+                    }
                 }
+
             };
-            const chart = {
-                type: "doughnut",
-                data: chartData,
-                options: option
+            return option
+        },
+       
+        dataChart() {
+
+        
+            
+            
+            const chartData = {
+                labels: this.label,
+                datasets: [
+                    {   
+                        label: ['mantep'],
+                        data: this.chart,
+                        fill: false,
+                    },
+                ],
+
+                // These labels appear in the legend and in the tooltips when hovering different arcs
+              
             };
-            return chart;
+            return chartData
         }
     },
     mounted() {
-        const pieChart = document.getElementById("pie-chart");
-        new Chart(pieChart, this.dataChart);
+        // this.dataChart
+        // const pieChart = document.getElementById("pie-chart");
+        // new Chart(pieChart, this.dataChart);
+
+        
+
         if (this.budgets.length == 0) {
             this.fetchData();
         }
         if (this.categories.length == 0) {
             this.fetchCategoryData(localStorage.getItem("budget_id"));
         }
-        console.log(this.budgets);
     },
-    created() {
-
+       created() {
         this.form.user = this.user;
-    }
+        this.updateChart();
+
+        document.addEventListener('click', this.closeModal);
+    },
+    mixins: [BudgetDetail]
 };
 </script>
 
@@ -1283,7 +1569,14 @@ export default {
     background-image: url("../../assets/images/icon_box.png");
 }
 
+td:not(:first-child) {
+  padding-bottom:.5rem;
+      
+}
+
 select option:hover {
-    background-color: green;
+    background-image: url("../../assets/images/icon_box.png");
+    overflow-y: scroll;
+    height: 50px;
 }
 </style>

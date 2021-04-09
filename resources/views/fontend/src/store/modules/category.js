@@ -9,6 +9,7 @@ const ADD_SUB_CATEGORY = "ADD_SUB_CATEGORY";
 const UPDATE_SUB_CATEGORY = 'UPDATE_SUB_CATEGORY';
 const UPDATE_CATEGORY = 'UPDATE_CATEGORY';
 
+const REMOVE_ALL_CATEGORY = "REMOVE_ALL_CATEGORY";
 import Vue from 'vue';
 
 export default {
@@ -75,21 +76,37 @@ export default {
 
 
 
+        },
+        [REMOVE_ALL_CATEGORY](state, payload) {
+            state.categories = []
+            Vue.set(state.categories, []);
         }
     },
     actions: {
-        fetchData({ commit }, data) {
+        fetchData({ commit, dispatch, state }, budget_id) {
+            console.log(budget_id);
             return new Promise((resolve, reject) => {
-                localStorage.setItem("budget_id", data);
+                localStorage.setItem("budget_id", budget_id);
                 axios
                     .get("api/category", {
                         params: {
-                            budget_id: localStorage.getItem("budget_id")
+                            budget_id: localStorage.getItem('budget_id')
                         }
                     })
                     .then(res => {
-                        commit(SET_CATEGORY, res.data.data);
-                        console.log(res);
+                        // commit(REMOVE_ALL_CATEGORY);
+                         commit(REMOVE_ALL_CATEGORY);
+                        dispatch('activity/removeActivityData', null, {root:true});
+                        dispatch('sub_category/deleteAllSubCategory', null, {root:true});
+
+                        if(state.categories.length > 0) {
+                           
+                        }
+                        res.data.data.forEach( function(element, index) {
+                            commit(ADD_CATEGORY, element);
+
+                            dispatch('sub_category/fetchSubCategory', element.sub_categories, {root: true});
+                        });
                         resolve(res);
                     })
                     .catch(err => {
@@ -180,7 +197,6 @@ export default {
                      
                         resolve(res);
                         const data = res.data.data;
-                        data['available'] = 0;
                         commit(ADD_SUB_CATEGORY, data);
                     })
                     .catch(err => {
@@ -195,7 +211,7 @@ export default {
             });
         },
         updateSubCategory({commit, dispatch}, payload) {
-            console.log(payload);
+            
             return new Promise((resolve, reject) => {
 
                 axios.patch('api/sub_category/'+payload.id, payload)
@@ -219,12 +235,19 @@ export default {
         }
     },
     getters: {
-        categories: state => {
-            return state.categories;
+        categories(state, getters, rootState, rootGetters) {
+            return state.categories.map(
+                cat => ({
+                    ...cat,
+                    sub_categorys: rootGetters['sub_category/sub_categories'].filter(
+                        sub => sub.category_id === cat.id
+                    )
+                })
+            );
         },
         getIndex: state => id => {
             return state.categories.findIndex(item => item.id === id);
-        }
+        },
     },
     modules: {}
 };

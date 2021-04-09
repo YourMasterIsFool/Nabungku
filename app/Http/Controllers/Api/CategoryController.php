@@ -16,11 +16,7 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-        $data = MasterCategory::with(['sub_categories' => function($query) {
-            $query->withCount(['activity as activity'=> function ($q) {
-                $q->select(DB::raw('COALESCE(sum(income-expense), 0)'));
-            }]);
-         },
+        $data = MasterCategory::with(['sub_categories.activity'
         ])
         ->withCount(['sub_categories as budgeted' => function($query) {
 

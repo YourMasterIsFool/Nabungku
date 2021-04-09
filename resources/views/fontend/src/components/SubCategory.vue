@@ -7,7 +7,7 @@
             <div class="col-span-1 flex items-center ">
                 <input type="checkbox" class="col-span-1" />
             </div>
-            <div class="col-span-5 relative" @click="showModalSubCategory = true" >
+            <div class="col-span-5 relative" @click="showModalSubCategory = true , error = null" >
                 <div class=" overflow-hidden" ref="modalSubCategory" >
                     <a class="capitalize block"
                          
@@ -30,19 +30,20 @@
                         v-show="showModalBudgeted == false"
                     >
                         <format-rupiah :item="item.budgeted"></format-rupiah>
+
+                  
                     </a>
               
                     <input type="number" v-on:blur="focusChanged" v-show="showModalBudgeted" v-model="form.inputBudgeted"  style="top:-5px;" class="py-1 w-full outline-none pl-4 absolute focus:bg-gray-100 rounded-lg border-2 border-gray-100">
                 </div>
             </div>
-            <div class="col-span-2"  @click="openModalActivity($event)" >
+            <div class="col-span-2"  @click="openModalActivity" >
                 
                  <div class="relative" ref="modalActivity" >
                     <a class="capitalize "
-                       
-                        @click="$emit('open_modal')"
                     >
-                        <format-rupiah :item="item.activity"></format-rupiah>
+
+                        <format-rupiah :item="activity"></format-rupiah>
                     </a>
                      <input type="number" v-on:blur="focusChanged" v-show="showModalActivity"  v-model="form.inputActivity"  style="top:-5px;" class="py-1 w-full outline-none pl-4 absolute focus:bg-gray-100 rounded-lg border-2 border-gray-100">
                 </div>
@@ -90,19 +91,31 @@ export default {
           }
     },
     computed: {
+        activity() {
+            const activity = this.$store.state.activity.activities.filter(
+                    item => item.sub_category_id === this.item.id
+                );
+            if(activity.length > 0) {
+                const total = activity.reduce((acc, obj) => {
+                    return acc+(obj.income-obj.expense);
+                }, 0);
+                return total 
+            }
+           return 0
+        },
         available() {
-            return this.item.budgeted - this.item.activity;
+            return this.item.budgeted + this.activity;
         }
     },
     methods: {
         ...mapActions({
-            fectDataSubCategory: "sub_category/fetchSubCategory",
-            update_Sub_Category : 'category/updateSubCategory',
+            
+            update_Sub_Category : 'sub_category/updateSubCategory',
         }),
         fetchData(categoryId) {
-            this.fectDataSubCategory(categoryId);
         },
         focusChanged(event){
+            this.error = null;
               const data = {
                 'sub_category_name': this.form.sub_category_name,
                 'budgeted' : this.form.inputBudgeted,
@@ -115,8 +128,10 @@ export default {
            
 
         },
+   
         updateSubCategory(data){
             console.log(data);
+
             this.update_Sub_Category(data).then((resp) => {
                 console.log(resp);
                 this.showModalBudgeted = false; 
@@ -129,9 +144,9 @@ export default {
                 console.log(this.error);
             });
         },
-        openModalActivity(event) {
-            event.preventDevault();
-            this.$emit('open_modal', event);
+        openModalActivity() {
+            
+            this.$emit('open_modal', this.item.id);
         },
         closeModal(e) {
             let el = this.$refs.sub_category;
@@ -173,12 +188,12 @@ export default {
     },
 
     mounted() {
-        this.fetchData();
         console.log(this.showModalBudgeted);
     },
 
     created() {
         document.addEventListener('click', this.closeModal)
+       
        
     }
 };

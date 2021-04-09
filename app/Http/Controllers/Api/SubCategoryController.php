@@ -16,7 +16,9 @@ class SubCategoryController extends Controller
      */
     public function index(Request $request)
     {
-        $data = SubCategory::where('category_id', $request->input('category_id'))->get();
+        $data = SubCategory::withCount(['activity as activity' => function ($query) {
+            $query->select(DB::raw('COALESCE(sum(income-expense), 0)'));
+        }])->where('category_id', $request->input('category_id'))->get();
 
         return response()->json([
             'data' => $data
@@ -44,11 +46,12 @@ class SubCategoryController extends Controller
         //
         if(SubCategory::where([
             [
+                'category_id' , '=', $request->input('category_id')
+            ],
+            [
                 'sub_category_name', '=',$request->input('sub_category_name')
             ], 
-            [
-                'category_id' , '=', $request->input('category_id')
-            ]
+          
         ])->count() > 0 )
         {   
             $error_message = "This sub Category name has been used";
@@ -62,7 +65,6 @@ class SubCategoryController extends Controller
                 'sub_category_name' => $request->input('sub_category_name'),
                 'budgeted' => 0,
             ]);
-            $data['available'] = 0;
             $data['activity'] = 0;
             return response()->json([
                 'data' => $data
