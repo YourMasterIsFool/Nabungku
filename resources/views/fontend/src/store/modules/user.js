@@ -28,8 +28,7 @@ export default {
                         resolve(res);
                     })
                     .catch(err => {
-                        console.log(err.response.data);
-                        reject(err.response);
+                        reject(err);
                     });
             });
         },
@@ -47,9 +46,8 @@ export default {
                     .catch(err => {
                         if (err.response) {
                             reject(err.response.data);
-                        } else {
-                            reject(err.response);
-                        }
+                        } 
+                        console.log(err);
                     });
             });
         },

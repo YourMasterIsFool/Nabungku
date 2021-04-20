@@ -6,7 +6,7 @@
             @login="showLogin = true"
         />
         <Login v-show="showLogin" @close="showLogin = false" />
-        <div class="w-full flex pt-8 md:pt-12 lg:pt-20 justify-center h-screen">
+        <div class="w-full flex lg:pt-6 pt-4 justify-center h-screen">
             <div class="w-3/4 flex justify-center  relative">
                 <img
                     :src="hero1"
@@ -14,9 +14,9 @@
                     class="top-0 z-0  left-0 absolute w-full"
                     alt=""
                 />
-                <div class="w-3/5 z-10 text-center mt-20">
+                <div class="w-3/5 z-10 text-center lg:mt-28 md:mt-20">
                     <h1
-                        class="block text-gray-900 font-bold md:mb-4 lg:mb-6 text-3xl"
+                        class="block text-gray-900 font-bold md:mb-4 lg:mb-10 text-3xl"
                     >
                         Buat kamu yang susah nabung,
                     </h1>
@@ -51,21 +51,26 @@
                 >
                     <card
                         class="bg-blue-100 rounded-2xl"
-                        v-for="i in 4"
-                        :key="i"
+                        v-for="desc in description1"
+                        :key="desc"
                     >
                         <template v-slot:content>
-                            <div class="flex flex-col items-center">
-                                <img
-                                    class="rounded-lg mb-4 md:mb-6 lg:mb-8"
-                                    :src="noteImage"
-                                    alt=""
-                                />
-                                <div class="text-center text-gray-800">
-                                    <h1 class="font-semibold">
-                                        Lorem ipsum dolor sit amet, consectetur
-                                        adipisicing
-                                    </h1>
+                            <div class="">
+                                <div style="min-height: 200px;" class="relative ">
+                                    <div style="bottom: 0px;" class="absolute flex flex-col items-center p-6">
+                                             <div style="">
+                                                <img
+                                                class="rounded-lg mb-4 transition-all duration-500 "
+                                                :src="desc.img"
+                                                alt=""
+                                            />
+                                            </div>
+                                            <div class="text-center text-gray-800">
+                                                <h1 class="font-semibold">
+                                                    {{desc.text}}
+                                                </h1>
+                                            </div>
+                                    </div>
                                 </div>
                             </div>
                         </template>
@@ -84,44 +89,21 @@
             <div class="w-full md:w-3/4 flex-col items-center">
                 <div class="grid grid-cols-1 md:grid-cols-12  md:gap-8 ">
                     <div
-                        class="col-span-full md:col-span-4 flex mb-4 md:mb-0 justify-center"
+                        class="col-span-full md:col-span-6 flex mb-4 md:mb-0 justify-center"
                     >
-                        <img :src="icon1" class=" " alt="" />
+                        <img :src="desc2_img" class=" " alt="" />
                     </div>
 
-                    <div class="flex-col  md:col-span-8">
-                        <div class="py-4 md:py-8 grid grid-cols-12">
+                    <div class="flex-col  md:col-span-6">
+                        <div id="desc2" class=" py-4 md:py-8 grid grid-cols-12" @mouseover="imageChange(index)" v-for="(desc, index) in desc2">
                             <div
-                                class="w-16 h-16 col-span-3 md:col-span-2 rounded-full  bg-red-400"
+                                class="hover:h-20 hover:w-20 w-16 h-16 col-span-3 md:col-span-2 rounded-full  bg-red-400"
                             ></div>
                             <h1 class="col-span-8 text-sm">
-                                Lorem ipsum dolor sit amet consectetur
-                                adipisicing elit. Totam sequi nobis vel, rem,
-                                repellat accusamus doloribus et aperiam.
+                                {{desc.text}}
                             </h1>
                         </div>
-                        <div
-                            class="py-4 md:pl-6 lg:pl-12 md:py-8 grid grid-cols-12"
-                        >
-                            <div
-                                class="w-16 h-16 col-span-3 md:col-span-2 rounded-full  bg-red-400"
-                            ></div>
-                            <h1 class="col-span-8 text-sm">
-                                Lorem ipsum dolor sit amet consectetur
-                                adipisicing elit. Totam sequi nobis vel, rem,
-                                repellat accusamus doloribus et aperiam.
-                            </h1>
-                        </div>
-                        <div class="py-4  md:py-8 grid grid-cols-12">
-                            <div
-                                class="w-16 h-16 col-span-3 md:col-span-2 rounded-full  bg-red-400"
-                            ></div>
-                            <h1 class="col-span-8 text-sm">
-                                Lorem ipsum dolor sit amet consectetur
-                                adipisicing elit. Totam sequi nobis vel, rem,
-                                repellat accusamus doloribus et aperiam.
-                            </h1>
-                        </div>
+                       
                     </div>
                 </div>
             </div>
@@ -193,7 +175,7 @@
                         </div>
                     </div>
                     <div class=" flex mb-4 md:mb-0 justify-center">
-                        <img :src="icon1" class=" " alt="" />
+                        <img :src="desc3_img" class=" " alt="" />
                     </div>
                 </div>
             </div>
@@ -204,7 +186,19 @@
 <script>
 import Register from "./Register";
 import Modal from "../components/Modal.vue";
+import Logo from "../assets/images/logo.png"
 import icon1 from "../assets/images/icon1.png";
+
+import des1 from "../assets/images/description1_1.png"
+import des2 from "../assets/images/description1_2.png"
+import des3 from "../assets/images/description1_3.png"
+import des4 from "../assets/images/description1_4.png";
+
+import desc2_1 from "../assets/images/desc2_1.png";
+import desc2_2 from "../assets/images/desc2_2.png";
+import desc2_3 from "../assets/images/desc2_3.png";
+
+import desc3_img from '../assets/images/desc3.png';
 import Card from "../components/Card";
 import noteImage from "../assets/images/notes.png";
 import hero1 from "../assets/images/hero1.png";
@@ -214,12 +208,50 @@ export default {
     data() {
         return {
             hero1: hero1,
+            logo: Logo,
             noteImage: noteImage,
             icon1: icon1,
             showRegister: false,
             aggree: false,
-            showLogin: false
+            showLogin: false,
+            desc2_img: desc2_1,
+            desc3_img: desc3_img,
+            description1: [
+                {
+                    img: des1,
+                    text: "Pengeluaran Banyak"
+                },
+                {
+                    img: des2,
+                    text: "Emotional Spending"
+                },
+                {
+                    img: des3,
+                    text: "Nabungnya Nanti Aja"
+                },
+                {
+                    img: des4,
+                    text: "Malas Mencatat Keuangan"
+                },
+            ],
+           desc2: [
+                {   
+                    img: desc2_1,
+                    text: "Lorem ipsum exercitation sunt velit incididunt in magna enim exercitation eiusmod dolore non in exercitation aute voluptate laboris anim tempor velit voluptate."
+                },
+                {   img: desc2_2,
+                    text: "Deserunt deserunt nulla ea reprehenderit occaecat laborum aliqua fugiat labore."
+                },
+                {   img: desc2_3,
+                    text: "Deserunt deserunt nulla ea reprehenderit occaecat laborum aliqua fugiat labore."
+                }
+           ] 
         };
+    },
+    methods: {
+        imageChange(id) {
+            this.desc2_img = this.desc2[id].img;
+        }
     },
     components: {
         Card,
@@ -233,5 +265,19 @@ export default {
 <style>
 #home #modalForm input:focus {
     box-shadow: 0px 2px 1px 1px rgba(110, 197, 238, 0.178);
+}
+
+#desc2:hover div {
+    width: 5rem;
+    height: 5rem;
+    transition: all;
+    transition-duration: .5s
+} 
+
+#desc2:hover h1 {
+    padding-left: .5rem;
+    font-weight: bold;
+    transition: all;
+    transition-duration: .5s
 }
 </style>

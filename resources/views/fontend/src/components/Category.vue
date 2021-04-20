@@ -142,7 +142,7 @@
                 <div class="col-span-2"><format-rupiah :item="available"></format-rupiah></div>
             </div>
         </div>
-        <div class="relative" @click.prevent="$emit('open_sub_detail', sub_category.id)" v-for="(sub_category, index) in item.sub_categorys">
+        <div class="relative"  @click.prevent="$emit('open_sub_detail', sub_category.id)" v-for="(sub_category, index) in item.sub_categorys">
             
                 <div id="modal-activity" style="z-index: 10; display: none;" ref="showActivity" class="absolute overflow-hidden bg-white py-6 px-4">
                     <simple-modal >
@@ -189,6 +189,8 @@
                         </template>
                     </simple-modal>
                 </div> 
+
+               
             <sub-category-vue
 
                 style="
@@ -235,6 +237,7 @@ export default {
             dropdownSubCategory: false,
             showActivity: false,
             activities: null,
+            modalSubCategoryName: false,
 
             form: {
                 category: {
@@ -315,6 +318,9 @@ export default {
 
             // fetch_categories: 'sub_category/fetchSubCategoryByCategoryId',
         }),
+        showSubCategoryName() {
+            this.modalSubCategoryName = true;
+        },
        
         click() {
             this.clicked = true;
@@ -360,14 +366,14 @@ export default {
                 this.showSubCategory = false;
             }
 
+            
+          for(let i=0; i < refs.length; i++ ) 
+            {   
+                 if (refs[i] !== target && !refs.contains(target)) {
+                        refs[i].style.display = 'none';
+                    }
                 
-              for(let i=0; i < refs.length; i++ ) 
-                {   
-                     if (refs[i] !== target && !refs.contains(target)) {
-                            refs[i].style.display = 'none';
-                        }
-                    
-                }            
+            }            
 
 
         },

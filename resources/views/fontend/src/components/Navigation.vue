@@ -11,11 +11,7 @@
                 <div class="flex items-center justify-start">
                     <div class="brand">
                         <router-link to="/">
-                            <h2
-                                class="font-semibold text-gray-800 lg:text-xl capitalize"
-                            >
-                                nabung yuk
-                            </h2>
+                            <img :src="logo" alt="">
                         </router-link>
                     </div>
                     <ul
@@ -48,19 +44,20 @@
                     </ul>
                 </div>
                 <div class="hidden lg:block">
-                    <router-link
-                        to="/login"
+                    <a
+                        @click="$store.state.auth.showAuth = true, $store.state.auth.selectedIndex = 0"
+                        
                         class="mx-2 text-gray-600 hover:text-black transtion-all duration-300"
                     >
                         Login
-                    </router-link>
-                    <router-link
-                        to="/register"
+                    </a>
+                    <a
+                        @click="$store.state.auth.showAuth = true, $store.state.auth.selectedIndex = 1"
                         class="px-6 mx-2 font-semibold border-2 hover:border-none border-indigo-400 text-indigo-400 hover:bg-indigo-400 hover:text-white transition-all duration-300 rounded-2xl py-2 bg-none text-black text-sm capitalize"
-                        @click="$emit('navigation')"
+                       
                     >
                         sign up
-                    </router-link>
+                    </a>
                 </div>
                 <a
                     href=""
@@ -75,16 +72,19 @@
 
 <script>
 import Login from "../views/Login";
+import Logo from "../assets/images/logo.png";
 import Register from "../views/Register";
 export default {
     components: {
         Login,
-        Register
+        Register,
+        Logo
     },
     data() {
         return {
             showRegister: false,
-            showLogin: false
+            showLogin: false,
+            logo: Logo
         };
     },
     computed: {

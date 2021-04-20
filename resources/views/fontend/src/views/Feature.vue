@@ -53,18 +53,31 @@
                     </div>
                     <div class="py-10">
                         <div
-                            class="w-full py-24 px-20 flex justify-center bg-yellow-200 rounded-xl items-center"
-                        >
-                            <div class="">
+                            class="w-full py-20 px-20 flex flex-col justify-center bg-yellow-200 rounded-xl items-center"
+                        >       
+                            <div v-show="showAmount == false"  class="flex-col flex items-center">
+                                <h1 class="text-2xl flex mb-12 text-center font-bold">
+                                    Kamu perlu menabung <span class="text-blue-500 px-2 ">
+                                        
+                                        <format-rupiah :item="goals.spentMoney"></format-rupiah>
+                                    </span>                                    
+                                    perbulannya
+                                </h1>
+                                <h2 class="text-lg px-20 text-center ">
+                                    Jangan lupa menyisihkan minimal 10 hingga 30 persen dari 
+                                    pendapatanmu untuk ditabung ya!  
+                                </h2>
+                            </div>
+                            <div v-show='showAmount' class="">
                                 <div class="flex justify-around">
                                     <div class="flex-1 mx-4">
                                         <h1
                                             class="font-semibold focus:outline-none lg:mb-6 md:mb-4 mb-2 text-gray-800 text-lg"
                                         >
-                                            Monthly Income
+                                            Start Balancae
                                         </h1>
                                         <input
-                                            v-model="monthly_income"
+                                            v-model="goals.start_balance"
                                             type="text"
                                             class="py-3 px-4 w-60 text-xs  focus:outline-none text-gray-800 bg-white rounded-2xl"
                                         />
@@ -76,9 +89,8 @@
                                             Goals Amount
                                         </h1>
                                         <input
-                                            v-model="goals_amount"
+                                            v-model="goals.goals_amount"
                                             type="text"
-                                            value=""
                                             class="py-3 px-4 w-60 text-xs text-gray-800 focus:outline-none bg-white rounded-2xl"
                                         />
                                     </div>
@@ -89,13 +101,21 @@
                                             Finish By
                                         </h1>
                                         <input
-                                            type="date"
-                                            :value="today"
+                                            type="month"
+                                            v-model="goals.finishBy"
                                             class="w-60 px-3 text-xs  py-3 w-full  focus:outline-none text-gray-800 bg-white rounded-2xl"
                                         />
                                     </div>
                                 </div>
                             </div>
+
+                            <button v-show="showAmount" @click="calculateAmount()" class="mt-16 px-8 py-3 rounded-lg bg-purple-600 text-white">
+                                Hitung
+                            </button>
+
+                             <button v-show="showAmount == false" @click="showAmount=true" class="mt-16 px-8 py-3 text-xl font-bold rounded-lg text-indigo-400">
+                                Hitung Ulang
+                            </button>
                         </div>
                     </div>
                 </section>
@@ -119,9 +139,9 @@
                         </div>
                     </div>
                     <div>
-                        <div class="p-12 rounded-2xl bg-red-300">
+                        <div v-show="financial.penghasilan.modal" id="penghasilan" class="p-12 rounded-2xl bg-blue-100">
                             <h3
-                                class="capitalize font-semibold text-lg block mb-4 md:mb-6"
+                                class="capitalize text-lg block mb-4 md:mb-6"
                             >
                                 penghasilan
                             </h3>
@@ -132,12 +152,13 @@
                                     <label
                                         align-middle
                                         for=""
-                                        class="col-span-4 font-semibold self-center text-black capitalize"
+                                        class="col-span-4 self-center text-black capitalize"
                                     >
                                         gaji</label
                                     >
                                     <input
-                                        type="text"
+                                        type="number"
+                                        v-model="financial.penghasilan.gaji"
                                         class="bg-white col-span-8 rounded-xl px-4 py-3"
                                     />
                                 </div>
@@ -147,29 +168,203 @@
                                     <label
                                         align-middle
                                         for=""
-                                        class="col-span-4 font-semibold self-center text-black capitalize"
+                                        class="col-span-4 self-center text-black capitalize"
                                     >
                                         Bunga atau investasi</label
                                     >
                                     <input
-                                        type="text"
+                                        type="number"
+                                        v-model="financial.penghasilan.investasi"
                                         class="bg-white col-span-8 rounded-xl px-4 py-3"
                                     />
                                 </div>
-                                <div class="form-group grid grid-cols-12">
+                                <div class="form-group md:mb-4 mb-2 grid grid-cols-12">
                                     <label
                                         align-middle
                                         for=""
-                                        class="col-span-4 font-semibold self-center text-black capitalize"
+                                        class="col-span-4 self-center text-black capitalize"
                                     >
                                         pendapatan pasif</label
                                     >
                                     <input
-                                        type="text"
+                                        type="number"
+                                        v-model="financial.penghasilan.pendapatan_pasif"
                                         class="bg-white col-span-8 rounded-xl px-4 py-3"
                                     />
                                 </div>
+                                 <div class="form-group grid grid-cols-12">
+                                    <label
+                                        align-middle
+                                        for=""
+                                        class="col-span-4 self-center text-black capitalize"
+                                    >
+                                        Pendapatan Lainnya</label
+                                    >
+                                    <input
+                                        type="number"
+                                        v-model="financial.penghasilan.pendapatan_lainnya"
+                                        class="bg-white col-span-8 rounded-xl px-4 py-3"
+                                    />
+                                </div>
+                                <div class="flex w-full justify-end mt-12">
+                                    <a @click="(financial.pengeluaran.modal = true, financial.penghasilan.modal = false)" class="rounded-full text-white bg-blue-500 w-8 h-8 flex items-center justify-center">
+                                        <span class="material-icons">
+                                            arrow_forward
+                                        </span>
+                                    </a>
+                                </div>
                             </div>
+                        </div>
+                        <div  id="pengeluaran" v-show="financial.pengeluaran.modal" class="p-12 rounded-2xl bg-red-100">
+                            <h3
+                                class="capitalize text-lg block mb-4 md:mb-6"
+                            >
+                                pengeluaran
+                            </h3>
+                            <div class="flex flex-col items-start">
+                                <div
+                                    class="form-group md:mb-4 mb-2 grid grid-cols-12"
+                                >
+                                    <label
+                                        align-middle
+                                        for=""
+                                        class="col-span-4 self-center text-black capitalize"
+                                    >
+                                        donasi</label
+                                    >
+                                    <input
+                                        type="number"
+                                        v-model="financial.pengeluaran.donasi"
+                                        class="bg-white col-span-8 rounded-xl px-4 py-3"
+                                    />
+                                </div>
+                                <div
+                                    class="form-group md:mb-4 mb-2 grid grid-cols-12"
+                                >
+                                    <label
+                                        align-middle
+                                        for=""
+                                        class="col-span-4 self-center text-black capitalize"
+                                    >
+                                        Tabungan atau investasi</label
+                                    >
+                                    <input
+                                        type="number"
+                                        v-model="financial.pengeluaran.investasi"
+                                        class="bg-white col-span-8 rounded-xl px-4 py-3"
+                                    />
+                                </div>
+                                <div class="form-group  md:mb-4 mb-2 grid grid-cols-12">
+                                    <label
+                                        align-middle
+                                        for=""
+                                        class="col-span-4 self-center text-black capitalize"
+                                    >
+                                        Cicilan atau utang</label
+                                    >
+                                    <input
+                                        type="number"
+                                        v-model="financial.pengeluaran.utang"
+                                        class="bg-white col-span-8 rounded-xl px-4 py-3"
+                                    />
+                                </div>
+                                 <div class="form-group grid grid-cols-12">
+                                    <label
+                                        align-middle
+                                        for=""
+                                        class="col-span-4 self-center text-black capitalize"
+                                    >
+                                       Belanja Bulanan</label
+                                    >
+                                    <input
+                                        type="number"
+                                        v-model="financial.pengeluaran.belanja"
+                                        class="bg-white col-span-8 rounded-xl px-4 py-3"
+                                    />
+                                </div>
+                                <div class="flex w-full justify-end mt-12">
+                                    <a @click="calculateFinancial()" class="rounded-full text-white bg-blue-500 w-8 h-8 flex items-center justify-center">
+                                        <span class="material-icons">
+                                            arrow_forward
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div  id="calc-finansial" v-show="financial.modal" class="p-12 rounded-2xl bg-red-100">
+                             <h3
+                                class="capitalize text-lg block mb-4 md:mb-6"
+                            >
+                                hasil
+                            </h3>
+                            <div class="flex flex-col mb-6 items-start">
+                               
+                                <div class="flex flex-col mb-6 ">
+                                    <div
+                                    class="form-group gap-6 md:mb-4 mb-2 grid grid-cols-12"
+                                         >
+                                        <label
+                                            align-middle
+                                            for=""
+                                            class="col-span-4 self-center text-black capitalize"
+                                        >
+                                            Rasio Tabungan</label
+                                        >
+                                       <div class="w-full col-span-6 p-4 shadow-md rounded-2xl bg-white">
+                                            {{financial.penghasilan.rasio !== undefined ? financial.penghasilan.rasio.toLocaleString('en-US', {maximumFractionDigits: 2}) : 0}} % 
+                                       </div>
+                                    </div>
+                                    <p class="text-black text-sm">
+                                       <span v-if="financial.penghasilan.rasio > 20">
+                                           Rasio tabungan kamu sudah ideal.
+                                       </span>
+                                       <span v-else-if="financial.penghasilan.rasio > 10">
+                                           Rasio tabungan kamu masih rendah. Nilai idealnya adalah >20%.
+                                            Biasakan untuk menyisihkan minimal 10% diawal ya!
+                                       </span>
+                                       <span v-else>
+                                           Rasio tabungan kamu tidak ideal.
+                                       </span>
+                                    </p>
+
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col mb-6 items-start">
+                               
+                                <div class="flex flex-col mb-6 ">
+                                    <div
+                                    class="form-group gap-6 md:mb-4 mb-2 grid grid-cols-12"
+                                         >
+                                        <label
+                                            align-middle
+                                            for=""
+                                            class="col-span-4 self-center text-black capitalize"
+                                        >
+                                            Rasio Utang</label
+                                        >
+                                       <div class="w-full col-span-6 p-4 shadow-md rounded-2xl bg-white">
+                                           {{financial.pengeluaran.rasio !== undefined ? financial.pengeluaran.rasio.toLocaleString('en-US', {maximumFractionDigits: 2}) : 0}} %
+                                       </div>
+                                    </div>
+                                    <p class="text-black text-sm">
+                                       <span v-if="financial.pengeluaran.rasio > 30">
+                                          Rasio utang kamu tidak sehat. Nilai idealnya maksimal 30% dari
+                                            penghasilan. Yuk belajar mengelola keuangan lebih baik lagi!
+                                       </span>
+                                       <span v-else>
+                                           Rasio utang kamu masih ideal.
+                                       </span>
+                                    </p>
+
+                                </div>
+                            </div>
+                            <a @click="resetFinancial" class="text-xl text-indigo-600 capitalize font-bold">
+                                hitung ulang
+                            </a>
+
                         </div>
                     </div>
                 </div>
@@ -180,16 +375,45 @@
 
 <script>
 import notes from "../assets/images/notes.png";
+import FormatRupiah from '../components/FormatRupiah';
 import CardVue from "../components/Card.vue";
 export default {
     components: {
-        CardVue
+        CardVue,
+        FormatRupiah
     },
     data() {
         return {
             notes: notes,
-            goals_amount: 0,
-            monthly_income: 0
+            
+            goals: {
+                start_balance: 0,
+                goals_amount: 0,
+                finishBy: null,
+                spentMoney: 0
+
+            },
+            financial: {
+                pengeluaran : {
+                    modal:false,
+                    donasi: 0,
+                    investasi: 0,
+                    utang: 0,
+                    belanja: 0,
+                    rasio:0,
+                },  
+                penghasilan: {
+                    modal:true,
+                    gaji: 0,
+                    investasi: 0,
+                    pendapatan_pasif: 0,
+                    pendapatan_lainnya: 0,
+                    rasio: 0,
+                },
+                modal: false,
+
+            },
+            showAmount: true,
         };
     },
     methods: {
@@ -203,7 +427,67 @@ export default {
             if (day.length < 2) day = "0" + day;
 
             return [year, month, day].join("-");
+        },
+        calculateFinancial() {
+            
+            let total = ((obj) => {
+                let total = 0;
+
+                for(var el in obj) {
+                if(el !== "modal") {
+                total+=parseInt(obj[el]);
+
+                }
+                    
+                }
+                return total
+            }) 
+
+            const totalPenghasilan = total(this.financial.penghasilan);
+            const totalHutang = total(this.financial.pengeluaran);
+
+            this.financial.pengeluaran.rasio = totalHutang/totalPenghasilan * 100;
+            this.financial.penghasilan.rasio = totalPenghasilan/totalHutang *100;
+
+            this.financial.pengeluaran.modal = false;
+            this.financial.modal =true
+            
+        },
+        calculateAmount(){
+            this.showAmount = false;
+            const now = new Date();
+            const finishMonth = new Date(this.goals.finishBy);
+
+            const calculateMonth = (finishMonth.getFullYear() - now.getFullYear()) * 12 + ((finishMonth.getMonth() +1) - (now.getMonth()+1));
+
+            console.log(calculateMonth);
+            const calculateMoney = (this.goals.goals_amount - this.goals.start_balance ) / 2  
+            this.goals.spentMoney = calculateMoney
+        },
+        resetFinancial() {
+            this.financial.modal = false;
+            const clear = ((obj) => {
+              
+
+                for(var el in obj) {
+                    
+                if(el !== "modal") {
+                    obj[el] = 0;
+                }
+                    
+                
+                }
+            });
+
+            clear(this.financial.penghasilan);
+            clear(this.financial.pengeluaran);
+            this.financial.penghasilan.modal = true;
+            console.log(this.financial.pengeluaran.modal);
+
+            
         }
+
+ 
     },
     computed: {
         today() {

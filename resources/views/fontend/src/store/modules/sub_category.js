@@ -97,6 +97,21 @@ export default {
                     });
             });
         },
+        editSavingGoals({commit}, data) {
+            return new Promise((resolve, reject) => {
+                console.log(data);  
+                axios.patch('api/sub_category/'+ data.id, data)
+                .then((res) => {
+                    commit(UPDATE_SUB_CATEGORY, res.data.data)
+                    resolve(res);
+                })
+                .catch((err) => {
+
+                    reject(err)
+                    console.log(err.response);
+                })
+            })
+        },
         updateSubCategory({commit, dispatch}, payload) {
             
             return new Promise((resolve, reject) => {
@@ -143,5 +158,6 @@ export default {
                 })
             )
         },
+        
     }
 };

@@ -109,7 +109,7 @@
                                         class="col-span-3 grid grid-cols-1 gap-4"
                                     >
                                         <div
-                                            class="form-group grid  grid-cols-1"
+                                            class=" grid  grid-cols-1"
                                         >
                                             <label
                                                 for=""
@@ -125,7 +125,7 @@
                                             />
                                         </div>
                                         <div
-                                            class="form-group grid gap-1 grid-cols-1"
+                                            class=" grid gap-1 grid-cols-1"
                                         >
                                             <label
                                                 for=""
@@ -144,7 +144,7 @@
                                         class="col-span-5 grid grid-cols-1 gap-4"
                                     >
                                         <div
-                                            class="form-group grid gap-1 grid-cols-1"
+                                            class=" grid gap-1 grid-cols-1"
                                         >
                                             <label
                                                 for=""
@@ -167,7 +167,7 @@
                                             </select>
                                         </div>
                                         <div
-                                            class="form-group grid gap-1 grid-cols-1"
+                                            class=" grid gap-1 grid-cols-1"
                                         >
                                             <label
                                                 for=""
@@ -698,7 +698,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <div  v-if="showSubCategoryDetail && sub_category_detail !== null" :class="" class=" mt-4 md:mt-8 relative  bg-gray w-full h-full">
+                        <div  v-if="showSubCategoryDetail" :class="" class=" mt-4 md:mt-8 relative  bg-gray w-full h-full">
              
                             <div id="sub-category-detail"class="w-full">
                                 <div class="header mb-4 flex justify-between w-full">
@@ -719,7 +719,8 @@
                                         </span>
 
                                          <span class="px-4">
-                                            Rp200.000
+                                            
+                                            <format-rupiah :item="lastMonthBudget"></format-rupiah>
                                         </span>
                                     </div>
                                     <div class="flex pb-4 items-center justify-between">
@@ -728,7 +729,7 @@
                                         </span>
 
                                         <span class="px-4">
-                                            Rp200.000
+                                            <format-rupiah :item="currentMonthBudget"></format-rupiah>
                                         </span>
                                     </div>
                                   <div class="flex pb-4 items-center justify-between">
@@ -737,7 +738,7 @@
                                         </span>
 
                                         <span class="px-4">
-                                            Rp200.000
+                                             <format-rupiah :item="totalSpent"></format-rupiah>
                                         </span>
                                     </div>
                                     <div class="flex pb-4 items-center justify-between">
@@ -746,19 +747,84 @@
                                         </span>
 
                                         <span class="bg-green-400 rounded-2xl py-1 px-4">
-                                            Rp200.000
+                                          
+                                             <format-rupiah :item="totalSubAvailable"></format-rupiah>
                                         </span>
                                     </div>
 
                                 </div>
 
                                 <div class="pt-8">
-                                    <h1 class="block mb-6 text-black text-base capitalize">
-                                        saving goals
-                                    </h1>
+                                    <div class="flex mb-6 justify-between items-center">
+                                        <h1 class="block  text-black text-base capitalize">
+                                            saving goals
+                                        </h1>
 
-                                    <div class="flex items-center  relative cursor-pointer">
-                                        <a class="rounded-full w-6  text-white flex justify-center items-center mr-6 text-white h-6 bg-blue-400">
+                                        <a @click="showGoals=true" class="text-gray-500 capitalize font-semibold" v-if="sub_category_detail.finishBy && showGoals == false">
+                                            edit
+                                        </a>
+
+                                         <a @click="showGoals=false, updateSavingGoals(sub_category_detail.id)  " class="text-blue-400 font-semibold capitalize" v-if="sub_category_detail.finishBy && showGoals == true">
+                                            done
+                                        </a>
+                                    </div>
+
+                                    <div class="relative ">
+                                        <div v-if="sub_category_detail.finishBy">
+                                            <div>
+                                                <div class="py-3">
+                                                    <div class="flex mb-3 items-center justify-between">
+                                                        <h1 class="text-sm capitalize font-medium text-black">
+                                                            {{sub_category_detail.finishBy | parsingMonth }}
+                                                        </h1>
+
+                                                        <span class="text-xs font-normal">
+                                                            <format-rupiah :item="sub_category_detail.amount"></format-rupiah>
+                                                        </span>
+                                                    </div>
+                                                   <div>
+                                                        
+                                                        <span v-if="savingGoalsBar < 100" class="font-semibold text-red-400 mb-4">
+                                                            {{savingGoalsBar}}%
+                                                        </span>
+                                                        <span v-else class="text-green-400 font-semibold mb-4">
+                                                            {{savingGoalsBar - 100 }}+%
+                                                        </span>
+                                                        <div class="relative">
+                                                            <div  style="width: 100%; z-index: 1" class="h-3 absolute top-0 transition-all duration-1000 bg-gray-100 rounded-2xl">
+                                                        
+                                                            </div>
+                                                            <div style="z-index: 10" :style="{width: [savingGoalsBar > 100 ? 100 : savingGoalsBar < 0 ? 0 : savingGoalsBar]   +'%'}"class="h-3 absolute top-0 transition-all duration-1000  rounded-2xl" :class="[savingGoalsBar > 100 ? 'bg-green-300' : 'bg-red-300']">
+                                                        
+                                                        </div>
+                                                        </div>
+                                                   </div>
+                                                </div>
+
+                                                <div class="flex py-3 items-center justify-between">
+                                                    <h1 class="text-sm capitalize font-medium text-black">
+                                                            Dana Terkumpul
+                                                        </h1>
+
+                                                        <span class="text-xs font-normal">
+                                                            <format-rupiah :item="totalSubAvailable"></format-rupiah>
+                                                        </span>
+                                                </div>
+                                                 <div class="flex py-3 items-center justify-between">
+                                                    <h1 class="text-sm capitalize font-medium text-black">
+                                                            {{sub_category_detail.period}} Saving
+                                                        </h1>
+
+                                                        <span class="text-xs font-normal">
+                                                            <format-rupiah :item="periodSaving"></format-rupiah>
+                                                        </span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div @click="showGoals = true" v-else class="flex items-center">
+                                               <a 
+                                        class="rounded-full w-6  text-white flex justify-center items-center mr-6 text-white h-6 bg-blue-400">
                                             <span class="material-icons">
                                                 add
                                             </span>
@@ -767,24 +833,31 @@
                                         <span class="font-semibold capitalize text-blue-400">
                                             create new goals
                                         </span>
+                                        </div>
 
-                                        <div class="absolute bg-white w-full h-full top-0 z-10">
+                                        <div v-show="showGoals" class="absolute bg-white w-full h-full top-0 z-10">
                                             <div class="flex-col">
                                                 <div class="mt-2">
                                                     <label for="" class="pb-2 capitalize block">
                                                         Amount
                                                     </label>
 
-                                                    <input style="border-width: 1px;" type="number" class="py-2 outline-none rounded-lg focus:border-blue-300 border-gray-300 px-4 block" >
+                                                    <input style="border-width: 1px;"
+                                                    v-model="form.saving_goals.amount"
+                                                   
+                                                    type="number" class="py-2 
+                                                    outline-none rounded-lg focus:border-blue-300 border-gray-300 px-4 block" >
                                                 </div>
                                                   <div class="mt-2">
                                                     <label for="" class="pb-2 block capitalize">
                                                         finish by
                                                     </label>
 
-                                                    <date-picker class="py-2 outline-none rounded-lg focus:border-blue-300 border-gray-300 block" :value="new Date()" type="date">
-                                                        
-                                                    </date-picker>
+                                                    <input style="border-width: 1px" class="py-2 outline-none rounded-lg focus:border-blue-300 py-2 px-3 border-gray-300 block"
+                                                    placeholder="2020-10-11"
+                                                   
+                                                    v-model="form.saving_goals.finishBy"
+                                                      type="date"/> 
                                                    <!--  <input style="border-width: 1px;" type="date" class="" > -->
                                                 </div>
                                                 <div class="mt-2">
@@ -793,18 +866,34 @@
                                                         period
                                                     </label>
 
-                                                    <select style="border-width: 1px;" type="text" class="py-2 outline-none bg-white rounded-lg focus:border-blue-300 border-white-300 px-4 block" >
-                                                        <option value="">
-                                                            dqwdqw
+                                                    <select style="border-width: 1px;" type="text" 
+                                                    v-model="form.saving_goals.period"
+                                                   
+                                                    class="py-2 outline-none
+                                                    capitalize
+                                                     bg-white rounded-lg focus:border-blue-300 border-white-300 px-4 block" >
+
+                                                     <option value="" disabled="" selected> {{
+                                                        sub_category_detail.period
+                                                     }}</option>
+                                                        <option value="day">
+                                                          day
                                                         </option>
+                                                        <option value="weekly">
+                                                          weekly
+                                                        </option>
+                                                        <option value="month">
+                                                          month
+                                                        </option>
+
                                                     </select>
                                                     </div>
 
                                                      <div class="mt-4 flex outline-none justify-between">
-                                                        <a href="" class="py-2 rounded-lg px-3 bg-red-400 capitalize text-white text-sm">
+                                                        <a @click="showGoals = false"class="py-2 rounded-lg px-3 bg-red-400 capitalize text-white text-sm">
                                                             cancel
                                                         </a>
-                                                       <a href="" class="py-2 rounded-lg px-3 capitalize bg-blue-400 text-white text-sm">
+                                                       <a @click="updateSavingGoals(sub_category_detail.id)" class="py-2 rounded-lg px-3 capitalize bg-blue-400 text-white text-sm">
                                                             add
                                                         </a>
                                                       </div>
@@ -1184,22 +1273,6 @@ import { mapActions, mapGetters, mapState } from "vuex";
 
 
 
-function formatDate(date){
-    const dd = date.getDay();
-    const mm = date.getMonth()+1;
-    const yy = date.getFullYear();
-
-    if(mm > 9 || dd > 9) {
-
-        return `${yy}-${mm}-${dd}`;
-    }
-    return `${yy}-0${mm}-0${dd}`;
-}
-
-
-const currentDate = formatDate(new Date());
-
-
 export default {
     components: {
         Category,
@@ -1225,7 +1298,9 @@ export default {
             showNotif: false,
             showSubCategoryDetail: false, 
             budgeted:[],
+            showGoals : false,
             activity:[],
+            coba: '2019-20-11',
 
             form: {
                 budget: {
@@ -1235,7 +1310,7 @@ export default {
                     name_category: null
                 },
                 transaction: {
-                    date: currentDate,
+                    date: null,
                     expense: null,
                     income: null,
                     sub_category:null,
@@ -1246,6 +1321,11 @@ export default {
                     password: null,
                     password_confirmation: null,
 
+                },
+                saving_goals: {
+                    amount: null,
+                    finishBy: null,
+                    period: null,
                 },
                 error: null
             }
@@ -1266,16 +1346,43 @@ export default {
             storeActivity : "activity/storeActivity",
 
             userUpdate: 'user/update',
-
+            editSavingGoals: 'sub_category/editSavingGoals',
             //auth
             logout: 'user/logout',
         }),
+        formatDate(value){
+            const date = new Date(value);
+            const dd = date.getDay();
+            const mm = date.getMonth()+1;
+            const yy = date.getFullYear();
+
+            if(mm > 9 || dd > 9) {
+
+                return `${yy}-${mm}-${dd}`;
+            }
+            return `${yy}-0${mm}-0${dd}`;
+        },
+        updateSavingGoals(id){
+            const data = this.form.saving_goals;
+            data['id'] = id
+
+            this.editSavingGoals(data).then((res) => {
+                this.showGoals = false
+            })
+            
+        },
         subCategoryDetail(id) {
             console.log(id);
             this.showSubCategoryDetail = true
 
             if(this.showSubCategoryDetail) {
                 this.sub_category_id = id
+
+                if(this.sub_category_detail != null) {
+                    this.form.saving_goals = this.sub_category_detail
+                    console.log(this.formatDate(this.sub_category_detail.finishBy))
+                    console.log(this.sub_category_detail.finishBy)
+                }   
             }
         },
         updateUser() {
@@ -1287,9 +1394,7 @@ export default {
         },
         userLogout() {
             this.logout().then(()=> {
-                this.$router.push({
-                    name: 'login'
-                })
+                this.$router.replace('/')
             })
         },
         addTransaction() {
@@ -1382,6 +1487,139 @@ export default {
             user: 'user/user',
             budgetsById: 'budget/fetchBudgetById',
         }),
+        savingGoalsBar() {
+            const percentage = (this.totalSubAvailable / this.sub_category_detail.amount) * 100;
+
+            return parseInt(percentage)
+        },
+
+        periodSaving() {
+            const sub_detail = this.sub_category_detail;
+            const available = this.totalSubAvailable;
+            const currentDate = new Date();
+            const periodDate = new Date(this.sub_category_detail.finishBy);
+            const days = Math.abs(periodDate-currentDate)/(1000*3600*24);
+
+            if(sub_detail.period == "day") {
+                
+
+                const total = (sub_detail.amount - available) / Math.round(days);
+                
+                return total
+            }
+
+            else if(sub_detail.period == "weekly") {
+                  const total = (sub_detail.amount - available) / Math.round((days/7))
+
+                  return total
+            }
+            else if(sub_detail.period == "month") {
+                 const total = (sub_detail.amount - available) / (Math.round((days/30)))
+
+                 return total;
+            }
+
+            return ""
+
+
+        },
+        total_income() {
+
+            const categories = this.categories.map(obj => ({
+
+                income: obj['sub_categorys'].length != 0 ? obj['sub_categorys'].reduce((acc, sub) => {
+                     var total = 0;
+                    if(sub.activities.length != 0) {
+                        total = sub.activities.reduce((a, act) => {
+
+                            return a + parseInt(act.income)
+                        }, 0)
+                    }
+                    console.log(total);
+                    return acc+parseInt(total)
+                },0): 0
+                
+                
+                })
+            )
+
+
+            console.log(categories);
+            const total = categories.reduce((acc, obj) => {
+                return acc + obj.income
+            }, 0)
+            
+
+
+
+            return  total;
+
+        },
+        totalSpent() {
+            
+            const total = this.sub_category_detail['activities'].reduce((total, obj) => {
+                return total + parseInt(obj['expense']);
+            }, 0);
+
+            return total
+        },
+        totalSubAvailable(){
+            const total = this.lastMonthBudget + this.currentMonthBudget - this.totalSpent
+
+            return total 
+        },
+        lastMonthBudget() {
+            const category = this.categories.filter(cat => {
+                const categoriesDate = new Date(cat['created_at']);
+                const currentDate = new Date();
+                // console.log(categoriesDate.getMonth()+1)
+                // console.log((currentDate.getMonth()+1)-1)
+
+                return (categoriesDate.getMonth()+1 == currentDate.getMonth()) && (categoriesDate.getFullYear() == currentDate.getFullYear());
+
+            });
+            const total = category.length > 0 ?category.reduce((total, cat ) => {
+                let totalSub = cat['sub_categorys'].reduce((totalLeftMonth, sub) => {
+                    let activity = 0 
+
+                    sub['activities'].forEach( function(element, index) {
+                        activity += parseInt(element['income'] - element['expense']);
+                    });
+
+                    return totalLeftMonth + parseInt(sub['budgeted'] + activity)
+                }, 0)
+
+                return total + parseInt(totalSub);
+            }, 0) : 0;
+
+            console.log(category);
+
+            return total;
+        },
+
+        currentMonthBudget(){
+            const category = this.categories.filter(cat => {
+                const categoriesDate = new Date(cat['created_at']);
+                const currentDate = new Date();
+
+
+                return (categoriesDate.getMonth()+1 == currentDate.getMonth()+1) && (categoriesDate.getFullYear() == currentDate.getFullYear());
+
+            })
+            console.table(category);
+
+            const budgeted = category.reduce((total, obj) => {
+                let totalSub = 0
+                obj['sub_categorys'].forEach( function(element, index) {
+                    total += parseInt(element['budgeted'])
+                }, 0);
+
+                return total + parseInt(totalSub);
+            }, 0)
+
+            return budgeted
+        },
+     
         sub_category_detail() {
             
             return this.sub_categories.find(item => item.id == this.sub_category_id);
@@ -1389,18 +1627,13 @@ export default {
         },
         total_budget() {
             let total = this.categories.length > 0 ? this.categories.reduce((totalBudget , cat) => {
-               
-                if(!cat.sub_categories.length == 0) {
-                   const budgeted = cat.sub_categorys.reduce((total, sub) => {
-                        return total + parseInt(sub['budgeted']);
-                    }, 0)
-
-                    return totalBudget + parseInt(budgeted);
-                }
-
                 
-                return 0
-              
+                let total = 0;
+                cat.sub_categorys.forEach( function(element, index) {
+                    total += parseInt(element['budgeted']);
+                });
+
+                return totalBudget + parseInt(total);
 
             }, 0): 0;
             // let total = this.sub_categories != null ? this.sub_categories.reduce((acc, obj) => {
@@ -1411,11 +1644,22 @@ export default {
         }, 
 
         total_activity() {
-            let total = this.activities.length > 0 ? this.activities.reduce((acc, obj) => {
-                return acc+parseInt(obj['income'] - obj['expense']);
-            }, 0) : 0;
+            let total = this.categories.length > 0 ? this.categories.reduce((totalAct, cat ) => {
+                let sum = cat.sub_categorys.reduce((total, sub) => {
+                    let total_activity = 0
+                    sub.activities.forEach( function(element, index) {
+                        total_activity += parseInt(element['income'] - element['expense']);
+                    });
 
-            return total;
+                    return total + parseInt(total_activity);
+                }, 0);
+
+                return totalAct + parseInt(sum);
+            }, 0): 0;
+
+            return total 
+
+            
         },
 
         total_available() {
@@ -1546,21 +1790,47 @@ export default {
         // new Chart(pieChart, this.dataChart);
 
         
-
-        if (this.budgets.length == 0) {
-            this.fetchData();
-        }
+        this.updateSavingGoals()
+      
         if (this.categories.length == 0) {
             this.fetchCategoryData(localStorage.getItem("budget_id"));
         }
+        if (this.budgets.length == 0) {
+                this.fetchData();
+            }
     },
        created() {
+          if (this.budgets.length == 0) {
+                this.fetchData();
+            }
         this.form.user = this.user;
+        console.log(this.sub_category_detail);
+        
         this.updateChart();
 
         document.addEventListener('click', this.closeModal);
     },
-    mixins: [BudgetDetail]
+    mixins: [BudgetDetail],
+
+    filters: {
+        parsingMonth(value) {
+            if (value !== undefined || !value == null) {
+                const date = new Date(value);
+
+
+                return date.toLocaleString('default', {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric',
+                    
+                })
+               
+            }
+            
+
+
+        }
+    }
 };
 </script>
 

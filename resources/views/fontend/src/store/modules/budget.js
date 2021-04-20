@@ -21,8 +21,14 @@ export default {
                 .get("api/budget")
                 .then(res => {
                     commit(SET_BUGDET, res.data.data);
-                    console.log(res.data.data[0].id);
-                    localStorage.setItem("budget_id", res.data.data[0].id);
+                    console.log(res.data.data);
+                    
+                     if(!res.data.data.length == 0) {
+                        
+                         localStorage.setItem('budget_id', res.data.data[0].id)
+                     }
+                     localStorage.setItem("budget_id", '');
+                    
                 })
                 .catch(err => {
                     console.log(err);
@@ -35,6 +41,7 @@ export default {
                     .post("api/budget", data)
                     .then(res => {
                         commit(CREATE_BUDGET, res.data.data);
+                        localStorage.setItem("budget_id", res.data.data.id);
                         resolve(res);
                     })
                     .catch(err => {

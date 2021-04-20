@@ -95,7 +95,7 @@ export default {
                     })
                     .then(res => {
                         // commit(REMOVE_ALL_CATEGORY);
-                         commit(REMOVE_ALL_CATEGORY);
+                        commit(REMOVE_ALL_CATEGORY);
                         dispatch('activity/removeActivityData', null, {root:true});
                         dispatch('sub_category/deleteAllSubCategory', null, {root:true});
 

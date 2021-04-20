@@ -18,6 +18,9 @@ class CreateSubCategoriesTable extends Migration
         Schema::create('sub_categories', function (Blueprint $table) {
             $table->id();
             $table->string('sub_category_name');
+            $table->integer('amount')->nullable(true);
+            $table->date('finishBy')->nullable(true);
+            $table->string('period')->nullable(true);
             $table->float('budgeted', 16, 2)->default(0);
             $table->timestamps();
             $table->foreignId('category_id')->references('id')->on('master_categories')->onDelete('cascade');

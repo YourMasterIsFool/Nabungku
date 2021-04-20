@@ -5,7 +5,7 @@
             class="background fixed top-0 left-0 w-full h-full bg-black bg-opacity-50"
         ></div>
 
-        <div class="modal-wrapper z-50">
+        <div class="modal-wrapper fixed h-screen w-screen z-50">
             <slot name="content" ></slot>
         </div>
     </div>

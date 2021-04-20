@@ -110,8 +110,29 @@ class SubCategoryController extends Controller
             'budgeted' => $request->input('budgeted'),
             
             ];
-        
-        if(SubCategory::where([
+        if($request->filled('amount')) {
+
+            $payload = [
+                'amount' => $request->input('amount'),
+                'finishBy' => $request->input('finishBy'),
+                'period' => $request->input('period'),
+            ];
+             SubCategory::where('id', $id)->update($payload);
+
+             $data = SubCategory::withCount(['activity as activity' => function($query) {
+                $query->select(DB::raw('sum(income-expense)'));
+             }])->where('id',$id)->first();
+
+            return response()->json([
+                'data' => $data
+                    
+            ], 200); 
+
+        }
+
+
+       else {
+         if(SubCategory::where([
             ['id', '=', $id],
             ['sub_category_name', '=', $request->input('sub_category_name')]
             ])->count() > 0) {
@@ -148,7 +169,14 @@ class SubCategoryController extends Controller
                     
             ], 200); 
         }
+       }
         
+    }
+
+    public function updateAmount(Request $request, $id) {
+        return response()->json([
+            'data' => $request->all()
+        ]);
     }
 
     /**

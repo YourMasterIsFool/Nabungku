@@ -44,7 +44,7 @@ Route::post('login', [AuthController::class, 'login']);
 Route::group(['middleware' => 'auth:api'], function() {
    
 Route::get('users_me', [AuthController::class, 'me']);
-Route::post('edit_user', [AuthController::class, 'editUser']);   
+Route::post('edit_user', [AuthController::class, 'editUser']);  
 Route::resource('budget', BudgetController::class);
 
 Route::resource('category', CategoryController::class);

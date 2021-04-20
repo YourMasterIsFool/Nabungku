@@ -8,6 +8,12 @@ import activity from './modules/activity';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+	state: {
+		auth: {
+			showAuth: false,
+			selectedIndex: 0,
+		}
+	},
     modules: {
         user,
         category,

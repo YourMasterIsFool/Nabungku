@@ -8,8 +8,9 @@
                             Mulai dari mana?
                         </h1>
                         <h3 class="leading-relaxed mb-4 lg:mb-8 ">
-                            Bingung belajar mulai darimana? Coba isi ini untuk
-                            cari tau materi yang sesuai dengan kebutuhanmu!
+                           Bingung mau belajar mulai darimana? 
+                            Coba isi quiz ini untuk cari tau materi
+                            yang sesuai dengan kebutuhanmu!
                         </h3>
                         <div class="flex items-center  justify-between">
                             <a
@@ -27,7 +28,7 @@
                         </div>
                     </div>
 
-                    <img :src="icon2" style="" class="relative" alt="" />
+                    <img :src="icon1" style="" class="relative" alt="" />
                 </div>
             </div>
         </div>
@@ -93,6 +94,7 @@
 
 <script>
 import icon2 from "../assets/images/icon2.png";
+import icon1 from '../assets/images/icon_learn_1.png';
 
 import Pagination from "../components/Pagination.vue";
 export default {
@@ -103,7 +105,8 @@ export default {
             offset: 4,
             pagination: {
                 yo: 4
-            }
+            },
+            icon1: icon1
         };
     },
     components: {

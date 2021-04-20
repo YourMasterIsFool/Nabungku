@@ -7,7 +7,9 @@ import routers from "./src/routers";
 import store from "./src/store";
 import DatePicker from 'vue2-datepicker';
 import 'vue2-datepicker/index.css';
+import moment from 'moment';
 
+Vue.prototype.moment = moment;
 
 require('./src/store/subscriber');
 Vue.use(VueRouter);
