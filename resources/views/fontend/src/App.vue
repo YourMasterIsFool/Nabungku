@@ -65,6 +65,7 @@ export default {
 .form-group .label {
     position: absolute;
     top:8px;
+    z-index: 0;
     text-transform: capitalize;
     transition: all;
     transition-duration: .3s;
@@ -73,6 +74,7 @@ export default {
 .form-group .input {
     display: block;
     width:100%;
+    z-index: 10;
     font-size: 12px;
     padding: 12px 16px;
     outline: none;

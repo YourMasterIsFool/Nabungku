@@ -19,7 +19,7 @@
                     >
                         <li class="px-6">
                             <router-link
-                                to="learn"
+                                to="/learn"
                                 class="capitalize hover:text-black transition-all duration-300"
                             >
                                 Learn
@@ -27,7 +27,7 @@
                         </li>
                         <li class="px-6">
                             <router-link
-                                to="feature"
+                                to="/feature/"
                                 class="capitalize hover:text-black transition-all duration-300"
                             >
                                 feature
@@ -35,7 +35,7 @@
                         </li>
                         <li class="px-6">
                             <router-link
-                                to="about"
+                                to="/about"
                                 class="capitalize hover:text-black transition-all duration-300"
                             >
                                 about
@@ -45,15 +45,15 @@
                 </div>
                 <div class="hidden lg:block">
                     <a
-                        @click="$store.state.auth.showAuth = true, $store.state.auth.selectedIndex = 0"
-                        
-                        class="mx-2 text-gray-600 hover:text-black transtion-all duration-300"
+                      @click="$store.state.auth.showAuth = true, $store.state.auth.selectedIndex = 0"
+                            
+                        class="cursor-pointer mx-2 text-gray-600 hover:text-black transtion-all duration-300"
                     >
                         Login
                     </a>
                     <a
                         @click="$store.state.auth.showAuth = true, $store.state.auth.selectedIndex = 1"
-                        class="px-6 mx-2 font-semibold border-2 hover:border-none border-indigo-400 text-indigo-400 hover:bg-indigo-400 hover:text-white transition-all duration-300 rounded-2xl py-2 bg-none text-black text-sm capitalize"
+                        class="px-6 mx-2 cursor-pointer font-semibold border-2 hover:border-none border-indigo-400 text-indigo-400 hover:bg-indigo-400 hover:text-white transition-all duration-300 rounded-2xl py-2 bg-none text-black text-sm capitalize"
                        
                     >
                         sign up

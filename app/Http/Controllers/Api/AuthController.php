@@ -23,6 +23,17 @@ class AuthController extends Controller
 
         $request->validate($rules);
 
+        if(User::where('email', $request->input('email'))->count() > 1) {
+            $response = [
+                'message' => 'email has been exists'
+            ] ;
+
+             return response()->json([
+             "data" => $response
+         ], 400);
+
+        }
+
         $user = User::create([
             'lastname' => $request->input('lastname'),
             'firstname'  =>  $request->input('firstname'),

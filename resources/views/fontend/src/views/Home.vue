@@ -29,7 +29,7 @@
                         Jika itu adalah masalahmu, mulai belajar nabungyuk!
                     </h2>
                     <a
-                        @click="showRegister = true"
+                        @click="$store.state.auth.showAuth = true"
                         class="px-10 py-3 hover:bg-indigo-400 transition-all duration-300 cursor-pointer font-semibold  capitalize rounded-3xl bg-indigo-500 text-white "
                     >
                         get started

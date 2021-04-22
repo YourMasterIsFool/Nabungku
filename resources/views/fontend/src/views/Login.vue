@@ -20,7 +20,7 @@
                     </span>
                 </a>
                 <input type="password"  v-model="form.password" class="input pr-10">
-                <label for=""  :class="[form.password == '' ? 'label' : 'inputHasValue']" class="label" >password</label>
+                <label for=""  :class="[form.password == '' ? 'label' : 'inputHasValue']"  >password</label>
                
             </div>
         </div>

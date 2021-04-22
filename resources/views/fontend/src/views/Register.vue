@@ -9,7 +9,7 @@
             <div class="form-group" :class="[ errors == null ? 'border-gray-200' : 'border-red-400']">
               
                 <input v-model="form.firstname" type="text" class="input">
-                  <label for="" :class="[form.firstname == '' ? 'label' : 'inputHasValue']" class="label">
+                  <label for="" :class="[form.firstname == '' ? 'label' : 'inputHasValue']" >
                     nama depan
                 </label>
 
@@ -18,7 +18,7 @@
             <div class="form-group" :class="[ errors == null ? '' : 'border-red-400']">
                 
                 <input type="text"  v-model="form.lastname" class="input">
-                <label for=""  :class="[form.lastname == '' ? 'label' : 'inputHasValue']" class="label" >nama belakang</label>
+                <label for=""  :class="[form.lastname == '' ? 'label' : 'inputHasValue']"  >nama belakang</label>
             </div>
             <div class="form-group" :class="[ errors == null ? 'border-gray-200' : 'border-red-400']">
               
@@ -87,9 +87,7 @@ export default {
             console.log(this.form);
             console.log(this.errors);
             this.createUser(this.form).then(res => {
-                this.$router.push({
-                    name: "dashboard"
-                });
+                this.$parent.$parent.selectTab(0)
             }).catch ((err) => {
                 console.log(err.response.data);
                 this.errors = err.response.data.message

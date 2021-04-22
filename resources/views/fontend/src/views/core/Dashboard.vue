@@ -545,8 +545,8 @@
                                     />
                                 </div>
                                 <div class="pl-4 flex items-center">
-                                    <p class=" text-sm font-bold">
-                                        {{user.name}}
+                                    <p class=" capitalize text-sm font-bold">
+                                        {{user.firstname}}
                                         <span>
                                             Budgets
                                         </span>
@@ -578,7 +578,7 @@
                                               opacity: '0'
                                           }
                                 ]"
-                                style="top:64px; left:0px; "
+                                style="top:64px; left:0px; z-index: 20; "
                                 class="bg-white overflow-y-scroll duration-1000 transition-all pt-4 shadow-xl w-64 absolute   rounded-lg"
                             >
                                 <ul

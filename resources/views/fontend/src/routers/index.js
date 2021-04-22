@@ -5,8 +5,10 @@ import Login from "../views/Login.vue";
 import About from "../views/About";
 import Feature from "../views/Feature";
 import Dashboard from "../views/core/Dashboard";
-
-
+import Quiz1 from '../views/feature/Quiz1.vue';
+import Quiz2 from '../views/feature/Quiz2.vue';
+import Quiz3 from '../views/feature/Quiz3.vue';
+import FeatureHome from '../views/feature/FeatureHome';
 import store from '../store';
 
 
@@ -36,28 +38,45 @@ const routers = [
         component: About
     },
 
-    {
-        path: "/login",
-        name: "login",
-        component: Login
-    },
 
     {
         path: "/learn",
         name: "learn",
-        component: Learn
+        component: Learn,
+
     },
 
     {
-        path: "/feature",
+        path: "/feature/",
         name: "feature",
-        component: Feature
+        component: Feature,
+        children: [
+            {   
+                path: 'quiz1',
+                name : 'quiz1',
+                component: Quiz1
+
+            },
+             {   
+                path: 'quiz2',
+                name : 'quiz2',
+                component: Quiz2
+
+            },
+             {   
+                path: 'quiz3',
+                name : 'quiz3',
+                component: Quiz3
+
+            },
+
+            {
+                path: '',
+                name: 'feature-home',
+                component:FeatureHome
+            }
+        ]
     },
-    {
-        path: "/register",
-        name: "register",
-        component: Register
-    }
 ];
 
 export default routers;

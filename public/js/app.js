@@ -3711,16 +3711,8 @@ __webpack_require__.r(__webpack_exports__);
 /*!************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/views/fontend/src/views/Feature.vue?vue&type=script&lang=js& ***!
   \************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (() => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _assets_images_notes_png__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/images/notes.png */ "./resources/views/fontend/src/assets/images/notes.png");
-/* harmony import */ var _components_FormatRupiah__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/FormatRupiah */ "./resources/views/fontend/src/components/FormatRupiah.vue");
-/* harmony import */ var _components_Card_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Card.vue */ "./resources/views/fontend/src/components/Card.vue");
 //
 //
 //
@@ -3728,480 +3720,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  components: {
-    CardVue: _components_Card_vue__WEBPACK_IMPORTED_MODULE_2__.default,
-    FormatRupiah: _components_FormatRupiah__WEBPACK_IMPORTED_MODULE_1__.default
-  },
-  data: function data() {
-    return {
-      notes: _assets_images_notes_png__WEBPACK_IMPORTED_MODULE_0__.default,
-      goals: {
-        start_balance: 0,
-        goals_amount: 0,
-        finishBy: null,
-        spentMoney: 0
-      },
-      financial: {
-        pengeluaran: {
-          modal: false,
-          donasi: 0,
-          investasi: 0,
-          utang: 0,
-          belanja: 0,
-          rasio: 0
-        },
-        penghasilan: {
-          modal: true,
-          gaji: 0,
-          investasi: 0,
-          pendapatan_pasif: 0,
-          pendapatan_lainnya: 0,
-          rasio: 0
-        },
-        modal: false
-      },
-      showAmount: true
-    };
-  },
-  methods: {
-    formatDate: function formatDate(date) {
-      var d = new Date(date),
-          month = "" + (d.getMonth() + 1),
-          day = "" + d.getDate(),
-          year = d.getFullYear();
-      if (month.length < 2) month = "0" + month;
-      if (day.length < 2) day = "0" + day;
-      return [year, month, day].join("-");
-    },
-    calculateFinancial: function calculateFinancial() {
-      var total = function total(obj) {
-        var total = 0;
-
-        for (var el in obj) {
-          if (el !== "modal") {
-            total += parseInt(obj[el]);
-          }
-        }
-
-        return total;
-      };
-
-      var totalPenghasilan = total(this.financial.penghasilan);
-      var totalHutang = total(this.financial.pengeluaran);
-      this.financial.pengeluaran.rasio = totalHutang / totalPenghasilan * 100;
-      this.financial.penghasilan.rasio = totalPenghasilan / totalHutang * 100;
-      this.financial.pengeluaran.modal = false;
-      this.financial.modal = true;
-    },
-    calculateAmount: function calculateAmount() {
-      this.showAmount = false;
-      var now = new Date();
-      var finishMonth = new Date(this.goals.finishBy);
-      var calculateMonth = (finishMonth.getFullYear() - now.getFullYear()) * 12 + (finishMonth.getMonth() + 1 - (now.getMonth() + 1));
-      console.log(calculateMonth);
-      var calculateMoney = (this.goals.goals_amount - this.goals.start_balance) / 2;
-      this.goals.spentMoney = calculateMoney;
-    },
-    resetFinancial: function resetFinancial() {
-      this.financial.modal = false;
-
-      var clear = function clear(obj) {
-        for (var el in obj) {
-          if (el !== "modal") {
-            obj[el] = 0;
-          }
-        }
-      };
-
-      clear(this.financial.penghasilan);
-      clear(this.financial.pengeluaran);
-      this.financial.penghasilan.modal = true;
-      console.log(this.financial.pengeluaran.modal);
-    }
-  },
-  computed: {
-    today: function today() {
-      var today = new Date();
-      var formateDate = this.formatDate(today);
-      return formateDate;
-    }
-  },
-  created: function created() {
-    console.log(this.today);
-  }
-});
 
 /***/ }),
 
@@ -4845,9 +4363,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       console.log(this.form);
       console.log(this.errors);
       this.createUser(this.form).then(function (res) {
-        _this.$router.push({
-          name: "dashboard"
-        });
+        _this.$parent.$parent.selectTab(0);
       })["catch"](function (err) {
         console.log(err.response.data);
         _this.errors = err.response.data.message;
@@ -6625,6 +6141,657 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/views/fontend/src/views/feature/FeatureHome.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/views/fontend/src/views/feature/FeatureHome.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _assets_images_notes_png__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../assets/images/notes.png */ "./resources/views/fontend/src/assets/images/notes.png");
+/* harmony import */ var _components_FormatRupiah__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/FormatRupiah */ "./resources/views/fontend/src/components/FormatRupiah.vue");
+/* harmony import */ var _components_Card_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Card.vue */ "./resources/views/fontend/src/components/Card.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    CardVue: _components_Card_vue__WEBPACK_IMPORTED_MODULE_2__.default,
+    FormatRupiah: _components_FormatRupiah__WEBPACK_IMPORTED_MODULE_1__.default
+  },
+  data: function data() {
+    return {
+      notes: _assets_images_notes_png__WEBPACK_IMPORTED_MODULE_0__.default,
+      goals: {
+        start_balance: 0,
+        goals_amount: 0,
+        finishBy: null,
+        spentMoney: 0
+      },
+      financial: {
+        pengeluaran: {
+          modal: false,
+          donasi: 0,
+          investasi: 0,
+          utang: 0,
+          belanja: 0,
+          rasio: 0
+        },
+        penghasilan: {
+          modal: true,
+          gaji: 0,
+          investasi: 0,
+          pendapatan_pasif: 0,
+          pendapatan_lainnya: 0,
+          rasio: 0
+        },
+        modal: false
+      },
+      showAmount: true
+    };
+  },
+  methods: {
+    formatDate: function formatDate(date) {
+      var d = new Date(date),
+          month = "" + (d.getMonth() + 1),
+          day = "" + d.getDate(),
+          year = d.getFullYear();
+      if (month.length < 2) month = "0" + month;
+      if (day.length < 2) day = "0" + day;
+      return [year, month, day].join("-");
+    },
+    calculateFinancial: function calculateFinancial() {
+      var total = function total(obj) {
+        var total = 0;
+
+        for (var el in obj) {
+          if (el !== "modal") {
+            total += parseInt(obj[el]);
+          }
+        }
+
+        return total;
+      };
+
+      var totalPenghasilan = total(this.financial.penghasilan);
+      var totalHutang = total(this.financial.pengeluaran);
+      this.financial.pengeluaran.rasio = totalHutang / totalPenghasilan * 100;
+      this.financial.penghasilan.rasio = totalPenghasilan / totalHutang * 100;
+      this.financial.pengeluaran.modal = false;
+      this.financial.modal = true;
+    },
+    calculateAmount: function calculateAmount() {
+      this.showAmount = false;
+      var now = new Date();
+      var finishMonth = new Date(this.goals.finishBy);
+      var calculateMonth = (finishMonth.getFullYear() - now.getFullYear()) * 12 + (finishMonth.getMonth() + 1 - (now.getMonth() + 1));
+      console.log(calculateMonth);
+      var calculateMoney = (this.goals.goals_amount - this.goals.start_balance) / 2;
+      this.goals.spentMoney = calculateMoney;
+    },
+    resetFinancial: function resetFinancial() {
+      this.financial.modal = false;
+
+      var clear = function clear(obj) {
+        for (var el in obj) {
+          if (el !== "modal") {
+            obj[el] = 0;
+          }
+        }
+      };
+
+      clear(this.financial.penghasilan);
+      clear(this.financial.pengeluaran);
+      this.financial.penghasilan.modal = true;
+      console.log(this.financial.pengeluaran.modal);
+    }
+  },
+  computed: {
+    today: function today() {
+      var today = new Date();
+      var formateDate = this.formatDate(today);
+      return formateDate;
+    }
+  },
+  created: function created() {
+    console.log(this.today);
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/views/fontend/src/views/feature/Quiz1.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/views/fontend/src/views/feature/Quiz1.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'Quiz1',
+  data: function data() {
+    return {
+      quizes: [{
+        title: 'Aku tidak menabung'
+      }, {
+        title: '30% dari pendapatan'
+      }, {
+        title: '>30% dari pendapatan'
+      }, {
+        title: '10% dari pendapatan'
+      }]
+    };
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/views/fontend/src/views/feature/Quiz2.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/views/fontend/src/views/feature/Quiz2.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'Quiz1',
+  data: function data() {
+    return {
+      quizes: [{
+        title: 'Aku gak tahu itu apa'
+      }, {
+        title: 'Aku sedang mengumpulkan'
+      }, {
+        title: 'Menurutku belum penting'
+      }, {
+        title: 'Aku sudah punya'
+      }]
+    };
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/views/fontend/src/views/feature/Quiz3.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/views/fontend/src/views/feature/Quiz3.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'Quiz1',
+  data: function data() {
+    return {
+      quizes: [{
+        title: 'Dana darurat & asuransi'
+      }, {
+        title: 'Beli HP terbaru'
+      }, {
+        title: 'Membayar cicilan & utang'
+      }, {
+        title: 'Investasi'
+      }]
+    };
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -6881,7 +7048,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _views_About__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../views/About */ "./resources/views/fontend/src/views/About.vue");
 /* harmony import */ var _views_Feature__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../views/Feature */ "./resources/views/fontend/src/views/Feature.vue");
 /* harmony import */ var _views_core_Dashboard__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../views/core/Dashboard */ "./resources/views/fontend/src/views/core/Dashboard.vue");
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../store */ "./resources/views/fontend/src/store/index.js");
+/* harmony import */ var _views_feature_Quiz1_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../views/feature/Quiz1.vue */ "./resources/views/fontend/src/views/feature/Quiz1.vue");
+/* harmony import */ var _views_feature_Quiz2_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../views/feature/Quiz2.vue */ "./resources/views/fontend/src/views/feature/Quiz2.vue");
+/* harmony import */ var _views_feature_Quiz3_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../views/feature/Quiz3.vue */ "./resources/views/fontend/src/views/feature/Quiz3.vue");
+/* harmony import */ var _views_feature_FeatureHome__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../views/feature/FeatureHome */ "./resources/views/fontend/src/views/feature/FeatureHome.vue");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../store */ "./resources/views/fontend/src/store/index.js");
+
+
+
+
 
 
 
@@ -6899,7 +7074,7 @@ var routers = [{
   name: "dashboard",
   component: _views_core_Dashboard__WEBPACK_IMPORTED_MODULE_6__.default,
   beforeEnter: function beforeEnter(to, from, next) {
-    if (!_store__WEBPACK_IMPORTED_MODULE_7__.default.getters["user/token"]) {
+    if (!_store__WEBPACK_IMPORTED_MODULE_11__.default.getters["user/token"]) {
       return next({
         name: 'login'
       });
@@ -6912,21 +7087,30 @@ var routers = [{
   name: "about",
   component: _views_About__WEBPACK_IMPORTED_MODULE_4__.default
 }, {
-  path: "/login",
-  name: "login",
-  component: _views_Login_vue__WEBPACK_IMPORTED_MODULE_3__.default
-}, {
   path: "/learn",
   name: "learn",
   component: _views_Learn__WEBPACK_IMPORTED_MODULE_1__.default
 }, {
-  path: "/feature",
+  path: "/feature/",
   name: "feature",
-  component: _views_Feature__WEBPACK_IMPORTED_MODULE_5__.default
-}, {
-  path: "/register",
-  name: "register",
-  component: _views_Register_vue__WEBPACK_IMPORTED_MODULE_2__.default
+  component: _views_Feature__WEBPACK_IMPORTED_MODULE_5__.default,
+  children: [{
+    path: 'quiz1',
+    name: 'quiz1',
+    component: _views_feature_Quiz1_vue__WEBPACK_IMPORTED_MODULE_7__.default
+  }, {
+    path: 'quiz2',
+    name: 'quiz2',
+    component: _views_feature_Quiz2_vue__WEBPACK_IMPORTED_MODULE_8__.default
+  }, {
+    path: 'quiz3',
+    name: 'quiz3',
+    component: _views_feature_Quiz3_vue__WEBPACK_IMPORTED_MODULE_9__.default
+  }, {
+    path: '',
+    name: 'feature-home',
+    component: _views_feature_FeatureHome__WEBPACK_IMPORTED_MODULE_10__.default
+  }]
 }];
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (routers);
 
@@ -45393,7 +45577,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#app {\n    font-family: \"Poppins\", Courier, monospace;\n}\n.form-group {\n    border-width: 1px;\n    border-radius: 10px;\n    position: relative;\n    margin-bottom: 16px;\n}\n.form-group .label {\n    position: absolute;\n    top:8px;\n    text-transform: capitalize;\n    transition: all;\n    transition-duration: .3s;\n    left:16px;\n}\n.form-group .input {\n    display: block;\n    width:100%;\n    font-size: 12px;\n    padding: 12px 16px;\n    outline: none;\n    height: 100%;\n    border:none;\n    background: transparent;\n}\n.form-group .input:focus +  .label {\n    top:-10px;\n    font-size: 12px;\n    position: absolute;\n    padding: 0px .85rem;\n    color:gray;\n    background: white;\n}\n.form-group .inputHasValue {\n    top:-10px;\n    position: absolute;\n    font-size: 12px;\n    left:16px;\n    text-transform: capitalize;\n    padding: 0px .85rem;\n    color:gray;\n    background: white;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#app {\n    font-family: \"Poppins\", Courier, monospace;\n}\n.form-group {\n    border-width: 1px;\n    border-radius: 10px;\n    position: relative;\n    margin-bottom: 16px;\n}\n.form-group .label {\n    position: absolute;\n    top:8px;\n    z-index: 0;\n    text-transform: capitalize;\n    transition: all;\n    transition-duration: .3s;\n    left:16px;\n}\n.form-group .input {\n    display: block;\n    width:100%;\n    z-index: 10;\n    font-size: 12px;\n    padding: 12px 16px;\n    outline: none;\n    height: 100%;\n    border:none;\n    background: transparent;\n}\n.form-group .input:focus +  .label {\n    top:-10px;\n    font-size: 12px;\n    position: absolute;\n    padding: 0px .85rem;\n    color:gray;\n    background: white;\n}\n.form-group .inputHasValue {\n    top:-10px;\n    position: absolute;\n    font-size: 12px;\n    left:16px;\n    text-transform: capitalize;\n    padding: 0px .85rem;\n    color:gray;\n    background: white;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -87713,6 +87897,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _Feature_vue_vue_type_template_id_4548fa3e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Feature.vue?vue&type=template&id=4548fa3e& */ "./resources/views/fontend/src/views/Feature.vue?vue&type=template&id=4548fa3e&");
 /* harmony import */ var _Feature_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Feature.vue?vue&type=script&lang=js& */ "./resources/views/fontend/src/views/Feature.vue?vue&type=script&lang=js&");
+/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
+/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _Feature_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _Feature_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[__WEBPACK_IMPORT_KEY__]
+/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -87936,6 +88123,162 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 /* hot reload */
 if (false) { var api; }
 component.options.__file = "resources/views/fontend/src/views/core/Dashboard.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/views/fontend/src/views/feature/FeatureHome.vue":
+/*!*******************************************************************!*\
+  !*** ./resources/views/fontend/src/views/feature/FeatureHome.vue ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _FeatureHome_vue_vue_type_template_id_7f9d43a4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FeatureHome.vue?vue&type=template&id=7f9d43a4& */ "./resources/views/fontend/src/views/feature/FeatureHome.vue?vue&type=template&id=7f9d43a4&");
+/* harmony import */ var _FeatureHome_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FeatureHome.vue?vue&type=script&lang=js& */ "./resources/views/fontend/src/views/feature/FeatureHome.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _FeatureHome_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _FeatureHome_vue_vue_type_template_id_7f9d43a4___WEBPACK_IMPORTED_MODULE_0__.render,
+  _FeatureHome_vue_vue_type_template_id_7f9d43a4___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/views/fontend/src/views/feature/FeatureHome.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/views/fontend/src/views/feature/Quiz1.vue":
+/*!*************************************************************!*\
+  !*** ./resources/views/fontend/src/views/feature/Quiz1.vue ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Quiz1_vue_vue_type_template_id_171a54eb_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Quiz1.vue?vue&type=template&id=171a54eb&scoped=true& */ "./resources/views/fontend/src/views/feature/Quiz1.vue?vue&type=template&id=171a54eb&scoped=true&");
+/* harmony import */ var _Quiz1_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Quiz1.vue?vue&type=script&lang=js& */ "./resources/views/fontend/src/views/feature/Quiz1.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _Quiz1_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _Quiz1_vue_vue_type_template_id_171a54eb_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Quiz1_vue_vue_type_template_id_171a54eb_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "171a54eb",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/views/fontend/src/views/feature/Quiz1.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/views/fontend/src/views/feature/Quiz2.vue":
+/*!*************************************************************!*\
+  !*** ./resources/views/fontend/src/views/feature/Quiz2.vue ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Quiz2_vue_vue_type_template_id_17286c6c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Quiz2.vue?vue&type=template&id=17286c6c&scoped=true& */ "./resources/views/fontend/src/views/feature/Quiz2.vue?vue&type=template&id=17286c6c&scoped=true&");
+/* harmony import */ var _Quiz2_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Quiz2.vue?vue&type=script&lang=js& */ "./resources/views/fontend/src/views/feature/Quiz2.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _Quiz2_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _Quiz2_vue_vue_type_template_id_17286c6c_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Quiz2_vue_vue_type_template_id_17286c6c_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "17286c6c",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/views/fontend/src/views/feature/Quiz2.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/views/fontend/src/views/feature/Quiz3.vue":
+/*!*************************************************************!*\
+  !*** ./resources/views/fontend/src/views/feature/Quiz3.vue ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Quiz3_vue_vue_type_template_id_173683ed_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Quiz3.vue?vue&type=template&id=173683ed&scoped=true& */ "./resources/views/fontend/src/views/feature/Quiz3.vue?vue&type=template&id=173683ed&scoped=true&");
+/* harmony import */ var _Quiz3_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Quiz3.vue?vue&type=script&lang=js& */ "./resources/views/fontend/src/views/feature/Quiz3.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _Quiz3_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _Quiz3_vue_vue_type_template_id_173683ed_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Quiz3_vue_vue_type_template_id_173683ed_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "173683ed",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/views/fontend/src/views/feature/Quiz3.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
@@ -88208,7 +88551,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Feature_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Feature.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/views/fontend/src/views/Feature.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Feature_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Feature_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Feature_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
+/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Feature_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Feature_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[__WEBPACK_IMPORT_KEY__]
+/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Feature_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default())); 
 
 /***/ }),
 
@@ -88289,6 +88636,70 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Dashboard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Dashboard.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/views/fontend/src/views/core/Dashboard.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Dashboard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./resources/views/fontend/src/views/feature/FeatureHome.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************!*\
+  !*** ./resources/views/fontend/src/views/feature/FeatureHome.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FeatureHome_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./FeatureHome.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/views/fontend/src/views/feature/FeatureHome.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FeatureHome_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./resources/views/fontend/src/views/feature/Quiz1.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************!*\
+  !*** ./resources/views/fontend/src/views/feature/Quiz1.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Quiz1_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Quiz1.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/views/fontend/src/views/feature/Quiz1.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Quiz1_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./resources/views/fontend/src/views/feature/Quiz2.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************!*\
+  !*** ./resources/views/fontend/src/views/feature/Quiz2.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Quiz2_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Quiz2.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/views/fontend/src/views/feature/Quiz2.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Quiz2_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./resources/views/fontend/src/views/feature/Quiz3.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************!*\
+  !*** ./resources/views/fontend/src/views/feature/Quiz3.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Quiz3_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Quiz3.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/views/fontend/src/views/feature/Quiz3.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Quiz3_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
 
 /***/ }),
 
@@ -88740,6 +89151,74 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Dashboard_vue_vue_type_template_id_58644a68___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Dashboard_vue_vue_type_template_id_58644a68___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Dashboard.vue?vue&type=template&id=58644a68& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/views/fontend/src/views/core/Dashboard.vue?vue&type=template&id=58644a68&");
+
+
+/***/ }),
+
+/***/ "./resources/views/fontend/src/views/feature/FeatureHome.vue?vue&type=template&id=7f9d43a4&":
+/*!**************************************************************************************************!*\
+  !*** ./resources/views/fontend/src/views/feature/FeatureHome.vue?vue&type=template&id=7f9d43a4& ***!
+  \**************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FeatureHome_vue_vue_type_template_id_7f9d43a4___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FeatureHome_vue_vue_type_template_id_7f9d43a4___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FeatureHome_vue_vue_type_template_id_7f9d43a4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./FeatureHome.vue?vue&type=template&id=7f9d43a4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/views/fontend/src/views/feature/FeatureHome.vue?vue&type=template&id=7f9d43a4&");
+
+
+/***/ }),
+
+/***/ "./resources/views/fontend/src/views/feature/Quiz1.vue?vue&type=template&id=171a54eb&scoped=true&":
+/*!********************************************************************************************************!*\
+  !*** ./resources/views/fontend/src/views/feature/Quiz1.vue?vue&type=template&id=171a54eb&scoped=true& ***!
+  \********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Quiz1_vue_vue_type_template_id_171a54eb_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Quiz1_vue_vue_type_template_id_171a54eb_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Quiz1_vue_vue_type_template_id_171a54eb_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Quiz1.vue?vue&type=template&id=171a54eb&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/views/fontend/src/views/feature/Quiz1.vue?vue&type=template&id=171a54eb&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/views/fontend/src/views/feature/Quiz2.vue?vue&type=template&id=17286c6c&scoped=true&":
+/*!********************************************************************************************************!*\
+  !*** ./resources/views/fontend/src/views/feature/Quiz2.vue?vue&type=template&id=17286c6c&scoped=true& ***!
+  \********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Quiz2_vue_vue_type_template_id_17286c6c_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Quiz2_vue_vue_type_template_id_17286c6c_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Quiz2_vue_vue_type_template_id_17286c6c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Quiz2.vue?vue&type=template&id=17286c6c&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/views/fontend/src/views/feature/Quiz2.vue?vue&type=template&id=17286c6c&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/views/fontend/src/views/feature/Quiz3.vue?vue&type=template&id=173683ed&scoped=true&":
+/*!********************************************************************************************************!*\
+  !*** ./resources/views/fontend/src/views/feature/Quiz3.vue?vue&type=template&id=173683ed&scoped=true& ***!
+  \********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Quiz3_vue_vue_type_template_id_173683ed_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Quiz3_vue_vue_type_template_id_173683ed_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Quiz3_vue_vue_type_template_id_173683ed_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Quiz3.vue?vue&type=template&id=173683ed&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/views/fontend/src/views/feature/Quiz3.vue?vue&type=template&id=173683ed&scoped=true&");
 
 
 /***/ }),
@@ -89826,7 +90305,7 @@ var render = function() {
                         {
                           staticClass:
                             "capitalize hover:text-black transition-all duration-300",
-                          attrs: { to: "learn" }
+                          attrs: { to: "/learn" }
                         },
                         [
                           _vm._v(
@@ -89847,7 +90326,7 @@ var render = function() {
                         {
                           staticClass:
                             "capitalize hover:text-black transition-all duration-300",
-                          attrs: { to: "feature" }
+                          attrs: { to: "/feature/" }
                         },
                         [
                           _vm._v(
@@ -89868,7 +90347,7 @@ var render = function() {
                         {
                           staticClass:
                             "capitalize hover:text-black transition-all duration-300",
-                          attrs: { to: "about" }
+                          attrs: { to: "/about" }
                         },
                         [
                           _vm._v(
@@ -89888,7 +90367,7 @@ var render = function() {
                 "a",
                 {
                   staticClass:
-                    "mx-2 text-gray-600 hover:text-black transtion-all duration-300",
+                    "cursor-pointer mx-2 text-gray-600 hover:text-black transtion-all duration-300",
                   on: {
                     click: function($event) {
                       ;(_vm.$store.state.auth.showAuth = true),
@@ -89903,7 +90382,7 @@ var render = function() {
                 "a",
                 {
                   staticClass:
-                    "px-6 mx-2 font-semibold border-2 hover:border-none border-indigo-400 text-indigo-400 hover:bg-indigo-400 hover:text-white transition-all duration-300 rounded-2xl py-2 bg-none text-black text-sm capitalize",
+                    "px-6 mx-2 cursor-pointer font-semibold border-2 hover:border-none border-indigo-400 text-indigo-400 hover:bg-indigo-400 hover:text-white transition-all duration-300 rounded-2xl py-2 bg-none text-black text-sm capitalize",
                   on: {
                     click: function($event) {
                       ;(_vm.$store.state.auth.showAuth = true),
@@ -93227,1083 +93706,9 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { attrs: { id: "features" } }, [
-    _c(
-      "div",
-      {
-        staticClass: "w-full  md:flex pt-8 justify-center ",
-        attrs: { id: "hero" }
-      },
-      [
-        _c(
-          "div",
-          { staticClass: "md:w-3/4 w-full flex flex-col items-center" },
-          [
-            _c(
-              "h1",
-              {
-                staticClass:
-                  "text-3xl text-center font-bold mb-4 md:mb-6 lg:mb-20"
-              },
-              [_vm._v("\n                Quiz\n            ")]
-            ),
-            _vm._v(" "),
-            _c(
-              "h2",
-              {
-                staticClass:
-                  "text-base md:w-2/4 text-center  mb-6 md:mb-12 lg:mb-20 "
-              },
-              [
-                _vm._v(
-                  "\n                Kenali dirimu dengan quiz ini yuk untuk cari tau sejauh apa\n                pemahaman kamu tentang keuangan pribadi kamu!\n            "
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "grid grid-cols-3 gap-8" },
-              _vm._l(3, function(item) {
-                return _c("card-vue", {
-                  key: item,
-                  staticClass:
-                    "bg-gray-100 shadow-xl rounded-xl hover:shadow-2xl transition-all duration-300",
-                  scopedSlots: _vm._u(
-                    [
-                      {
-                        key: "content",
-                        fn: function() {
-                          return [
-                            _c(
-                              "div",
-                              { staticClass: "flex flex-col items-center" },
-                              [
-                                _c(
-                                  "div",
-                                  { staticClass: "image lg:mb-8 md:mb-6 mb-4" },
-                                  [
-                                    _c("img", {
-                                      attrs: { src: _vm.notes, alt: "" }
-                                    })
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "p",
-                                  {
-                                    staticClass:
-                                      "text-center lg:mb-6 md:mb-4 mb-2 text-base font-semibold"
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                                Quiz " +
-                                        _vm._s(item) +
-                                        "\n                            "
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass:
-                                      "py-2 text-sm px-12 rounded-3xl  bg-blue-400 hover:bg-blue-500 duration-300 transition-all text-white",
-                                    attrs: { href: "" }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                                Coba Quiz\n                            "
-                                    )
-                                  ]
-                                )
-                              ]
-                            )
-                          ]
-                        },
-                        proxy: true
-                      }
-                    ],
-                    null,
-                    true
-                  )
-                })
-              }),
-              1
-            ),
-            _vm._v(" "),
-            _c("section", { staticClass: "py-16 flex-col items-center" }, [
-              _c(
-                "h1",
-                { staticClass: "text-center capitalize font-bold text-2xl" },
-                [
-                  _vm._v(
-                    "\n                    Saving Calculator\n                "
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _vm._m(0),
-              _vm._v(" "),
-              _c("div", { staticClass: "py-10" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "w-full py-20 px-20 flex flex-col justify-center bg-yellow-200 rounded-xl items-center"
-                  },
-                  [
-                    _c(
-                      "div",
-                      {
-                        directives: [
-                          {
-                            name: "show",
-                            rawName: "v-show",
-                            value: _vm.showAmount == false,
-                            expression: "showAmount == false"
-                          }
-                        ],
-                        staticClass: "flex-col flex items-center"
-                      },
-                      [
-                        _c(
-                          "h1",
-                          {
-                            staticClass:
-                              "text-2xl flex mb-12 text-center font-bold"
-                          },
-                          [
-                            _vm._v(
-                              "\n                                Kamu perlu menabung "
-                            ),
-                            _c(
-                              "span",
-                              { staticClass: "text-blue-500 px-2 " },
-                              [
-                                _c("format-rupiah", {
-                                  attrs: { item: _vm.goals.spentMoney }
-                                })
-                              ],
-                              1
-                            ),
-                            _vm._v(
-                              "                                    \n                                perbulannya\n                            "
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "h2",
-                          { staticClass: "text-lg px-20 text-center " },
-                          [
-                            _vm._v(
-                              "\n                                Jangan lupa menyisihkan minimal 10 hingga 30 persen dari \n                                pendapatanmu untuk ditabung ya!  \n                            "
-                            )
-                          ]
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        directives: [
-                          {
-                            name: "show",
-                            rawName: "v-show",
-                            value: _vm.showAmount,
-                            expression: "showAmount"
-                          }
-                        ]
-                      },
-                      [
-                        _c("div", { staticClass: "flex justify-around" }, [
-                          _c("div", { staticClass: "flex-1 mx-4" }, [
-                            _c(
-                              "h1",
-                              {
-                                staticClass:
-                                  "font-semibold focus:outline-none lg:mb-6 md:mb-4 mb-2 text-gray-800 text-lg"
-                              },
-                              [
-                                _vm._v(
-                                  "\n                                        Start Balancae\n                                    "
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.goals.start_balance,
-                                  expression: "goals.start_balance"
-                                }
-                              ],
-                              staticClass:
-                                "py-3 px-4 w-60 text-xs  focus:outline-none text-gray-800 bg-white rounded-2xl",
-                              attrs: { type: "text" },
-                              domProps: { value: _vm.goals.start_balance },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.goals,
-                                    "start_balance",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            })
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "flex-1 mx-4" }, [
-                            _c(
-                              "h1",
-                              {
-                                staticClass:
-                                  "font-semibold lg:mb-6 md:mb-4 mb-2  text-gray-800 text-lg"
-                              },
-                              [
-                                _vm._v(
-                                  "\n                                        Goals Amount\n                                    "
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.goals.goals_amount,
-                                  expression: "goals.goals_amount"
-                                }
-                              ],
-                              staticClass:
-                                "py-3 px-4 w-60 text-xs text-gray-800 focus:outline-none bg-white rounded-2xl",
-                              attrs: { type: "text" },
-                              domProps: { value: _vm.goals.goals_amount },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.goals,
-                                    "goals_amount",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            })
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "flex-1 mx-4" }, [
-                            _c(
-                              "h1",
-                              {
-                                staticClass:
-                                  "font-semibold lg:mb-6 md:mb-4 mb-2  capitalize text-gray-800 text-lg"
-                              },
-                              [
-                                _vm._v(
-                                  "\n                                        Finish By\n                                    "
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.goals.finishBy,
-                                  expression: "goals.finishBy"
-                                }
-                              ],
-                              staticClass:
-                                "w-60 px-3 text-xs  py-3 w-full  focus:outline-none text-gray-800 bg-white rounded-2xl",
-                              attrs: { type: "month" },
-                              domProps: { value: _vm.goals.finishBy },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.goals,
-                                    "finishBy",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            })
-                          ])
-                        ])
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        directives: [
-                          {
-                            name: "show",
-                            rawName: "v-show",
-                            value: _vm.showAmount,
-                            expression: "showAmount"
-                          }
-                        ],
-                        staticClass:
-                          "mt-16 px-8 py-3 rounded-lg bg-purple-600 text-white",
-                        on: {
-                          click: function($event) {
-                            return _vm.calculateAmount()
-                          }
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                            Hitung\n                        "
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        directives: [
-                          {
-                            name: "show",
-                            rawName: "v-show",
-                            value: _vm.showAmount == false,
-                            expression: "showAmount == false"
-                          }
-                        ],
-                        staticClass:
-                          "mt-16 px-8 py-3 text-xl font-bold rounded-lg text-indigo-400",
-                        on: {
-                          click: function($event) {
-                            _vm.showAmount = true
-                          }
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                            Hitung Ulang\n                        "
-                        )
-                      ]
-                    )
-                  ]
-                )
-              ])
-            ])
-          ]
-        )
-      ]
-    ),
-    _vm._v(" "),
-    _c("section", { staticClass: "py-16 flex justify-center" }, [
-      _c("div", { staticClass: "w-full md:w-3/4" }, [
-        _c("div", { staticClass: "grid grid-cols-2 gap-8" }, [
-          _vm._m(1),
-          _vm._v(" "),
-          _c("div", [
-            _c(
-              "div",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.financial.penghasilan.modal,
-                    expression: "financial.penghasilan.modal"
-                  }
-                ],
-                staticClass: "p-12 rounded-2xl bg-blue-100",
-                attrs: { id: "penghasilan" }
-              },
-              [
-                _c(
-                  "h3",
-                  { staticClass: "capitalize text-lg block mb-4 md:mb-6" },
-                  [
-                    _vm._v(
-                      "\n                            penghasilan\n                        "
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex flex-col items-start" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "form-group md:mb-4 mb-2 grid grid-cols-12"
-                    },
-                    [
-                      _c(
-                        "label",
-                        {
-                          staticClass:
-                            "col-span-4 self-center text-black capitalize",
-                          attrs: { "align-middle": "", for: "" }
-                        },
-                        [_vm._v("\n                                    gaji")]
-                      ),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.financial.penghasilan.gaji,
-                            expression: "financial.penghasilan.gaji"
-                          }
-                        ],
-                        staticClass: "bg-white col-span-8 rounded-xl px-4 py-3",
-                        attrs: { type: "number" },
-                        domProps: { value: _vm.financial.penghasilan.gaji },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.financial.penghasilan,
-                              "gaji",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      })
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "form-group md:mb-4 mb-2 grid grid-cols-12"
-                    },
-                    [
-                      _c(
-                        "label",
-                        {
-                          staticClass:
-                            "col-span-4 self-center text-black capitalize",
-                          attrs: { "align-middle": "", for: "" }
-                        },
-                        [
-                          _vm._v(
-                            "\n                                    Bunga atau investasi"
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.financial.penghasilan.investasi,
-                            expression: "financial.penghasilan.investasi"
-                          }
-                        ],
-                        staticClass: "bg-white col-span-8 rounded-xl px-4 py-3",
-                        attrs: { type: "number" },
-                        domProps: {
-                          value: _vm.financial.penghasilan.investasi
-                        },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.financial.penghasilan,
-                              "investasi",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      })
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "form-group md:mb-4 mb-2 grid grid-cols-12"
-                    },
-                    [
-                      _c(
-                        "label",
-                        {
-                          staticClass:
-                            "col-span-4 self-center text-black capitalize",
-                          attrs: { "align-middle": "", for: "" }
-                        },
-                        [
-                          _vm._v(
-                            "\n                                    pendapatan pasif"
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.financial.penghasilan.pendapatan_pasif,
-                            expression: "financial.penghasilan.pendapatan_pasif"
-                          }
-                        ],
-                        staticClass: "bg-white col-span-8 rounded-xl px-4 py-3",
-                        attrs: { type: "number" },
-                        domProps: {
-                          value: _vm.financial.penghasilan.pendapatan_pasif
-                        },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.financial.penghasilan,
-                              "pendapatan_pasif",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      })
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group grid grid-cols-12" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass:
-                          "col-span-4 self-center text-black capitalize",
-                        attrs: { "align-middle": "", for: "" }
-                      },
-                      [
-                        _vm._v(
-                          "\n                                    Pendapatan Lainnya"
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.financial.penghasilan.pendapatan_lainnya,
-                          expression: "financial.penghasilan.pendapatan_lainnya"
-                        }
-                      ],
-                      staticClass: "bg-white col-span-8 rounded-xl px-4 py-3",
-                      attrs: { type: "number" },
-                      domProps: {
-                        value: _vm.financial.penghasilan.pendapatan_lainnya
-                      },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.financial.penghasilan,
-                            "pendapatan_lainnya",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "flex w-full justify-end mt-12" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass:
-                          "rounded-full text-white bg-blue-500 w-8 h-8 flex items-center justify-center",
-                        on: {
-                          click: function($event) {
-                            ;(_vm.financial.pengeluaran.modal = true),
-                              (_vm.financial.penghasilan.modal = false)
-                          }
-                        }
-                      },
-                      [
-                        _c("span", { staticClass: "material-icons" }, [
-                          _vm._v(
-                            "\n                                        arrow_forward\n                                    "
-                          )
-                        ])
-                      ]
-                    )
-                  ])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.financial.pengeluaran.modal,
-                    expression: "financial.pengeluaran.modal"
-                  }
-                ],
-                staticClass: "p-12 rounded-2xl bg-red-100",
-                attrs: { id: "pengeluaran" }
-              },
-              [
-                _c(
-                  "h3",
-                  { staticClass: "capitalize text-lg block mb-4 md:mb-6" },
-                  [
-                    _vm._v(
-                      "\n                            pengeluaran\n                        "
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex flex-col items-start" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "form-group md:mb-4 mb-2 grid grid-cols-12"
-                    },
-                    [
-                      _c(
-                        "label",
-                        {
-                          staticClass:
-                            "col-span-4 self-center text-black capitalize",
-                          attrs: { "align-middle": "", for: "" }
-                        },
-                        [_vm._v("\n                                    donasi")]
-                      ),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.financial.pengeluaran.donasi,
-                            expression: "financial.pengeluaran.donasi"
-                          }
-                        ],
-                        staticClass: "bg-white col-span-8 rounded-xl px-4 py-3",
-                        attrs: { type: "number" },
-                        domProps: { value: _vm.financial.pengeluaran.donasi },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.financial.pengeluaran,
-                              "donasi",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      })
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "form-group md:mb-4 mb-2 grid grid-cols-12"
-                    },
-                    [
-                      _c(
-                        "label",
-                        {
-                          staticClass:
-                            "col-span-4 self-center text-black capitalize",
-                          attrs: { "align-middle": "", for: "" }
-                        },
-                        [
-                          _vm._v(
-                            "\n                                    Tabungan atau investasi"
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.financial.pengeluaran.investasi,
-                            expression: "financial.pengeluaran.investasi"
-                          }
-                        ],
-                        staticClass: "bg-white col-span-8 rounded-xl px-4 py-3",
-                        attrs: { type: "number" },
-                        domProps: {
-                          value: _vm.financial.pengeluaran.investasi
-                        },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.financial.pengeluaran,
-                              "investasi",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      })
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "form-group  md:mb-4 mb-2 grid grid-cols-12"
-                    },
-                    [
-                      _c(
-                        "label",
-                        {
-                          staticClass:
-                            "col-span-4 self-center text-black capitalize",
-                          attrs: { "align-middle": "", for: "" }
-                        },
-                        [
-                          _vm._v(
-                            "\n                                    Cicilan atau utang"
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.financial.pengeluaran.utang,
-                            expression: "financial.pengeluaran.utang"
-                          }
-                        ],
-                        staticClass: "bg-white col-span-8 rounded-xl px-4 py-3",
-                        attrs: { type: "number" },
-                        domProps: { value: _vm.financial.pengeluaran.utang },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.financial.pengeluaran,
-                              "utang",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      })
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group grid grid-cols-12" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass:
-                          "col-span-4 self-center text-black capitalize",
-                        attrs: { "align-middle": "", for: "" }
-                      },
-                      [
-                        _vm._v(
-                          "\n                                   Belanja Bulanan"
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.financial.pengeluaran.belanja,
-                          expression: "financial.pengeluaran.belanja"
-                        }
-                      ],
-                      staticClass: "bg-white col-span-8 rounded-xl px-4 py-3",
-                      attrs: { type: "number" },
-                      domProps: { value: _vm.financial.pengeluaran.belanja },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.financial.pengeluaran,
-                            "belanja",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "flex w-full justify-end mt-12" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass:
-                          "rounded-full text-white bg-blue-500 w-8 h-8 flex items-center justify-center",
-                        on: {
-                          click: function($event) {
-                            return _vm.calculateFinancial()
-                          }
-                        }
-                      },
-                      [
-                        _c("span", { staticClass: "material-icons" }, [
-                          _vm._v(
-                            "\n                                        arrow_forward\n                                    "
-                          )
-                        ])
-                      ]
-                    )
-                  ])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.financial.modal,
-                    expression: "financial.modal"
-                  }
-                ],
-                staticClass: "p-12 rounded-2xl bg-red-100",
-                attrs: { id: "calc-finansial" }
-              },
-              [
-                _c(
-                  "h3",
-                  { staticClass: "capitalize text-lg block mb-4 md:mb-6" },
-                  [
-                    _vm._v(
-                      "\n                            hasil\n                        "
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex flex-col mb-6 items-start" }, [
-                  _c("div", { staticClass: "flex flex-col mb-6 " }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "form-group gap-6 md:mb-4 mb-2 grid grid-cols-12"
-                      },
-                      [
-                        _c(
-                          "label",
-                          {
-                            staticClass:
-                              "col-span-4 self-center text-black capitalize",
-                            attrs: { "align-middle": "", for: "" }
-                          },
-                          [
-                            _vm._v(
-                              "\n                                        Rasio Tabungan"
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "w-full col-span-6 p-4 shadow-md rounded-2xl bg-white"
-                          },
-                          [
-                            _vm._v(
-                              "\n                                        " +
-                                _vm._s(
-                                  _vm.financial.penghasilan.rasio !== undefined
-                                    ? _vm.financial.penghasilan.rasio.toLocaleString(
-                                        "en-US",
-                                        { maximumFractionDigits: 2 }
-                                      )
-                                    : 0
-                                ) +
-                                " % \n                                   "
-                            )
-                          ]
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "text-black text-sm" }, [
-                      _vm.financial.penghasilan.rasio > 20
-                        ? _c("span", [
-                            _vm._v(
-                              "\n                                       Rasio tabungan kamu sudah ideal.\n                                   "
-                            )
-                          ])
-                        : _vm.financial.penghasilan.rasio > 10
-                        ? _c("span", [
-                            _vm._v(
-                              "\n                                       Rasio tabungan kamu masih rendah. Nilai idealnya adalah >20%.\n                                        Biasakan untuk menyisihkan minimal 10% diawal ya!\n                                   "
-                            )
-                          ])
-                        : _c("span", [
-                            _vm._v(
-                              "\n                                       Rasio tabungan kamu tidak ideal.\n                                   "
-                            )
-                          ])
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex flex-col mb-6 items-start" }, [
-                  _c("div", { staticClass: "flex flex-col mb-6 " }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "form-group gap-6 md:mb-4 mb-2 grid grid-cols-12"
-                      },
-                      [
-                        _c(
-                          "label",
-                          {
-                            staticClass:
-                              "col-span-4 self-center text-black capitalize",
-                            attrs: { "align-middle": "", for: "" }
-                          },
-                          [
-                            _vm._v(
-                              "\n                                        Rasio Utang"
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "w-full col-span-6 p-4 shadow-md rounded-2xl bg-white"
-                          },
-                          [
-                            _vm._v(
-                              "\n                                       " +
-                                _vm._s(
-                                  _vm.financial.pengeluaran.rasio !== undefined
-                                    ? _vm.financial.pengeluaran.rasio.toLocaleString(
-                                        "en-US",
-                                        { maximumFractionDigits: 2 }
-                                      )
-                                    : 0
-                                ) +
-                                " %\n                                   "
-                            )
-                          ]
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "text-black text-sm" }, [
-                      _vm.financial.pengeluaran.rasio > 30
-                        ? _c("span", [
-                            _vm._v(
-                              "\n                                      Rasio utang kamu tidak sehat. Nilai idealnya maksimal 30% dari\n                                        penghasilan. Yuk belajar mengelola keuangan lebih baik lagi!\n                                   "
-                            )
-                          ])
-                        : _c("span", [
-                            _vm._v(
-                              "\n                                       Rasio utang kamu masih ideal.\n                                   "
-                            )
-                          ])
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    staticClass: "text-xl text-indigo-600 capitalize font-bold",
-                    on: { click: _vm.resetFinancial }
-                  },
-                  [
-                    _vm._v(
-                      "\n                            hitung ulang\n                        "
-                    )
-                  ]
-                )
-              ]
-            )
-          ])
-        ])
-      ])
-    ])
-  ])
+  return _c("div", { attrs: { id: "features" } }, [_c("router-view")], 1)
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "flex justify-center py-10" }, [
-      _c("h2", { staticClass: "text-center w-3/4 text-lg" }, [
-        _vm._v(
-          "\n                        Pingin nabung buat liburan tapi bingung harus\n                        sisihin berapa setiap bulannya? Disini kamu bisa\n                        hitung jumlah dana yang perlu kamu simpan tanpa\n                        ribet. Cobain deh!\n                    "
-        )
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "flex flex-col justify-center" }, [
-      _c("div", { staticClass: " w-3/4" }, [
-        _c(
-          "h1",
-          { staticClass: "text-2xl mb-4 md:mb-6 capitalize font-bold" },
-          [
-            _vm._v(
-              "\n                            financial check up\n                        "
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _c("p", {}, [
-          _vm._v(
-            "\n                            Untuk mengetahui kondisi keuangan (likuiditas,\n                            tabungan, utang) supaya dapat membuat\n                            perencanaan keuangan yang lebih baik\n                        "
-          )
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -94412,7 +93817,7 @@ var render = function() {
                       "px-10 py-3 hover:bg-indigo-400 transition-all duration-300 cursor-pointer font-semibold  capitalize rounded-3xl bg-indigo-500 text-white ",
                     on: {
                       click: function($event) {
-                        _vm.showRegister = true
+                        _vm.$store.state.auth.showAuth = true
                       }
                     }
                   },
@@ -95078,7 +94483,6 @@ var render = function() {
           _c(
             "label",
             {
-              staticClass: "label",
               class: [_vm.form.password == "" ? "label" : "inputHasValue"],
               attrs: { for: "" }
             },
@@ -95207,7 +94611,6 @@ var render = function() {
           _c(
             "label",
             {
-              staticClass: "label",
               class: [_vm.form.firstname == "" ? "label" : "inputHasValue"],
               attrs: { for: "" }
             },
@@ -95248,7 +94651,6 @@ var render = function() {
           _c(
             "label",
             {
-              staticClass: "label",
               class: [_vm.form.lastname == "" ? "label" : "inputHasValue"],
               attrs: { for: "" }
             },
@@ -96635,18 +96037,22 @@ var render = function() {
                           ),
                           _vm._v(" "),
                           _c("div", { staticClass: "pl-4 flex items-center" }, [
-                            _c("p", { staticClass: " text-sm font-bold" }, [
-                              _vm._v(
-                                "\n                                    " +
-                                  _vm._s(_vm.user.name) +
-                                  "\n                                    "
-                              ),
-                              _c("span", [
+                            _c(
+                              "p",
+                              { staticClass: " capitalize text-sm font-bold" },
+                              [
                                 _vm._v(
-                                  "\n                                        Budgets\n                                    "
-                                )
-                              ])
-                            ])
+                                  "\n                                    " +
+                                    _vm._s(_vm.user.firstname) +
+                                    "\n                                    "
+                                ),
+                                _c("span", [
+                                  _vm._v(
+                                    "\n                                        Budgets\n                                    "
+                                  )
+                                ])
+                              ]
+                            )
                           ])
                         ]),
                         _vm._v(" "),
@@ -96675,7 +96081,11 @@ var render = function() {
                           {
                             staticClass:
                               "bg-white overflow-y-scroll duration-1000 transition-all pt-4 shadow-xl w-64 absolute   rounded-lg",
-                            staticStyle: { top: "64px", left: "0px" },
+                            staticStyle: {
+                              top: "64px",
+                              left: "0px",
+                              "z-index": "20"
+                            },
                             style: [
                               _vm.showProfileMenu
                                 ? {
@@ -98552,6 +97962,1300 @@ var staticRenderFns = [
     )
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/views/fontend/src/views/feature/FeatureHome.vue?vue&type=template&id=7f9d43a4&":
+/*!*****************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/views/fontend/src/views/feature/FeatureHome.vue?vue&type=template&id=7f9d43a4& ***!
+  \*****************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { attrs: { id: "features" } }, [
+    _c(
+      "div",
+      {
+        staticClass: "w-full  md:flex pt-8 justify-center ",
+        attrs: { id: "hero" }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "md:w-3/4 w-full flex flex-col items-center" },
+          [
+            _c(
+              "h1",
+              {
+                staticClass:
+                  "text-3xl text-center font-bold mb-4 md:mb-6 lg:mb-20"
+              },
+              [_vm._v("\n                Quiz\n            ")]
+            ),
+            _vm._v(" "),
+            _c(
+              "h2",
+              {
+                staticClass:
+                  "text-base md:w-2/4 text-center  mb-6 md:mb-12 lg:mb-20 "
+              },
+              [
+                _vm._v(
+                  "\n                Kenali dirimu dengan quiz ini yuk untuk cari tau sejauh apa\n                pemahaman kamu tentang keuangan pribadi kamu!\n            "
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "grid grid-cols-3 gap-8" },
+              _vm._l(3, function(item) {
+                return _c("card-vue", {
+                  key: item,
+                  staticClass:
+                    "bg-gray-100 shadow-xl p-8 rounded-xl hover:shadow-2xl transition-all duration-300",
+                  scopedSlots: _vm._u(
+                    [
+                      {
+                        key: "content",
+                        fn: function() {
+                          return [
+                            _c(
+                              "div",
+                              { staticClass: "flex flex-col items-center" },
+                              [
+                                _c(
+                                  "div",
+                                  { staticClass: "image lg:mb-8 md:mb-6 mb-4" },
+                                  [
+                                    _c("img", {
+                                      attrs: { src: _vm.notes, alt: "" }
+                                    })
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "p",
+                                  {
+                                    staticClass:
+                                      "text-center lg:mb-6 md:mb-4 mb-2 text-base font-semibold"
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                Quiz " +
+                                        _vm._s(item) +
+                                        "\n                            "
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass:
+                                      "py-2 text-sm px-12 rounded-3xl  bg-blue-400 hover:bg-blue-500 duration-300 transition-all text-white",
+                                    on: {
+                                      click: function($event) {
+                                        _vm.$router
+                                          .push("/feature/quiz" + item)
+                                          .catch(function() {})
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                Coba Quiz\n                            "
+                                    )
+                                  ]
+                                )
+                              ]
+                            )
+                          ]
+                        },
+                        proxy: true
+                      }
+                    ],
+                    null,
+                    true
+                  )
+                })
+              }),
+              1
+            ),
+            _vm._v(" "),
+            _c("section", { staticClass: "py-16 flex-col items-center" }, [
+              _c(
+                "h1",
+                { staticClass: "text-center capitalize font-bold text-2xl" },
+                [
+                  _vm._v(
+                    "\n                    Saving Calculator\n                "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _vm._m(0),
+              _vm._v(" "),
+              _c("div", { staticClass: "py-10" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "w-full py-20 px-20 flex flex-col justify-center bg-yellow-200 rounded-xl items-center"
+                  },
+                  [
+                    _c(
+                      "div",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.showAmount == false,
+                            expression: "showAmount == false"
+                          }
+                        ],
+                        staticClass: "flex-col flex items-center"
+                      },
+                      [
+                        _c(
+                          "h1",
+                          {
+                            staticClass:
+                              "text-2xl flex mb-12 text-center font-bold"
+                          },
+                          [
+                            _vm._v(
+                              "\n                                Kamu perlu menabung "
+                            ),
+                            _c(
+                              "span",
+                              { staticClass: "text-blue-500 px-2 " },
+                              [
+                                _c("format-rupiah", {
+                                  attrs: { item: _vm.goals.spentMoney }
+                                })
+                              ],
+                              1
+                            ),
+                            _vm._v(
+                              "                                    \n                                perbulannya\n                            "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "h2",
+                          { staticClass: "text-lg px-20 text-center " },
+                          [
+                            _vm._v(
+                              "\n                                Jangan lupa menyisihkan minimal 10 hingga 30 persen dari \n                                pendapatanmu untuk ditabung ya!  \n                            "
+                            )
+                          ]
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.showAmount,
+                            expression: "showAmount"
+                          }
+                        ]
+                      },
+                      [
+                        _c("div", { staticClass: "flex justify-around" }, [
+                          _c("div", { staticClass: "flex-1 mx-4" }, [
+                            _c(
+                              "h1",
+                              {
+                                staticClass:
+                                  "font-semibold focus:outline-none lg:mb-6 md:mb-4 mb-2 text-gray-800 text-lg"
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                        Start Balancae\n                                    "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.goals.start_balance,
+                                  expression: "goals.start_balance"
+                                }
+                              ],
+                              staticClass:
+                                "py-3 px-4 w-60 text-xs  focus:outline-none text-gray-800 bg-white rounded-2xl",
+                              attrs: { type: "text" },
+                              domProps: { value: _vm.goals.start_balance },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.goals,
+                                    "start_balance",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "flex-1 mx-4" }, [
+                            _c(
+                              "h1",
+                              {
+                                staticClass:
+                                  "font-semibold lg:mb-6 md:mb-4 mb-2  text-gray-800 text-lg"
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                        Goals Amount\n                                    "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.goals.goals_amount,
+                                  expression: "goals.goals_amount"
+                                }
+                              ],
+                              staticClass:
+                                "py-3 px-4 w-60 text-xs text-gray-800 focus:outline-none bg-white rounded-2xl",
+                              attrs: { type: "text" },
+                              domProps: { value: _vm.goals.goals_amount },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.goals,
+                                    "goals_amount",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "flex-1 mx-4" }, [
+                            _c(
+                              "h1",
+                              {
+                                staticClass:
+                                  "font-semibold lg:mb-6 md:mb-4 mb-2  capitalize text-gray-800 text-lg"
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                        Finish By\n                                    "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.goals.finishBy,
+                                  expression: "goals.finishBy"
+                                }
+                              ],
+                              staticClass:
+                                "w-60 px-3 text-xs  py-3 w-full  focus:outline-none text-gray-800 bg-white rounded-2xl",
+                              attrs: { type: "month" },
+                              domProps: { value: _vm.goals.finishBy },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.goals,
+                                    "finishBy",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ])
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.showAmount,
+                            expression: "showAmount"
+                          }
+                        ],
+                        staticClass:
+                          "mt-16 px-8 py-3 rounded-lg bg-purple-600 text-white",
+                        on: {
+                          click: function($event) {
+                            return _vm.calculateAmount()
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                            Hitung\n                        "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.showAmount == false,
+                            expression: "showAmount == false"
+                          }
+                        ],
+                        staticClass:
+                          "mt-16 px-8 py-3 text-xl font-bold rounded-lg text-indigo-400",
+                        on: {
+                          click: function($event) {
+                            _vm.showAmount = true
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                            Hitung Ulang\n                        "
+                        )
+                      ]
+                    )
+                  ]
+                )
+              ])
+            ])
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c("section", { staticClass: "py-16 flex justify-center" }, [
+      _c("div", { staticClass: "w-full md:w-3/4" }, [
+        _c("div", { staticClass: "grid grid-cols-2 gap-8" }, [
+          _vm._m(1),
+          _vm._v(" "),
+          _c("div", [
+            _c(
+              "div",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.financial.penghasilan.modal,
+                    expression: "financial.penghasilan.modal"
+                  }
+                ],
+                staticClass: "p-12 rounded-2xl bg-blue-100",
+                attrs: { id: "penghasilan" }
+              },
+              [
+                _c(
+                  "h3",
+                  { staticClass: "capitalize text-lg block mb-4 md:mb-6" },
+                  [
+                    _vm._v(
+                      "\n                            penghasilan\n                        "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "flex flex-col items-start" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group md:mb-4 mb-2 grid grid-cols-12"
+                    },
+                    [
+                      _c(
+                        "label",
+                        {
+                          staticClass:
+                            "col-span-4 self-center text-black capitalize",
+                          attrs: { "align-middle": "", for: "" }
+                        },
+                        [_vm._v("\n                                    gaji")]
+                      ),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.financial.penghasilan.gaji,
+                            expression: "financial.penghasilan.gaji"
+                          }
+                        ],
+                        staticClass: "bg-white col-span-8 rounded-xl px-4 py-3",
+                        attrs: { type: "number" },
+                        domProps: { value: _vm.financial.penghasilan.gaji },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.financial.penghasilan,
+                              "gaji",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group md:mb-4 mb-2 grid grid-cols-12"
+                    },
+                    [
+                      _c(
+                        "label",
+                        {
+                          staticClass:
+                            "col-span-4 self-center text-black capitalize",
+                          attrs: { "align-middle": "", for: "" }
+                        },
+                        [
+                          _vm._v(
+                            "\n                                    Bunga atau investasi"
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.financial.penghasilan.investasi,
+                            expression: "financial.penghasilan.investasi"
+                          }
+                        ],
+                        staticClass: "bg-white col-span-8 rounded-xl px-4 py-3",
+                        attrs: { type: "number" },
+                        domProps: {
+                          value: _vm.financial.penghasilan.investasi
+                        },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.financial.penghasilan,
+                              "investasi",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group md:mb-4 mb-2 grid grid-cols-12"
+                    },
+                    [
+                      _c(
+                        "label",
+                        {
+                          staticClass:
+                            "col-span-4 self-center text-black capitalize",
+                          attrs: { "align-middle": "", for: "" }
+                        },
+                        [
+                          _vm._v(
+                            "\n                                    pendapatan pasif"
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.financial.penghasilan.pendapatan_pasif,
+                            expression: "financial.penghasilan.pendapatan_pasif"
+                          }
+                        ],
+                        staticClass: "bg-white col-span-8 rounded-xl px-4 py-3",
+                        attrs: { type: "number" },
+                        domProps: {
+                          value: _vm.financial.penghasilan.pendapatan_pasif
+                        },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.financial.penghasilan,
+                              "pendapatan_pasif",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group grid grid-cols-12" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "col-span-4 self-center text-black capitalize",
+                        attrs: { "align-middle": "", for: "" }
+                      },
+                      [
+                        _vm._v(
+                          "\n                                    Pendapatan Lainnya"
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.financial.penghasilan.pendapatan_lainnya,
+                          expression: "financial.penghasilan.pendapatan_lainnya"
+                        }
+                      ],
+                      staticClass: "bg-white col-span-8 rounded-xl px-4 py-3",
+                      attrs: { type: "number" },
+                      domProps: {
+                        value: _vm.financial.penghasilan.pendapatan_lainnya
+                      },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.financial.penghasilan,
+                            "pendapatan_lainnya",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "flex w-full justify-end mt-12" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass:
+                          "rounded-full text-white bg-blue-500 w-8 h-8 flex items-center justify-center",
+                        on: {
+                          click: function($event) {
+                            ;(_vm.financial.pengeluaran.modal = true),
+                              (_vm.financial.penghasilan.modal = false)
+                          }
+                        }
+                      },
+                      [
+                        _c("span", { staticClass: "material-icons" }, [
+                          _vm._v(
+                            "\n                                        arrow_forward\n                                    "
+                          )
+                        ])
+                      ]
+                    )
+                  ])
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.financial.pengeluaran.modal,
+                    expression: "financial.pengeluaran.modal"
+                  }
+                ],
+                staticClass: "p-12 rounded-2xl bg-red-100",
+                attrs: { id: "pengeluaran" }
+              },
+              [
+                _c(
+                  "h3",
+                  { staticClass: "capitalize text-lg block mb-4 md:mb-6" },
+                  [
+                    _vm._v(
+                      "\n                            pengeluaran\n                        "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "flex flex-col items-start" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group md:mb-4 mb-2 grid grid-cols-12"
+                    },
+                    [
+                      _c(
+                        "label",
+                        {
+                          staticClass:
+                            "col-span-4 self-center text-black capitalize",
+                          attrs: { "align-middle": "", for: "" }
+                        },
+                        [_vm._v("\n                                    donasi")]
+                      ),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.financial.pengeluaran.donasi,
+                            expression: "financial.pengeluaran.donasi"
+                          }
+                        ],
+                        staticClass: "bg-white col-span-8 rounded-xl px-4 py-3",
+                        attrs: { type: "number" },
+                        domProps: { value: _vm.financial.pengeluaran.donasi },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.financial.pengeluaran,
+                              "donasi",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group md:mb-4 mb-2 grid grid-cols-12"
+                    },
+                    [
+                      _c(
+                        "label",
+                        {
+                          staticClass:
+                            "col-span-4 self-center text-black capitalize",
+                          attrs: { "align-middle": "", for: "" }
+                        },
+                        [
+                          _vm._v(
+                            "\n                                    Tabungan atau investasi"
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.financial.pengeluaran.investasi,
+                            expression: "financial.pengeluaran.investasi"
+                          }
+                        ],
+                        staticClass: "bg-white col-span-8 rounded-xl px-4 py-3",
+                        attrs: { type: "number" },
+                        domProps: {
+                          value: _vm.financial.pengeluaran.investasi
+                        },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.financial.pengeluaran,
+                              "investasi",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group  md:mb-4 mb-2 grid grid-cols-12"
+                    },
+                    [
+                      _c(
+                        "label",
+                        {
+                          staticClass:
+                            "col-span-4 self-center text-black capitalize",
+                          attrs: { "align-middle": "", for: "" }
+                        },
+                        [
+                          _vm._v(
+                            "\n                                    Cicilan atau utang"
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.financial.pengeluaran.utang,
+                            expression: "financial.pengeluaran.utang"
+                          }
+                        ],
+                        staticClass: "bg-white col-span-8 rounded-xl px-4 py-3",
+                        attrs: { type: "number" },
+                        domProps: { value: _vm.financial.pengeluaran.utang },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.financial.pengeluaran,
+                              "utang",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group grid grid-cols-12" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "col-span-4 self-center text-black capitalize",
+                        attrs: { "align-middle": "", for: "" }
+                      },
+                      [
+                        _vm._v(
+                          "\n                                   Belanja Bulanan"
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.financial.pengeluaran.belanja,
+                          expression: "financial.pengeluaran.belanja"
+                        }
+                      ],
+                      staticClass: "bg-white col-span-8 rounded-xl px-4 py-3",
+                      attrs: { type: "number" },
+                      domProps: { value: _vm.financial.pengeluaran.belanja },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.financial.pengeluaran,
+                            "belanja",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "flex w-full justify-end mt-12" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass:
+                          "rounded-full text-white bg-blue-500 w-8 h-8 flex items-center justify-center",
+                        on: {
+                          click: function($event) {
+                            return _vm.calculateFinancial()
+                          }
+                        }
+                      },
+                      [
+                        _c("span", { staticClass: "material-icons" }, [
+                          _vm._v(
+                            "\n                                        arrow_forward\n                                    "
+                          )
+                        ])
+                      ]
+                    )
+                  ])
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.financial.modal,
+                    expression: "financial.modal"
+                  }
+                ],
+                staticClass: "p-12 rounded-2xl bg-red-100",
+                attrs: { id: "calc-finansial" }
+              },
+              [
+                _c(
+                  "h3",
+                  { staticClass: "capitalize text-lg block mb-4 md:mb-6" },
+                  [
+                    _vm._v(
+                      "\n                            hasil\n                        "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "flex flex-col mb-6 items-start" }, [
+                  _c("div", { staticClass: "flex flex-col mb-6 " }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "form-group gap-6 md:mb-4 mb-2 grid grid-cols-12"
+                      },
+                      [
+                        _c(
+                          "label",
+                          {
+                            staticClass:
+                              "col-span-4 self-center text-black capitalize",
+                            attrs: { "align-middle": "", for: "" }
+                          },
+                          [
+                            _vm._v(
+                              "\n                                        Rasio Tabungan"
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "w-full col-span-6 p-4 shadow-md rounded-2xl bg-white"
+                          },
+                          [
+                            _vm._v(
+                              "\n                                        " +
+                                _vm._s(
+                                  _vm.financial.penghasilan.rasio !== undefined
+                                    ? _vm.financial.penghasilan.rasio.toLocaleString(
+                                        "en-US",
+                                        { maximumFractionDigits: 2 }
+                                      )
+                                    : 0
+                                ) +
+                                " % \n                                   "
+                            )
+                          ]
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "text-black text-sm" }, [
+                      _vm.financial.penghasilan.rasio > 20
+                        ? _c("span", [
+                            _vm._v(
+                              "\n                                       Rasio tabungan kamu sudah ideal.\n                                   "
+                            )
+                          ])
+                        : _vm.financial.penghasilan.rasio > 10
+                        ? _c("span", [
+                            _vm._v(
+                              "\n                                       Rasio tabungan kamu masih rendah. Nilai idealnya adalah >20%.\n                                        Biasakan untuk menyisihkan minimal 10% diawal ya!\n                                   "
+                            )
+                          ])
+                        : _c("span", [
+                            _vm._v(
+                              "\n                                       Rasio tabungan kamu tidak ideal.\n                                   "
+                            )
+                          ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "flex flex-col mb-6 items-start" }, [
+                  _c("div", { staticClass: "flex flex-col mb-6 " }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "form-group gap-6 md:mb-4 mb-2 grid grid-cols-12"
+                      },
+                      [
+                        _c(
+                          "label",
+                          {
+                            staticClass:
+                              "col-span-4 self-center text-black capitalize",
+                            attrs: { "align-middle": "", for: "" }
+                          },
+                          [
+                            _vm._v(
+                              "\n                                        Rasio Utang"
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "w-full col-span-6 p-4 shadow-md rounded-2xl bg-white"
+                          },
+                          [
+                            _vm._v(
+                              "\n                                       " +
+                                _vm._s(
+                                  _vm.financial.pengeluaran.rasio !== undefined
+                                    ? _vm.financial.pengeluaran.rasio.toLocaleString(
+                                        "en-US",
+                                        { maximumFractionDigits: 2 }
+                                      )
+                                    : 0
+                                ) +
+                                " %\n                                   "
+                            )
+                          ]
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "text-black text-sm" }, [
+                      _vm.financial.pengeluaran.rasio > 30
+                        ? _c("span", [
+                            _vm._v(
+                              "\n                                      Rasio utang kamu tidak sehat. Nilai idealnya maksimal 30% dari\n                                        penghasilan. Yuk belajar mengelola keuangan lebih baik lagi!\n                                   "
+                            )
+                          ])
+                        : _c("span", [
+                            _vm._v(
+                              "\n                                       Rasio utang kamu masih ideal.\n                                   "
+                            )
+                          ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "text-xl text-indigo-600 capitalize font-bold",
+                    on: { click: _vm.resetFinancial }
+                  },
+                  [
+                    _vm._v(
+                      "\n                            hitung ulang\n                        "
+                    )
+                  ]
+                )
+              ]
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex justify-center py-10" }, [
+      _c("h2", { staticClass: "text-center w-3/4 text-lg" }, [
+        _vm._v(
+          "\n                        Pingin nabung buat liburan tapi bingung harus\n                        sisihin berapa setiap bulannya? Disini kamu bisa\n                        hitung jumlah dana yang perlu kamu simpan tanpa\n                        ribet. Cobain deh!\n                    "
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex flex-col justify-center" }, [
+      _c("div", { staticClass: " w-3/4" }, [
+        _c(
+          "h1",
+          { staticClass: "text-2xl mb-4 md:mb-6 capitalize font-bold" },
+          [
+            _vm._v(
+              "\n                            financial check up\n                        "
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c("p", {}, [
+          _vm._v(
+            "\n                            Untuk mengetahui kondisi keuangan (likuiditas,\n                            tabungan, utang) supaya dapat membuat\n                            perencanaan keuangan yang lebih baik\n                        "
+          )
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/views/fontend/src/views/feature/Quiz1.vue?vue&type=template&id=171a54eb&scoped=true&":
+/*!***********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/views/fontend/src/views/feature/Quiz1.vue?vue&type=template&id=171a54eb&scoped=true& ***!
+  \***********************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "w-full flex flex-col items-center" }, [
+    _c("div", { staticClass: "w-2/4 py-24" }, [
+      _c("h1", { staticClass: "text-2xl text-center font-bold" }, [
+        _vm._v(
+          "\n\t\t\tPer bulannya, aku menyisihkan \n\t\t\tuang untuk ditabung sebesar...\n\t\t"
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "mt-4 grid grid-cols-2 gap-6" },
+        _vm._l(_vm.quizes, function(quiz) {
+          return _c(
+            "div",
+            {
+              staticClass:
+                "p-8 cursor-pointer hover:shadow-lg bg-yellow-200 rounded-2xl text-center"
+            },
+            [_vm._v("\n\t\t\t\t" + _vm._s(quiz.title) + "\n\t\t\t")]
+          )
+        }),
+        0
+      )
+    ]),
+    _vm._v(" "),
+    _c(
+      "a",
+      {
+        staticClass:
+          "capitalize mb-20 font-bold text-blue-400 text-center cursor-pointer",
+        on: {
+          click: function($event) {
+            return _vm.$router.push("/feature")
+          }
+        }
+      },
+      [_vm._v("\n\t\tback\n\t")]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/views/fontend/src/views/feature/Quiz2.vue?vue&type=template&id=17286c6c&scoped=true&":
+/*!***********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/views/fontend/src/views/feature/Quiz2.vue?vue&type=template&id=17286c6c&scoped=true& ***!
+  \***********************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "w-full flex flex-col items-center" }, [
+    _c("div", { staticClass: "w-2/4 py-24" }, [
+      _c("h1", { staticClass: "text-2xl text-center font-bold" }, [
+        _vm._v(
+          "\n\t\t\t\tBagaimana pendapatmu \n                tentang dana darurat?\n\t\t\t"
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "mt-4 grid grid-cols-2 gap-6" },
+        _vm._l(_vm.quizes, function(quiz) {
+          return _c(
+            "div",
+            {
+              staticClass:
+                "p-8 cursor-pointer hover:shadow-lg bg-yellow-200 rounded-2xl text-center"
+            },
+            [_vm._v("\n\t\t\t\t\t" + _vm._s(quiz.title) + "\n\t\t\t\t")]
+          )
+        }),
+        0
+      )
+    ]),
+    _vm._v(" "),
+    _c(
+      "a",
+      {
+        staticClass:
+          "capitalize mb-20 font-bold text-blue-400 text-center cursor-pointer",
+        on: {
+          click: function($event) {
+            return _vm.$router.push("/feature")
+          }
+        }
+      },
+      [_vm._v("\n\t\t\tback\n\t\t")]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/views/fontend/src/views/feature/Quiz3.vue?vue&type=template&id=173683ed&scoped=true&":
+/*!***********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/views/fontend/src/views/feature/Quiz3.vue?vue&type=template&id=173683ed&scoped=true& ***!
+  \***********************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "w-full flex flex-col items-center" }, [
+    _c("div", { staticClass: "w-2/4 py-24" }, [
+      _c("h1", { staticClass: "text-2xl text-center font-bold" }, [
+        _vm._v(
+          "\n\t\t\t\tMenurutmu, mana yang \n                lebih penting?\n\t\t\t"
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "mt-4 grid grid-cols-2 gap-6" },
+        _vm._l(_vm.quizes, function(quiz) {
+          return _c(
+            "div",
+            {
+              staticClass:
+                "p-8 cursor-pointer hover:shadow-lg bg-yellow-200 rounded-2xl text-center"
+            },
+            [_vm._v("\n\t\t\t\t\t" + _vm._s(quiz.title) + "\n\t\t\t\t")]
+          )
+        }),
+        0
+      )
+    ]),
+    _vm._v(" "),
+    _c(
+      "a",
+      {
+        staticClass:
+          "capitalize mb-20 font-bold text-blue-400 text-center cursor-pointer",
+        on: {
+          click: function($event) {
+            return _vm.$router.push("/feature")
+          }
+        }
+      },
+      [_vm._v("\n\t\t\tback\n\t\t")]
+    )
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
