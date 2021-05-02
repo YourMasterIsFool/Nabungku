@@ -138,9 +138,18 @@ export default {
             commit(REMOVE_ALL_SUB_CATEGORY);
         },
         removeSub({commit}, id) {
-            commit(REMOVE_SUB_CATEGORY, id);
-        }
-
+           return new Promise((resolve, reject) => {
+             axios.delete('api/sub_category/'+id)
+            .then((res) => {
+                resolve(res);
+                commit(REMOVE_SUB_CATEGORY, id);
+            })
+            .catch((err) => {
+                reject(err);
+            })
+           })
+            
+        },
         
     },
     getters: {

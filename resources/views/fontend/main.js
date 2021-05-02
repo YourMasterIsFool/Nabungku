@@ -3,21 +3,18 @@ import App from "./src/App.vue";
 import VueRouter from "vue-router";
 import Home from "./src/views/Home";
 import axios from "axios";
-import routers from "./src/routers";
+import router from "./src/router";
 import store from "./src/store";
 import DatePicker from 'vue2-datepicker';
 import 'vue2-datepicker/index.css';
-import moment from 'moment';
+import moment from 'moment'
 
-Vue.prototype.moment = moment;
+Vue.prototype.$moment = moment
 
 require('./src/store/subscriber');
-Vue.use(VueRouter);
 
-const router = new VueRouter({
-    mode: "history",
-    routes: routers
-});
+
+
 
 store.dispatch('user/attempt', localStorage.getItem('token')).then(() => {
 	const app = new Vue({

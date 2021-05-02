@@ -14,14 +14,14 @@
                     </div>
                     <div class="flex text-gray-200">
                         <a
-                            href=""
+                            href=" https://www.instagram.com/nabungyuk_id/"
                             style="font-size:24px "
                             class="md:mr-4 hover:text-white duration-300 transition-colors mr-2"
                         >
                             <i class="fab fa-instagram"></i>
                         </a>
                         <a
-                            href=""
+                            href="https://www.tiktok.com/@nabungyuk_id"
                             style="font-size:24px "
                             class="md:mr-4 hover:text-white duration-300 transition-colors mr-2"
                         >

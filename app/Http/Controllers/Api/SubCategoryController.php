@@ -187,6 +187,10 @@ class SubCategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        SubCategory::where('id', $id)->delete();
+
+        return response()->json([
+
+        ], 200);
     }
 }

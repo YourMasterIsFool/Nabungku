@@ -1,5 +1,5 @@
 <template>
-    <div id="sub-category" ref="sub_category" class="text-xs">
+    <div id="sub-category" @click="selected = true" :class="[selected ? 'bg-gray-100' : '']" ref="sub_category" class="text-xs">
         <div class="modal absolute">
             <slot name="modal"></slot>
         </div>
@@ -7,7 +7,7 @@
             <div class="col-span-1 flex items-center ">
                 <input type="checkbox" class="col-span-1" />
             </div>
-            <div class="col-span-5 relative" @click="showModalSubCategory = true , error = null" >
+            <div class="col-span-5 pr-16 overflow-hidden items-center flex justify-between  relative" @click="showModalSubCategory = true , error = null" >
                 <div class=" overflow-hidden" ref="modalSubCategory" >
                     <a class="capitalize block"
                          
@@ -22,6 +22,12 @@
                     <input type="text" v-on:blur="focusChanged" v-show="showModalSubCategory" v-model="form.sub_category_name"  style="top:-10px;" class="py-2 w-32 outline-none pl-2 absolute focus:bg-gray-100 rounded-lg border-2 border-gray-100">
 
                 </div>
+
+                <a @click="removeSubCat(item.id)" :class="[selected ? 'block' : 'hidden']" class="text-red-400 py-1 px-3 rounded-2xl border-red-400 border-2 text-xs">
+                    
+                    Delete
+                </a>
+
             </div>
             <div class="col-span-2 relative" @click="showModalBudgeted = true" >
                 <div class=" overflow-hidden" ref="modalBudgeted" >
@@ -80,6 +86,7 @@ export default {
             showModalBudgeted : false,
             showModalSubCategory: false,
             showModalActivity : false,
+            selected: false,
             showModalAvailable : false,
             form: {
                 inputBudgeted : this.item.budgeted,
@@ -111,6 +118,7 @@ export default {
         ...mapActions({
             
             update_Sub_Category : 'sub_category/updateSubCategory',
+            removeSub: 'sub_category/removeSub'
         }),
         fetchData(categoryId) {
         },
@@ -143,6 +151,12 @@ export default {
                 this.error = `${this.form.sub_category_name} ${error.data.data}`;
                 console.log(this.error);
             });
+        },
+        removeSubCat(id){
+           
+            this.removeSub(id).then((res) => {
+                this.$store.state.modal.showSubCategoryDetail = falsec
+            })
         },
         openModalActivity() {
             
@@ -178,6 +192,7 @@ export default {
 
             }
             else {
+                 this.selected = false;
                  this.showModalBudgeted = false; 
                  this.showModalActivity= false;
                  this.showModalAvailable= false;
@@ -189,6 +204,7 @@ export default {
 
     mounted() {
         console.log(this.showModalBudgeted);
+
     },
 
     created() {

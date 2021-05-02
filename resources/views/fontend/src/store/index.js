@@ -12,6 +12,9 @@ export default new Vuex.Store({
 		auth: {
 			showAuth: false,
 			selectedIndex: 0,
+		},
+		modal: {
+			showSubCategoryDetail: false,
 		}
 	},
     modules: {

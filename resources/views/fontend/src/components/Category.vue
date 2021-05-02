@@ -142,12 +142,12 @@
                 <div class="col-span-2"><format-rupiah :item="available"></format-rupiah></div>
             </div>
         </div>
-        <div class="relative"  @click.prevent="$emit('open_sub_detail', sub_category.id)" v-for="(sub_category, index) in item.sub_categorys">
+        <div class="relative" ref="subDetail"  @click.prevent="$emit('open_sub_detail', sub_category.id)" v-for="(sub_category, index) in item.sub_categorys">
             
-                <div id="modal-activity" style="z-index: 10; display: none;" ref="showActivity" class="absolute overflow-hidden bg-white py-6 px-4">
+                <div id="modal-activity" style="z-index: 10; display: none;" ref="showActivity" class="absolute shadow-md rounded-2xl overflow-hidden bg-white p-2">
                     <simple-modal >
                         <template #content>
-                            <div class="py-8 px-2">
+                            <div class="pb-4 px-2">
                         <div class="flex justify-between">
                             <span class="font-bold capitalize">
                                 {{sub_category.sub_category_name}}
@@ -157,10 +157,10 @@
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                             </a>
                         </div>
-                        <div style="height: 200px;" class="mt-3 mr-2 pb-6 overflow-y-scroll h-full">
+                        <div style="height: 200px;" class="mt-3  pb-4 overflow-auto h-full">
 
                             <table class="w-full ">
-                                <tr class="text-left ">
+                            <tr class="text-left ">
                                     <th>Date</th>
                                     <th>Income</th>
                                     <th>Expense</th>
@@ -357,6 +357,8 @@ export default {
             let elSubCategory = this.$refs.modalNewSubCategory;
             let refs = this.$refs.showActivity;
             let target = e.target;
+            let subDetail = this.$refs.subDetail;
+
             if (elCategory !== target && !elCategory.contains(target)) {
                 this.editCategory = false;
                 this.error = null;
@@ -365,15 +367,14 @@ export default {
                 this.error = null;
                 this.showSubCategory = false;
             }
-
-            
+  
           for(let i=0; i < refs.length; i++ ) 
             {   
                  if (refs[i] !== target && !refs.contains(target)) {
                         refs[i].style.display = 'none';
                     }
                 
-            }            
+            } 
 
 
         },
@@ -425,14 +426,13 @@ export default {
 
 <style lang="css"> 
     #modal-activity {
-        background: url('../assets/images/icon_box.png');
         background-repeat: no-repeat;
         background-size: 100% 100%;
-        width: 370px;
-        height: 300px;
+        max-width: 370px;
+        height: 200px;
         z-index: 10px;
         position: absolute;
-        top: 10px;
+        top: 50px;
         right: 50px;
     }
 </style>

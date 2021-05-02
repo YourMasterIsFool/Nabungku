@@ -27,8 +27,9 @@ export default {
                         
                          localStorage.setItem('budget_id', res.data.data[0].id)
                      }
+                     else {
                      localStorage.setItem("budget_id", '');
-                    
+                    }
                 })
                 .catch(err => {
                     console.log(err);

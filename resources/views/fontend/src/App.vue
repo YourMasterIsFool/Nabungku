@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <div v-show="homepage" style="height: 100px" id="navigation">
+        <div v-show="homepage" class="bg-white w-full transition-property: height duration-300" :class="[stickyNavbar? 'shadow-md fixed z-20 ' : '']" :style="[stickyNavbar? {'height': '80px'} : {'height': '100px'}]" id="navigation">
             <navigation></navigation>
         </div>
 
@@ -24,6 +24,7 @@ export default {
     data() {
         return {
             defaultMenu: false,
+            stickyNavbar: false,
 
         };
     },
@@ -32,6 +33,16 @@ export default {
         Auth,
         Navigation,
         Footer
+    },
+    methods: {
+        scrollingDown(event) {
+            if(window.scrollY > 50) {
+                this.stickyNavbar = true
+            }
+            else {
+                this.stickyNavbar = false
+            }
+        }
     },
     computed: {
         homepage() {
@@ -46,7 +57,9 @@ export default {
             }
         }
     },
-    created() {}
+    created() {
+        window.addEventListener('scroll', this.scrollingDown)
+    }
 };
 </script>
 

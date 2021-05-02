@@ -1,5 +1,6 @@
 <template>
     <div id="about">
+    	
     	<div class="w-full flex flex-col items-center ">
     		<div class="w-3/4 md:px-8 px-4">
     			<div class="grid grid-cols-2 gap-8 py-20 ">

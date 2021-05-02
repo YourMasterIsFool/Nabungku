@@ -51,13 +51,13 @@
                     >
                         Login
                     </a>
-                    <a
+                    <button
                         @click="$store.state.auth.showAuth = true, $store.state.auth.selectedIndex = 1"
-                        class="px-6 mx-2 cursor-pointer font-semibold border-2 hover:border-none border-indigo-400 text-indigo-400 hover:bg-indigo-400 hover:text-white transition-all duration-300 rounded-2xl py-2 bg-none text-black text-sm capitalize"
+                        class="px-6 mx-2 cursor-pointer font-semibold border-2 hover:border-none text-blue-400 hover:text-white transition-all duration-300 rounded-2xl py-2 bg-none text-black text-sm capitalize"
                        
                     >
                         sign up
-                    </a>
+                    </button>
                 </div>
                 <a
                     href=""
@@ -99,4 +99,15 @@ export default {
 };
 </script>
 
-<style lang="stylus"></style>
+<style lang="stylus">
+    a:focus
+        color: #79A5FC
+    
+    button
+        border: 1px solid #79A5FC
+        
+        color: #79A5FC
+    button:hover
+        color: #79A5FC
+        background-color: #79A5FC
+</style>
