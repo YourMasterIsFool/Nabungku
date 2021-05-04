@@ -7,7 +7,7 @@
             style="z-index:-100;"
         ></div>
         <div id="main-content" class="grid grid-cols-12 relative ">
-            <div v-show="showFaq" class="fixed w-screen h-screen z-50">
+            <div v-show="showFaq" class="fixed  w-screen h-screen z-50">
                 <div class="relative">
                     <div style="z-index: -1" class="bg-black opacity-30 absolute top-0 left-0 h-screen w-screen ">
                         
@@ -31,7 +31,7 @@
                                 {{modalFaq.body}}
                             </div>
                             <div class="mt-4 flex justify-end">
-                                <a @click="showFaq = false" class="cursor-pointer w-6 h-6  rounded-full flex justify-center items-center just  bg-blue-400 text-white font-bold capitalize">
+                                <a @click="[currentFaq == 'transaction' ? faqChangeCategoryName() : currentFaq == 'category' ? faqTransactionHistory() : showFaq = false  ]" class="cursor-pointer w-6 h-6  rounded-full flex justify-center items-center just  bg-blue-400 text-white font-bold capitalize">
                                     <span class="material-icons">
                                         chevron_right
                                     </span>
@@ -1195,8 +1195,8 @@
                                         </li>
                                         <li>
                                             <a
-                                                href=""
-                                                class="py-4 px-4 block hover:bg-gray-200"
+                                                @click="faqMonthlySavingGoals"
+                                                class="py-4 cursor-pointer px-4 block hover:bg-gray-200"
                                                 >Monthly Saving Goals</a
                                             >
                                         </li>
@@ -1212,75 +1212,10 @@
                                 </div>
                                 <a
                                     @click="showMenuHelper = !showMenuHelper"
-                                    style="font-size:50px; right:0px; bottom:16px;"
-                                    class="absolute"
+                                    style="z-index: 100; right:0px; bottom:16px;"
+                                    class="absolute w-12 h-12 bg-blue-400 text-white black flex justify-center items-center rounded-full"
                                 >
-                                    <svg
-                                        width="64"
-                                        height="64"
-                                        viewBox="0 0 64 64"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <g filter="url(#filter0_d)">
-                                            <path
-                                                d="M28 4C14.7448 4 4 14.7443 4 27.9988C4 41.2533 14.7448 51.9976 28 51.9976C31.8304 52.0029 35.606 51.0876 39.0088 49.3289L48.1912 51.8896C48.7035 52.0326 49.2446 52.0368 49.759 51.9018C50.2735 51.7668 50.7428 51.4974 51.1189 51.1214C51.495 50.7453 51.7644 50.276 51.8994 49.7616C52.0344 49.2471 52.0302 48.7061 51.8872 48.1938L49.324 39.019C51.0871 35.6135 52.005 31.8337 52 27.9988C52 14.7443 41.2552 4 28 4ZM28 7.59982C33.4104 7.59982 38.5992 9.74899 42.425 13.5745C46.2507 17.4001 48.4 22.5886 48.4 27.9988C48.4 31.5266 47.5048 34.9176 45.8248 37.9271L45.4648 38.5751L48.1336 48.1362L38.5648 45.4675L37.9168 45.8275C35.1943 47.3411 32.1613 48.2111 29.0504 48.3709C25.9394 48.5307 22.8333 47.976 19.97 46.7493C17.1067 45.5226 14.5624 43.6565 12.5321 41.2941C10.5019 38.9318 9.0396 36.1359 8.25745 33.1208C7.4753 30.1057 7.39404 26.9516 8.01991 23.9003C8.64577 20.8489 9.96214 17.9814 11.8681 15.5177C13.774 13.0539 16.2188 11.0593 19.0152 9.68681C21.8115 8.31433 24.885 7.60042 28 7.59982Z"
-                                                fill="#5E81F4"
-                                            />
-                                            <path
-                                                d="M28 7.59982C33.4104 7.59982 38.5992 9.74899 42.425 13.5745C46.2507 17.4001 48.4 22.5886 48.4 27.9988C48.4 31.5266 47.5048 34.9176 45.8248 37.9271L45.4648 38.5751L48.1336 48.1362L38.5648 45.4675L37.9168 45.8275C35.1943 47.3411 32.1613 48.2111 29.0504 48.3709C25.9394 48.5307 22.8333 47.976 19.97 46.7493C17.1067 45.5226 14.5624 43.6565 12.5321 41.2941C10.5019 38.9318 9.0396 36.1359 8.25745 33.1208C7.4753 30.1057 7.39404 26.9516 8.01991 23.9003C8.64577 20.8489 9.96214 17.9814 11.8681 15.5177C13.774 13.0539 16.2188 11.0593 19.0152 9.68681C21.8115 8.31433 24.885 7.60042 28 7.59982Z"
-                                                fill="#5E81F4"
-                                            />
-                                        </g>
-                                        <path
-                                            d="M29.697 37.1013C29.2469 36.6512 28.6364 36.3984 27.9999 36.3984C27.3634 36.3984 26.7529 36.6512 26.3028 37.1013C25.8528 37.5513 25.5999 38.1617 25.5999 38.7982C25.5999 39.4347 25.8528 40.0451 26.3028 40.4952C26.7529 40.9453 27.3634 41.1981 27.9999 41.1981C28.6364 41.1981 29.2469 40.9453 29.697 40.4952C30.147 40.0451 30.3999 39.4347 30.3999 38.7982C30.3999 38.1617 30.147 37.5513 29.697 37.1013Z"
-                                            fill="white"
-                                        />
-                                        <path
-                                            d="M32.6668 17.3324C31.4291 16.0947 29.7503 15.3994 27.9999 15.3994C26.2495 15.3994 24.5707 16.0947 23.333 17.3324C22.0953 18.5701 21.3999 20.2487 21.3999 21.9991C21.3999 22.4764 21.5895 22.9343 21.9271 23.2718C22.2647 23.6094 22.7225 23.799 23.1999 23.799C23.6773 23.799 24.1351 23.6094 24.4727 23.2718C24.8103 22.9343 24.9999 22.4764 24.9999 21.9991L25.0167 21.6919C25.0978 20.9289 25.4681 20.2259 26.0516 19.7276C26.6351 19.2293 27.3874 18.9735 28.1537 19.0129C28.9201 19.0522 29.6422 19.3837 30.1716 19.9392C30.701 20.4946 30.9974 21.2318 30.9999 21.9991C30.9999 23.4006 30.6207 24.0342 29.1279 25.5269L28.7223 25.9373C26.9127 27.8212 26.1999 29.1747 26.1999 31.5986C26.1999 32.076 26.3895 32.5338 26.7271 32.8713C27.0647 33.2089 27.5225 33.3985 27.9999 33.3985C28.4773 33.3985 28.9351 33.2089 29.2727 32.8713C29.6103 32.5338 29.7999 32.076 29.7999 31.5986C29.7999 30.1971 30.1791 29.5635 31.6719 28.0708L32.0775 27.6604C33.8871 25.7765 34.5999 24.423 34.5999 21.9991C34.5999 20.2487 33.9045 18.5701 32.6668 17.3324Z"
-                                            fill="white"
-                                        />
-                                        <defs>
-                                            <filter
-                                                id="filter0_d"
-                                                x="0"
-                                                y="0"
-                                                width="64"
-                                                height="64"
-                                                filterUnits="userSpaceOnUse"
-                                                color-interpolation-filters="sRGB"
-                                            >
-                                                <feFlood
-                                                    flood-opacity="0"
-                                                    result="BackgroundImageFix"
-                                                />
-                                                <feColorMatrix
-                                                    in="SourceAlpha"
-                                                    type="matrix"
-                                                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                                                />
-                                                <feOffset dx="4" dy="4" />
-                                                <feGaussianBlur
-                                                    stdDeviation="4"
-                                                />
-                                                <feColorMatrix
-                                                    type="matrix"
-                                                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.3 0"
-                                                />
-                                                <feBlend
-                                                    mode="normal"
-                                                    in2="BackgroundImageFix"
-                                                    result="effect1_dropShadow"
-                                                />
-                                                <feBlend
-                                                    mode="normal"
-                                                    in="SourceGraphic"
-                                                    in2="effect1_dropShadow"
-                                                    result="shape"
-                                                />
-                                            </filter>
-                                        </defs>
-                                    </svg>
+                                   <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                 </a>
                             </div>
                         </div>
@@ -1293,7 +1228,7 @@
 
 <script>
 import FormatRupiah from '../../components/FormatRupiah';
-import brand from "../../assets/images/ruang.png";
+import brand from "../../assets/images/logo.png";
 // import Chart from "chart.js";
 import Modal from "../../components/Modal";
 import icon_calendar from "../../assets/images/icon_calendar.png";
@@ -1310,7 +1245,7 @@ import DoughnutChart from '../../components/chart/donat.js';
 
 import { mapActions, mapGetters, mapState } from "vuex";
 
-
+import moment from 'moment';
 
 export default {
     components: {
@@ -1344,6 +1279,7 @@ export default {
             showFaq: false,
             faqPosition: {},
             faq: null,
+            currentFaq: null,
             modalFaq: {
                 style: {},
                 header: '',
@@ -1359,7 +1295,7 @@ export default {
                     name_category: null
                 },
                 transaction: {
-                    date: null,
+                    date: moment().format('YYYY-MM-DD'),
                     expense: null,
                     income: null,
                     sub_category:null,
@@ -1515,19 +1451,14 @@ export default {
             });
         },
         faqAddTransaction(){
-            this.showFaq = true
             this.faqPosition = {}
-            const faq = {}
-            const faqTransaction = this.$refs.transaction.getBoundingClientRect()
-            for (let key in faqTransaction) {
-                faq[key] = faqTransaction[key]+'px';
-            }
+            this.currentFaq = 'transaction'
             
-
-            this.faqPosition = faq;
-
             this.faq = this.$refs.transaction.outerHTML;
             this.modalFaq['style']['bottom'] = '-225px'
+            this.modalFaq['style']['left'] = '0px';
+            this.modalFaq['style']['right'] = ''
+            this.modalFaq['style']['top'] = ''
             this.modalFaq['style']['max-width'] = '400px'
             
             this.modalFaq['header'] = 'Tambahkan pengeluaran dan pemasukanmu'
@@ -1535,11 +1466,29 @@ export default {
                                         memasukan pengeluaran dan pemasukan kamu sesuai
                         dengan kategorinya`
            
+
+            this.showFaq = true
+            this.showMenuHelper = false
+            
+            const faq = {}
+           
+            window.scrollTo(0, 0);
+
+            const faqTransaction = this.$refs.transaction.getBoundingClientRect()
+             console.log(faqTransaction);
+            for (let key in faqTransaction) {
+                faq[key] = faqTransaction[key]+'px';
+            }
+            
+
+            this.faqPosition = faq;
+
           
 
         },
         faqChangeCategoryName() {
              this.showFaq = true
+             this.currentFaq = 'category'
              this.faq = `<div class="p-4 bg-white rounded-2xl shadow-md">
                  
               <svg width="471" height="310" viewBox="0 0 471 310" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1594,12 +1543,18 @@ export default {
 </div>
 `          
              this.faqPosition = {}
+            this.showMenuHelper = false
+
+            window.scrollTo(0, 300);
+
             this.modalFaq['style']['bottom'] = '-225px'
             this.faqPosition['top'] = '100px';
             this.faqPosition['width'] = '500px';
             this.faqPosition['left'] = '50px';
             this.modalFaq['style']['max-width'] = '300px'
             this.modalFaq['style']['right'] = '-350px'
+            this.modalFaq['style']['left'] = ''
+            this.modalFaq['style']['top'] = ''
             this.modalFaq['header'] = 'Ubah kategori'
             this.modalFaq['body'] = `Klik tanda + untuk membuat kategori baru. Klik kategori 
 untuk mengganti nama sesuai keinginanmu maupun 
@@ -1607,6 +1562,8 @@ menghapus kategori. Ini juga berlaku untuk sub-category
 yaa.`
         },
         faqTransactionHistory() {
+            window.scrollTo(0, 300);
+            this.currentFaq='history'
             this.faq = `
                 <div
                 class="bg-white shadow-md p-4 rounded-2xl">
@@ -1664,6 +1621,7 @@ yaa.`
             `
             this.faqPosition = {}
             this.showFaq = true
+            this.showMenuHelper = false
              this.modalFaq['style']['bottom'] = '-225px'
             this.faqPosition['top'] = '200px';
             this.faqPosition['width'] = '450px';
@@ -1675,6 +1633,9 @@ yaa.`
 transaksi baik pengeluaran ataupun pemasukan
 pada tiap sub-category loh.`
 
+        },
+        faqMonthlySavingGoals(){
+           console.log(this.$refs.saving_goals)
         },
          closeModal(event) {
 
@@ -1807,7 +1768,17 @@ pada tiap sub-category loh.`
         },
         totalSaving() {
 
-            return this.totalAmount - this.total_activity;
+            const total = this.totalAmount - (this.total_activity);
+            
+            if(isNaN(total)) {
+                return 0
+            }
+
+            if (total < 0) {
+                return 0
+            }
+
+            return total
         },
 
         total_expense() {
@@ -1834,7 +1805,7 @@ pada tiap sub-category loh.`
             return total 
         },
         lastMonthBudget() {
-            const category = this.categories.filter(cat => {
+            const category = this.categorys.filter(cat => {
                 const categoriesDate = new Date(cat['created_at']);
                 const currentDate = new Date();
                 // console.log(categoriesDate.getMonth()+1)

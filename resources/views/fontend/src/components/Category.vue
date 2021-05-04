@@ -144,7 +144,7 @@
         </div>
         <div class="relative" ref="subDetail"  @click.prevent="$emit('open_sub_detail', sub_category.id)" v-for="(sub_category, index) in item.sub_categorys">
             
-                <div id="modal-activity" style="z-index: 10; display: none;" ref="showActivity" class="absolute shadow-md rounded-2xl overflow-hidden bg-white p-2">
+                <div id="modal-activity" style="z-index: 10; display: none;" ref="showActivity" class="absolute shadow-md rounded-2xl overflow-hidden bg-white p-4">
                     <simple-modal >
                         <template #content>
                             <div class="pb-4 px-2">
@@ -157,31 +157,43 @@
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                             </a>
                         </div>
-                        <div style="height: 200px;" class="mt-3  pb-4 overflow-auto h-full">
+                        <div style="height: 200px;" class="mt-3  pb-4 overflow-scroll h-full">
 
                             <table class="w-full ">
-                            <tr class="text-left ">
-                                    <th>Date</th>
-                                    <th>Income</th>
-                                    <th>Expense</th>
-                                </tr>
+                                <thead>
+                                    
+                                    <tr class="text-left ">
+                                        <th width="150">Date</th>
+                                        <th width="500">income</th>
+                                        <th width="500">expense</th>
+                                    </tr>
+                                </thead>
                                 
                                 <tbody>
-                                    
-                                </tbody>
-                                <tr class="pb-2" v-for="activity in activities">
-                                    <td style="padding-right: 6px;">
-                                        {{activity.created_at}}
+                                    <tr class="pb-2" v-for="activity in activities">
+                                    <td style="" width="200">
+                                        <span class="flex text-xs text-gray-600 items-center">
+                                            {{activity.created_at}}
+                                        </span>
                                     </td>
-                                   <td style="padding-right: 6px;">
-                                       <format-rupiah :item="activity.income"></format-rupiah>
+                                   <td width="500" class="items-center">
+                                        <span class="flex text-xs text-gray-600">
+                                                +
+                                      <format-rupiah :item="activity.income"></format-rupiah>
+                                        </span>
                                    </td>
-                                   <td style="padding-right: 6px;">
-                                           <format-rupiah :item="activity.expense"></format-rupiah>
+                                   <td width="500" class="">
+                                         
 
+                                        <span class="flex text-xs text-gray-600 items-center">
+                                            -<format-rupiah :item="activity.expense"></format-rupiah>
+
+                                        </span>
                                    </td>
 
                                 </tr>
+                                </tbody>
+                                
                             </table>
                             
                         </div>
