@@ -15,6 +15,7 @@ export default new Vuex.Store({
 		},
 		modal: {
 			showSubCategoryDetail: false,
+			showSubCategoryId: null,
 		}
 	},
     modules: {

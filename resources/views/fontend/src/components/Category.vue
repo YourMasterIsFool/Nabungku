@@ -9,7 +9,7 @@
             <div class="col-span-1 flex items-center ">
                 <input
                     type="checkbox"
-                    @click="clicked = clicked"
+                    @click="selectAll"
                     class="col-span-1"
                 />
                 <a @click="dropdownSubCategory = !dropdownSubCategory">
@@ -89,6 +89,7 @@
                                 </button>
                             </div>
                         </div>
+                        
                     </div>
                     <div class="relative" ref="modalNewSubCategory">
                         <a
@@ -134,6 +135,9 @@
                             </form>
                         </div>
                     </div>
+                    <a  v-show="dropdownSubCategory||selectedCategory" @click="deleteSelectSub" style="border-width: 1px;" class="text-xs py-1 px-2 cursor-pointer rounded-2xl  ml-12 font-normal text-red-400 border-red-400">
+                        Delete sub
+                    </a>
                 </div>
                 <div class="col-span-2">
                     <a href=""><format-rupiah :item="budgeted"></format-rupiah> </a>
@@ -142,8 +146,11 @@
                 <div class="col-span-2"><format-rupiah :item="available"></format-rupiah></div>
             </div>
         </div>
-        <div class="relative" ref="subDetail"  @click.prevent="$emit('open_sub_detail', sub_category.id)" v-for="(sub_category, index) in item.sub_categorys">
-            
+        <div class="relative" ref="subDetail"   :key="
+        sub_category" v-for="(sub_category, index) in item.sub_categorys">
+                <div @click.prevent="$emit('open_sub_detail', sub_category.id)" class="absolute top-0 w-full h-full">
+
+                </div>
                 <div id="modal-activity" style="z-index: 10; display: none;" ref="showActivity" class="absolute shadow-md rounded-2xl overflow-hidden bg-white p-4">
                     <simple-modal >
                         <template #content>
@@ -170,7 +177,7 @@
                                 </thead>
                                 
                                 <tbody>
-                                    <tr class="pb-2" v-for="activity in activities">
+                                    <tr class="pb-2" :key="activity" v-for="activity in activities">
                                     <td style="" width="200">
                                         <span class="flex text-xs text-gray-600 items-center">
                                             {{activity.created_at}}
@@ -208,6 +215,8 @@
                 style="
                 top:0px;
                 "
+                ref="sub_category_vue"
+                :selected="false"
              @open_modal="showModalActivity(index, sub_category.id)"
             class="transition-all absolute relative duration-1000"
             :style="[
@@ -237,12 +246,14 @@ export default {
         SubCategoryVue,
         FormatRupiah,
         SimpleModal,
+        
 
     },
 
     data() {
         return {
             clicked: false,
+            selectedCategory:false,
             editCategory: false,
             dropdown: false,
             showSubCategory: false,
@@ -261,13 +272,6 @@ export default {
             },
             error: null
         };
-    },
-    mounted() {
-        if (this.editCategory == false) {
-            this.error = null;
-        }
-       
-        
     },
     computed: {
         ...mapGetters({
@@ -314,6 +318,8 @@ export default {
         available() {
             return this.budgeted + this.activity;
         },
+
+
     },
     methods: {
         ...mapActions({
@@ -321,6 +327,7 @@ export default {
             deleteCategory: "category/removeCategory",
             editCategoryName: "category/updateCategoryName",
             storeSubCategory: "sub_category/storeSubCategory",
+            removeSelectedSub : 'sub_category/removeSelectedSub',
             
             //ACTIVITY
             fetchActivityBySubCategory: 'activity/fetchDataBySubCategory',
@@ -333,9 +340,35 @@ export default {
         showSubCategoryName() {
             this.modalSubCategoryName = true;
         },
+
+        deleteSelectSub() {
+            const sub = []
+
+            this.$refs.sub_category_vue.forEach((el, index ) => {
+               if(el.isSelect) {
+                   sub.push(el._props.item.id);
+               }
+            })
+
+            this.removeSelectedSub(sub);
+        },
        
         click() {
             this.clicked = true;
+        },
+        selectAll() {
+            this.selectedCategory = !this.selectedCategory
+
+            if(this.selectedCategory) {
+                this.$refs.sub_category_vue.forEach((el, index) => {
+                    el.isSelect = true
+                })
+            }
+            else {
+                 this.$refs.sub_category_vue.forEach((el, index) => {
+                    el.isSelect = false
+                })          
+            }
         },
         updateCategoryName(id) {
             const index = this.getIndex(id);
@@ -431,6 +464,14 @@ export default {
     created() {
         document.addEventListener("click", this.closeModal);
         this.$refs;
+    },
+    mounted() {
+
+
+        if (this.editCategory == false) {
+            this.error = null;
+        }
+       
     },
     mixins:[]
 };

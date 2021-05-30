@@ -1,14 +1,15 @@
 <template>
-    <div id="sub-category" @click="selected = true" :class="[selected ? 'bg-gray-100' : '']" ref="sub_category" class="text-xs">
+    <div id="sub-category" @click="selected = true, $store.state.modal.showSubCategoryDetail = true, $store.state.modal.showSubCategoryId=item.id" :class="[selected ? 'bg-gray-100' : '']" ref="sub_category" class="text-xs">
         <div class="modal absolute">
             <slot name="modal"></slot>
         </div>
         <div class="grid grid-cols-12  text-gray-700 py-4 px-6">
-            <div class="col-span-1 flex items-center ">
-                <input type="checkbox" class="col-span-1" />
+            <div class="col-span-1 z-10 flex items-center ">
+                <input type="checkbox" v-model="isSelect" class="col-span-1" />
             </div>
-            <div class="col-span-5 pr-16 overflow-hidden items-center flex justify-between  relative" @click="showModalSubCategory = true , error = null" >
-                <div class=" overflow-hidden" ref="modalSubCategory" >
+            <div class="col-span-5 pr-16 overflow-hidden items-center   relative" @click="showModalSubCategory = true , error = null" >
+                <div class="flex items-center">
+                    <div class=" overflow-hidden" ref="modalSubCategory" >
                     <a class="capitalize block"
                          
                         v-show="showModalSubCategory == false"
@@ -23,10 +24,11 @@
 
                 </div>
 
-                <a @click="removeSubCat(item.id)" :class="[selected ? 'block' : 'hidden']" class="text-red-400 py-1 px-3 rounded-2xl border-red-400 border-2 text-xs">
+                <a style="border-width: 1px;" @click="removeSubCat(item.id)" :class="[selected ? 'block' : 'hidden']" class="text-red-400 ml-12 text-xs py-1 px-3 cursor-pointer rounded-2xl border-red-400 text-xs">
                     
                     Delete
                 </a>
+                </div>
 
             </div>
             <div class="col-span-2 relative" @click="showModalBudgeted = true" >
@@ -58,7 +60,8 @@
             <div class="col-span-2 ">
                 
                  <div class="relative" ref="modalAvailable" >
-                    <a class="capitalize"
+                    
+                    <a :class="[precentage >= 70 ? 'text-green-400' : precentage >= 40 ? 'text-black' : 'text-red-400']" class="capitalize  text-xs"
                        
                         v-show="showModalAvailable == false"
                     >
@@ -77,7 +80,7 @@ import FormatRupiah from './FormatRupiah';
 import { mapActions, mapState } from "vuex";
 
 export default {
-    props: ["item"],
+    props: ["item", 'selected'],
     components: {
         FormatRupiah
     },
@@ -86,7 +89,7 @@ export default {
             showModalBudgeted : false,
             showModalSubCategory: false,
             showModalActivity : false,
-            selected: false,
+            isSelect:false,
             showModalAvailable : false,
             form: {
                 inputBudgeted : this.item.budgeted,
@@ -112,7 +115,12 @@ export default {
         },
         available() {
             return this.item.budgeted + this.activity;
-        }
+        },
+        precentage() {
+            const precentage = this.available/this.item.budgeted * 100;
+            
+            return precentage
+        },
     },
     methods: {
         ...mapActions({
@@ -162,6 +170,7 @@ export default {
             
             this.$emit('open_modal', this.item.id);
         },
+        
         closeModal(e) {
             let el = this.$refs.sub_category;
             let elBudgeted = this.$refs.modalBudgeted;
@@ -204,6 +213,12 @@ export default {
 
     mounted() {
         console.log(this.showModalBudgeted);
+        if(this.selected) {
+            this.isSelect = true
+        }
+        else {
+            this.isSelect = false
+        }
 
     },
 

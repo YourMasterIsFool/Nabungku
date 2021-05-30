@@ -112,6 +112,11 @@ export default {
                 })
             })
         },
+        removeSelectedSub({commit,dispatch}, payload) {
+            payload.forEach((el, index) => {
+                dispatch('removeSub', el);
+            });
+        },
         updateSubCategory({commit, dispatch}, payload) {
             
             return new Promise((resolve, reject) => {
