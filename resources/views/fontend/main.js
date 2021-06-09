@@ -8,11 +8,14 @@ import store from "./src/store";
 import DatePicker from 'vue2-datepicker';
 import 'vue2-datepicker/index.css';
 import moment from 'moment'
+import CKEditor from '@ckeditor/ckeditor5-vue2';
 
 Vue.prototype.$moment = moment
 
+
 require('./src/store/subscriber');
 
+Vue.use( CKEditor );
 
 
 

@@ -5,7 +5,9 @@ use App\Http\Controllers\Api\BudgetController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\SubCategoryController;
 use App\Http\Controllers\Api\ActivityController;
-
+use App\Http\Controllers\Api\learn\CategoryPembelajaranController;
+use App\Http\Controllers\Api\learn\MateriPembelajaranController;
+use App\Models\core\MateriPembelajaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -39,6 +41,9 @@ Route::post('login', [AuthController::class, 'login']);
 
 
 
+//before auth
+Route::resource('category_pembelajaran', CategoryPembelajaranController::class);
+Route::resource('materi_pembelajaran', MateriPembelajaranController::class);
 
 // After Auth
 Route::group(['middleware' => 'auth:api'], function() {

@@ -17,6 +17,8 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "@ckeditor/ckeditor5-build-classic": "^28.0.0",
+        "@ckeditor/ckeditor5-vue2": "^1.0.5",
         "@ocrv/vue-tailwind-pagination": "^0.0.4",
         "chart.js": "2",
         "moment": "^2.29.1",

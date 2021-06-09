@@ -5,11 +5,22 @@ import Register from "../views/Register.vue";
 import Login from "../views/Login.vue";
 import About from "../views/About";
 import Feature from "../views/Feature";
+
+
+//learn
+import LearnQuiz from '../views/learn/Quiz.vue';
 import Dashboard from "../views/core/Dashboard";
+import LearnHome from '../views/learn/LearnHome.vue';
+import LearnArticle from '../views/learn/Article.vue';
+import LearnResult from '../views/learn/Result.vue';
+
+// feature
 import Quiz1 from '../views/feature/Quiz1.vue';
 import Quiz2 from '../views/feature/Quiz2.vue';
 import Quiz3 from '../views/feature/Quiz3.vue';
 import FeatureHome from '../views/feature/FeatureHome';
+
+//store
 import store from '../store';
 import VueRouter from 'vue-router';
 
@@ -57,9 +68,42 @@ const routers = [
 
 
     {
-        path: "/learn",
+        path: "/learn/",
         name: "learn",
         component: Learn,
+        children:  [
+            {
+                path: 'topic',
+                name: 'topic',
+                
+            },
+            {
+                path: 'quiz',
+                name: 'LearnQuiz',
+                component: LearnQuiz,
+                meta: { title: 'Learn Quiz'}
+
+            },
+            {
+                path: 'result',
+                name: 'LearnResult',
+                component: LearnResult,
+                meta: { title: 'Learn Result'}
+            },
+            {
+                path: '',
+                name: 'LearnHome',
+                component: LearnHome,
+                meta: { title: 'Learn'}
+            },
+            {
+                path: 'article/:article_id',
+                name: 'LearnArticle',
+                component: LearnArticle,
+                props: true,
+                meta: { title: 'Learn Article'}
+            },
+        ],
         meta: { title: 'Learn'},
         beforeEnter: afterAuth
 

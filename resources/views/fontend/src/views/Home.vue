@@ -95,11 +95,11 @@
                     </div>
 
                     <div class="flex-col  md:col-span-6">
-                        <div id="desc2" class=" py-4 md:py-8 grid grid-cols-12" @mouseover="imageChange(index)" v-for="(desc, index) in desc2">
+                        <div id="desc2" :class="[ index == 1 ? 'ml-10': '']" :key="desc" class=" py-4 md:py-8 grid grid-cols-12" @mouseover="imageChange(index)" v-for="(desc, index) in desc2">
                             <div
-                                class="hover:h-20 hover:w-20 w-16 h-16 col-span-3 md:col-span-2 rounded-full  bg-red-400"
+                                class="hover:h-20 text-center hover:w-20 w-16 h-16 col-span-3 md:col-span-2 rounded-full  bg-red-400"
                             ></div>
-                            <h1 class="col-span-8 text-sm">
+                            <h1 class="col-span-8 text-center text-sm">
                                 {{desc.text}}
                             </h1>
                         </div>
@@ -237,13 +237,19 @@ export default {
            desc2: [
                 {   
                     img: desc2_1,
-                    text: "Lorem ipsum exercitation sunt velit incididunt in magna enim exercitation eiusmod dolore non in exercitation aute voluptate laboris anim tempor velit voluptate."
+                    text: `Sebelum pakai uang, coba biasakan untuk membuat 
+                            plan dan prioritaskan pada hal yang menurutmu 
+                            penting dan berguna— apapun itu. `
                 },
                 {   img: desc2_2,
-                    text: "Deserunt deserunt nulla ea reprehenderit occaecat laborum aliqua fugiat labore."
+                    text: `Yang seringkali dilewatkan: mencatat 
+                            pengeluaran dan pemasukan. Padahal, 
+                            laporan keuangan bantu kamu buat 
+                            ambil keputusan yang lebih baik loh!`
                 },
                 {   img: desc2_3,
-                    text: "Deserunt deserunt nulla ea reprehenderit occaecat laborum aliqua fugiat labore."
+                    text: `Sisihkan uang diawal. Ganti mindset “ kalau ada sisa “,
+                            bisa jadi uang habis duluan sebelum sempat ditabung.  `
                 }
            ] 
         };
