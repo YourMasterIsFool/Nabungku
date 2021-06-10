@@ -1,5 +1,5 @@
 <template>
-    <div id="sub-category" @click="selected = true, $store.state.modal.showSubCategoryDetail = true, $store.state.modal.showSubCategoryId=item.id" :class="[selected ? 'bg-gray-100' : '']" ref="sub_category" class="text-xs">
+    <div id="sub-category" @click=" $store.state.modal.showSubCategoryDetail = true, $store.state.modal.showSubCategoryId=item.id" :class="[selected ? 'bg-gray-100' : '']" ref="sub_category" class="text-xs">
         <div class="modal absolute">
             <slot name="modal"></slot>
         </div>
@@ -24,7 +24,7 @@
 
                 </div>
 
-                <a style="border-width: 1px;" @click="removeSubCat(item.id)" :class="[selected ? 'block' : 'hidden']" class="text-red-400 ml-12 text-xs py-1 px-3 cursor-pointer rounded-2xl border-red-400 text-xs">
+                <a style="border-width: 1px;" @click="removeSubCat(item.id)" :class="[isSelect ? 'block' : 'hidden']" class="text-red-400 ml-12 text-xs py-1 px-3 cursor-pointer rounded-2xl border-red-400 text-xs">
                     
                     Delete
                 </a>
@@ -172,14 +172,15 @@ export default {
         },
         
         closeModal(e) {
-            let el = this.$refs.sub_category;
+            let subCategory = this.$refs.sub_category;
+            // console.log(subCategory);
             let elBudgeted = this.$refs.modalBudgeted;
             let elActivtiy = this.$refs.modalActivity;
             let elAvailable = this.$refs.modalAvailable;
             let elSubCategory = this.$refs.modalSubCategory;
             let target = e.target;
 
-            if(el == target || el.contains(target)) {
+            if(subCategory == target || subCategory.contains(target)) {
                      if( elBudgeted !== target && !elBudgeted.contains(target)) {
                     this.showModalBudgeted = false; 
                       
@@ -201,7 +202,7 @@ export default {
 
             }
             else {
-                 this.selected = false;
+                 this.isSelect = false;
                  this.showModalBudgeted = false; 
                  this.showModalActivity= false;
                  this.showModalAvailable= false;
@@ -212,13 +213,13 @@ export default {
     },
 
     mounted() {
-        console.log(this.showModalBudgeted);
-        if(this.selected) {
-            this.isSelect = true
-        }
-        else {
-            this.isSelect = false
-        }
+        // console.log(this.showModalBudgeted);
+        // if(this.selected) {
+        //     this.isSelect = true
+        // }
+        // else {
+        //     this.isSelect = false
+        // }
 
     },
 

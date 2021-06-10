@@ -73,7 +73,8 @@
                                     >
                                         <i class="far fa-bell"></i>
                                     </a>
-                                    <div
+                                    <div 
+                                        v-show="showNotif"
                                         :class="[
                                             showNotif
                                                 ? 'opacity-100'
@@ -91,7 +92,35 @@
                                         <div
                                             style="height:300px;"
                                             class="flex overflow-y-scroll mt-4  flex-col py-2 text-xs"
-                                        >
+                                        >   
+
+                                            <div class="flex flex-col w-full h-full justify-center items-center">
+                                                    <svg width="82" height="74" viewBox="0 0 82 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <g opacity="0.7">
+                                                        <path d="M49.5214 73.0801C53.4316 73.0801 56.6014 69.9103 56.6014 66.0001C56.6014 62.0899 53.4316 58.9201 49.5214 58.9201C45.6112 58.9201 42.4414 62.0899 42.4414 66.0001C42.4414 69.9103 45.6112 73.0801 49.5214 73.0801Z" fill="white" stroke="#5E81F4" stroke-width="1.5" stroke-miterlimit="10"/>
+                                                        <path d="M22.95 59.1002H77.178C78.093 59.1002 78.9705 59.4636 79.6175 60.1106C80.2645 60.7576 80.628 61.6352 80.628 62.5502V63.0002C80.628 63.7958 80.3119 64.5589 79.7493 65.1215C79.1867 65.6841 78.4236 66.0001 77.628 66.0001H22.95C22.035 66.0001 21.1575 65.6367 20.5105 64.9897C19.8635 64.3427 19.5 63.4651 19.5 62.5502C19.5 61.6352 19.8635 60.7576 20.5105 60.1106C21.1575 59.4636 22.035 59.1002 22.95 59.1002Z" fill="white" stroke="#5E81F4" stroke-width="1.5" stroke-miterlimit="10"/>
+                                                        <path d="M54.501 18.5011C54.501 18.5011 61.1793 18.7433 64.1292 25.0001" stroke="#5E81F4" stroke-width="1.5" stroke-miterlimit="10"/>
+                                                        <path d="M65.5019 31.9021C65.5019 30.0151 65.2702 28.3935 64.874 27.0001" stroke="#5E81F4" stroke-width="1.5" stroke-miterlimit="10"/>
+                                                        <path d="M24.2998 59.1001V54.9002L27.8608 51.3392C28 51.1996 28.1103 51.034 28.1855 50.8517C28.2607 50.6695 28.2992 50.4743 28.2988 50.2771V34.3772C28.2786 31.4012 28.8571 28.4516 29.9996 25.7036C31.1422 22.9557 32.8256 20.4655 34.9498 18.3812C38.2858 15.1592 43.1488 12.5042 50.1298 12.5042C57.4288 12.5042 62.3698 15.4382 65.6578 18.8972C69.5733 23.0755 71.736 28.5971 71.6998 34.3232V49.9232C71.7001 50.2974 71.8403 50.658 72.0928 50.9341L75.8998 55.1012V58.9201L24.2998 59.1001Z" stroke="#5E81F4" stroke-width="1.5" stroke-miterlimit="10"/>
+                                                        <path d="M46.2995 12.5012C46.2995 12.5012 46.0985 7.70117 50.1005 7.70117C54.1025 7.70117 53.6015 12.5012 53.6015 12.5012C51.1713 12.3103 48.7298 12.3103 46.2995 12.5012V12.5012Z" stroke="#5E81F4" stroke-width="1.5" stroke-miterlimit="10"/>
+                                                        <path d="M37 37.0001C37.2189 38.3136 38.3134 40.9404 40.9403 40.9404C43.5672 40.9404 44.4428 38.3136 44.5522 37.0001" stroke="#5E81F4" stroke-width="1.5"/>
+                                                        <path d="M55.4482 37.3434C55.6671 38.6569 56.7617 41.2837 59.3885 41.2837C62.0154 41.2837 62.891 38.6569 63.0005 37.3434" stroke="#5E81F4" stroke-width="1.5"/>
+                                                        <path d="M46.2241 46.1942H54.7614" stroke="#5E81F4" stroke-width="1.5"/>
+                                                        </g>
+                                                        <g opacity="0.7">
+                                                        <rect x="15.249" y="11.9286" width="6.9" height="1.19" rx="0.595" fill="#5E81F4"/>
+                                                        <rect x="14.5283" y="18.5962" width="9.52354" height="1.19" rx="0.595" transform="rotate(-44 14.5283 18.5962)" fill="#5E81F4"/>
+                                                        <rect x="21.3301" y="19.3499" width="6.70264" height="1.19" rx="0.595" transform="rotate(-180 21.3301 19.3499)" fill="#5E81F4"/>
+                                                        <rect x="1.16309" y="0.994141" width="11.6403" height="1.68785" rx="0.843925" fill="#5E81F4"/>
+                                                        <rect y="12.6892" width="16.5393" height="1.68785" rx="0.843925" transform="rotate(-45 0 12.6892)" fill="#5E81F4"/>
+                                                        <rect x="11.7246" y="13.8826" width="11.6403" height="1.68785" rx="0.843925" transform="rotate(-180 11.7246 13.8826)" fill="#5E81F4"/>
+                                                        </g>
+                                                        </svg>
+                                                        <div class="md:mt-8">
+                                                            No notifications yet!
+                                                        </div>
+
+                                            </div>
                                             <!-- <a
                                                 class="flex cursor-pointer py-2 px-4 hover:bg-gray-200 items-center py-2"
                                                 v-for="i in 10"
@@ -196,7 +225,7 @@
                                                 class="w-full text-gray-600 bg-gray-50 rounded-lg border-gray-200 text-xs py-1 focus:outline-none px-4 "
                                             >
                                                 <optgroup class="py-2 font-semibold capitalize " v-for="category in categories" :key="category.index" :label="category.category_name">
-                                                    <option :value="sub_category.id" class="py-3 hover:bg-green-100" v-for="sub_category in category.sub_categorys">
+                                                    <option :value="sub_category.id" class="py-3 hover:bg-green-100" :key="sub_category.id" v-for="sub_category in category.sub_categorys">
                                                         <span class="py-2">
                                                             {{sub_category.sub_category_name}}
                                                         </span>
@@ -233,10 +262,11 @@
                                             </form>
                                         </div>
                                     </div>
-                                    <div class="col-span-4 flex justify-center">
+                                    <div style="" class="col-span-4 flex justify-center">
                                         <img
                                             :src="icon_calendar"
-                                            class="h-40 "
+                                            style=""
+                                            class="h-40 w-40 "
                                             alt=""
                                         />
                                     </div>
@@ -436,6 +466,7 @@
 
                             <modal
                                 id="profile-setting"
+                                class=""
                                 v-show="showProfileSetting"
                             >
                                 <template v-slot:content>
@@ -443,8 +474,8 @@
                                         class="flex  items-center justify-center h-screen w-screen"
                                     >
                                         <div
-                                            style=""
-                                            class="py-8 px-6 w-2/6 rounded-xl bg-white"
+                                            style="height:500px;"
+                                            class="py-8 px-6 w-2/6  overflow-y-auto  rounded-xl bg-white"
                                         >
                                             <div
                                                 class="flex justify-between items-center"
@@ -484,25 +515,54 @@
                                                 <div
                                                     class="py-8 flex justify-center"
                                                 >
-                                                    <img
-                                                        :src="icon_ayam"
+                                                    <div class="relative">
+                                                        <!-- [form.user.avatar == null ? user.photos == '' ? icon_ayam  : '/avatar/'+user.photos : form.user.avatar] -->
+                                                        
+                                                        <img
+                                                        v-if="avatar"
+                                                        :src="avatarUrl"
                                                         class="w-24 h-24 rounded-full"
                                                         alt=""
-                                                    />
+                                                        />
+                                                        <img
+                                                        v-else
+                                                        :src="[user.photos != '' ? '/avatars/'+user.photos : icon_ayam]"
+                                                        class="w-24 h-24 rounded-full"
+                                                        alt=""
+                                                        />
+                                                        <input @change="changeAvatar" type="file" ref="avatar" class="absolute opacity-0 w-full h-full top-0 left-0">
+                                                    </div>
                                                 </div>
                                                 <div class="py-2">
                                                     <label
                                                         for=""
                                                         class="block mb-2 capitalize"
                                                     >  
-                                                        Name
+                                                        firstname
                                                         
                                                     </label>
 
                                                     <input
                                                         style="border-width:1px;"
                                                         type="text"
-                                                        v-model="form.user.name"
+                                                        v-model="form.user.firstname"
+                                                        class="px-4 py-2 w-full rounded-xl outline-none border-gray-300 focus:border-blue-300"
+                                                    />
+                                                </div>
+
+                                                 <div class="py-2">
+                                                    <label
+                                                        for=""
+                                                        class="block mb-2 capitalize"
+                                                    >  
+                                                        lastname
+                                                        
+                                                    </label>
+
+                                                    <input
+                                                        style="border-width:1px;"
+                                                        type="text"
+                                                        v-model="form.user.lastname"
                                                         class="px-4 py-2 w-full rounded-xl outline-none border-gray-300 focus:border-blue-300"
                                                     />
                                                 </div>
@@ -515,21 +575,33 @@
                                                     </label>
 
                                                     <input
+                                                        disabled="true"
                                                         style="border-width:1px;"
                                                         v-model="form.user.email"
                                                         type="text"
                                                         class="px-4 py-2 w-full rounded-xl outline-none border-gray-300 focus:border-blue-300"
                                                     />
                                                 </div>
+
                                                 <div class="py-2">
-                                                    <label
+                                                    <div class="flex justify-between">
+                                                        <label
                                                         for=""
                                                         class="block mb-2 capitalize"
                                                     >
                                                         password
                                                     </label>
+                                                    
+                                                    <span v-show="editPassword == false" @click="editPassword = !editPassword" class="text-blue-500 cursor-pointer text-xs">
+                                                        Edit password
+                                                    </span>
+                                                    <span class="text-red-500" v-show="editPassword == true" @click="editPassword = !editPassword">
+                                                        close edit password
+                                                    </span>
+                                                    </div>
 
                                                     <input
+                                                        :disabled="editPassword == false"
                                                         style="border-width:1px;"
                                                         type="password"
                                                         v-model="form.user.password"
@@ -547,6 +619,7 @@
                                                     <input
                                                         style="border-width:1px;"
                                                         placeholder="Verrandy"
+                                                        :disabled="editPassword == false"
                                                         v-model="form.user.password_confirmation"
                                                         @keydown="password_confirmation"
                                                         
@@ -562,12 +635,13 @@
                                                 <div
                                                     class="flex items-center justify-end"
                                                 >
-                                                    <a
+                                                    <button
+                                                        :disabled="correctPassword"
                                                         @click="updateUser()"
                                                         class="uppercase cursor-pointer rounded-2xl font-bold bg-blue-400 hover:bg-blue-500 text-white py-2 px-6"
                                                     >
                                                         save
-                                                    </a>
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -578,7 +652,7 @@
                             <div class="flex items-center">
                                 <div class="w-12 flex items-center h-12">
                                     <img
-                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWTnqL32A0v5-KSy4vhh8wbfOKWnjAfG1duA&usqp=CAU"
+                                        :src="user.photos != '' ? '/avatars/'+user.photos : icon_ayam"
                                         class="w-full h-full rounded-full"
                                         alt=""
                                     />
@@ -1264,6 +1338,7 @@ export default {
     data() {
         return {
             modalCategoryGroup: false,
+            notCorrectPassword: false,
             faqGoals: faqGoals,
             brand: brand,
             showProfileSetting: false,
@@ -1275,9 +1350,12 @@ export default {
             showProfileMenu: false,
             showMenuHelper: false,
             showNotif: false,
+            avatar: null,
+            avatarUrl : null,
             filterCategoryByMonth: null,
             showSubCategoryDetail: false, 
             budgeted:[],
+            editPassword: false,
             showGoals : false,
             activity:[],
             coba: '2019-20-11',
@@ -1306,8 +1384,10 @@ export default {
                     sub_category:null,
                 },
                 user: {
-                    name: null,
+                    firstname: null,
+                    lastname: null,
                     email: null,
+                    photos: null,
                     password: null,
                     password_confirmation: null,
 
@@ -1340,6 +1420,10 @@ export default {
             //auth
             logout: 'user/logout',
         }),
+        changeAvatar() {
+            this.avatar = this.$refs.avatar.files[0];
+            this.avatarUrl = URL.createObjectURL(this.avatar);
+        },
         formatDate(value){
             const date = new Date(value);
             console.log(date);
@@ -1378,8 +1462,15 @@ export default {
             }
         },
         updateUser() {
-            const data = this.form.user
-            this.userUpdate(data)
+            const formData = new FormData()
+            formData.append('photos', this.avatar);
+            formData.append('firstname', this.form.user.firstname)
+            formData.append('lastname', this.form.user.lastname)
+            formData.append('password', this.form.user.password)
+            // const data = this.form.user
+            // data.photos = this.avatar
+            // console.log(data);
+            this.userUpdate(formData)
             .then(() => {
                 this.showProfileSetting = false
             })
@@ -1438,16 +1529,16 @@ export default {
          password_confirmation(key) {
 
             console.log(key);
-            if(this.form.user.password != this.form.user.password_confirmation) {
-                console.log("password salah");
-                this.error = "password confirmation incorrected"
-            }
-            else {
-                console.log('password benar');
-                console.log(this.error);
+            // if(this.form.user.password != this.form.user.password_confirmation) {
+            //     console.log("password salah");
+            //     this.error = "password confirmation incorrected"
+            // }
+            // else {
+            //     console.log('password benar');
+            //     console.log(this.error);
 
-                this.error = null;
-            }
+            //     this.error = null;
+            // }
         },
          updateChart() {
 
@@ -2074,7 +2165,7 @@ budget khusus untuk hal yang kamu inginkan.`
   
         
         this.updateSavingGoals()
-        this.showSubCategoryDetail();
+        
         
         
     },
@@ -2115,6 +2206,18 @@ budget khusus untuk hal yang kamu inginkan.`
             
 
 
+        }
+    },
+    watch:{
+        'form.user.password_confirmation': function(value) {
+            if(this.form.user.password != value) {
+                this.error = "Password not same"
+                this.notCorrectPassword = true
+            }
+            else {
+                this.error = null
+                this.notCorrectPassword = false 
+            }
         }
     }
 };

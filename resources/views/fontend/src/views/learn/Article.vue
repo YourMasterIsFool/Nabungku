@@ -9,6 +9,7 @@
                 <img :src="'/images/'+article.images_url" class="w-full h-auto rounded-xl" alt="">
                 <div id="content" class="text-gray-700 lg:py-20 md:py-16 py-8 md:px-6 px-4 md:text-sm lg:text-base text-xs ">
                     <div v-html="article.body" class="leading-8 text-justify"></div>
+                    
                 </div>
             </div>
           </div>

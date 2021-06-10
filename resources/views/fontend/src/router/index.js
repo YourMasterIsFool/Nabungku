@@ -19,6 +19,7 @@ import Quiz1 from '../views/feature/Quiz1.vue';
 import Quiz2 from '../views/feature/Quiz2.vue';
 import Quiz3 from '../views/feature/Quiz3.vue';
 import FeatureHome from '../views/feature/FeatureHome';
+import FeatureQuiz1 from '../views/feature/FeatureQuiz1.vue';
 
 //store
 import store from '../store';
@@ -122,6 +123,15 @@ const routers = [
                 meta: { title: 'Quiz 1'}
 
             },
+            {
+                path: 'feature-quiz1',
+                name: 'FeatureQuiz1',
+                component: FeatureQuiz1,
+                meta: {
+                    title: 'Feature Quiz 1'
+                }
+            },
+
              {   
                 path: 'quiz2',
                 name : 'quiz2',

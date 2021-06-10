@@ -3,7 +3,7 @@
         <div
             v-show="showDashboard"
             style="height:100px"
-            class="h-full lg:items-center px-4 md:px-6 md:flex md:justify-center w-full"
+            class="h-full bg-transparent lg:items-center px-4 md:px-6 md:flex md:justify-center w-full"
         >
             <div
                 class="md:w-3/4 w-full h-full flex items-center justify-between"

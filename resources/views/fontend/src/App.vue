@@ -1,10 +1,10 @@
 <template>
     <div id="app">
-        <div v-show="homepage" class="bg-white w-full transition-property: height duration-300" :class="[stickyNavbar? 'shadow-md fixed z-20 ' : '']" :style="[stickyNavbar? {'height': '80px'} : {'height': '100px'}]" id="navigation">
+        <div v-show="homepage" class=" fixed w-full z-20  transition-property: height duration-300" :class="[stickyNavbar? 'shadow-md bg-white  ' : 'bg-transparent']" :style="[stickyNavbar? {'height': '80px'} : {'height': '100px'}]" id="navigation">
             <navigation></navigation>
         </div>
 
-        <div id="main-content" class="px-4 md:px-0">
+        <div id="main-content" class=" md:px-0 ">
             <router-view></router-view>
             <Auth v-if="$store.state.auth.showAuth"></Auth>
         </div>

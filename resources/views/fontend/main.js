@@ -12,7 +12,7 @@ import CKEditor from '@ckeditor/ckeditor5-vue2';
 
 Vue.prototype.$moment = moment
 
-
+axios.defaults.baseURL = "http://localhost:8000/"
 require('./src/store/subscriber');
 
 Vue.use( CKEditor );

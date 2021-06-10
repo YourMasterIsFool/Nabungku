@@ -1,9 +1,9 @@
 <template>
-    <div id="about">
+    <div id="about" class="md:py-20 py-12">
     	
     	<div class="w-full flex flex-col items-center ">
     		<div class="w-3/4 md:px-8 px-4">
-    			<div class="grid grid-cols-2 gap-8 py-20 ">
+    			<div class="grid grid-cols-2 gap-8 ">
 		    		<div class="text-left flex flex-col justify-center">
 		    			<h1 class="font-bold mb-4 text-3xl">
 		    				Apasih Nabung Yuk 

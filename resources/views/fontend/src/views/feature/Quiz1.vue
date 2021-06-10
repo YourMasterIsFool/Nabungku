@@ -1,5 +1,5 @@
 <template>
-	<div class="w-full flex flex-col items-center">
+	<div  class="w-full flex flex-col items-center">
 		<div class="w-2/4 py-24">
 			<h1 class="text-2xl text-center font-bold">
 				Per bulannya, aku menyisihkan 

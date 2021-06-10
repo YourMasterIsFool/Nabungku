@@ -49,17 +49,46 @@ class AuthController extends Controller
 
     public function editUser(Request $request) {
         
-
-
-        if($request->filled('password')) {
-            User::where('id', $request->user()->id)->update([
-            'name' => $request->input('name'),
-            'password' => Hash::make($request->input('password')),
-        ]);
+        $filename = '';
+        $photos = $request->file('photos');
+        
+        if($photos) {
+            $filename = now().str_replace(' ','_', $photos->getClientOriginalName());
+            $photos->move(public_path('avatars'), $filename);
         }
+      
+        
+
+        if($request->input('password') != null) {
+           if($request->file('photos') == null) {
             User::where('id', $request->user()->id)->update([
-                'name' => $request->input('name'),
+                'firstname' => $request->input('firstname'),
+                'lastname' => $request->input('lastname'),
+                'password' => Hash::make($request->input('password')),
             ]);
+           }
+           else{
+            User::where('id', $request->user()->id)->update([
+                'firstname' => $request->input('firstname'),
+                'photos' => $filename,
+                'lastname' => $request->input('lastname'),
+                'password' => Hash::make($request->input('password')),
+            ]);
+           }
+        }
+            if($request->file('photos')){
+                User::where('id', $request->user()->id)->update([
+                    'firstname' => $request->input('firstname'),
+                    'lastname' => $request->input('lastname'),
+                    'photos' => $filename
+                ]);
+            }
+            else {
+                User::where('id', $request->user()->id)->update([
+                    'firstname' => $request->input('firstname'),
+                    'lastname' => $request->input('lastname'),
+                ]);
+            }
 
         $user = User::findOrFail($request->user()->id);
         return response()->json([

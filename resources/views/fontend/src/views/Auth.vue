@@ -134,7 +134,7 @@
 						<div class="bg-white p-4 overflow-hidden rounded-2xl shadow-md">
 							<Tabs ref="tabs" class="w-full" :items="tabs">
 							
-								<tabs-item name="login"" class="transition-all duration-500" >
+								<tabs-item name="login" class="transition-all duration-500" >
 									<Login></Login>
 								</tabs-item>
 								<tabs-item name="register" class="transition-all duration-500" >

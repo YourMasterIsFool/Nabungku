@@ -34,9 +34,10 @@ export default {
         },
 
         login({ commit, dispatch }, data) {
+            console.log(data);
             return new Promise((resolve, reject) => {
                 axios
-                    .post("api/login", data)
+                    .post("api/login/", data)
                     .then(res => {
                         commit(SET_USER, res.data.data.user_detail);
                         dispatch("attempt", res.data.data.token);
@@ -47,7 +48,7 @@ export default {
                         if (err.response) {
                             reject(err.response.data);
                         } 
-                        console.log(err);
+                        console.log(err.response);
                     });
             });
         },
@@ -80,14 +81,19 @@ export default {
 
         update({commit}, data) {
             return new Promise((resolve, reject) => {
-                axios.post('api/edit_user', data)
+                axios.post('api/edit_user', data, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
                 .then((res) => {
                     commit(SET_USER, res.data.data);
-
+                    console.log(data)
+                    console.log(res)
                     resolve(res)
                 })
                 .catch((err) => {
-                    console.log(err.response);
+                    console.log(err.response.data);
                 }) 
             })
         } 

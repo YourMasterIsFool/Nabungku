@@ -132,7 +132,7 @@
                                         add
                                     </a>
                                 </div>
-                            </form>
+                            
                         </div>
                     </div>
                     <a  v-show="dropdownSubCategory||selectedCategory" @click="deleteSelectSub" style="border-width: 1px;" class="text-xs py-1 px-2 cursor-pointer rounded-2xl  ml-12 font-normal text-red-400 border-red-400">
@@ -147,11 +147,11 @@
             </div>
         </div>
         <div class="relative" ref="subDetail"   :key="
-        sub_category" v-for="(sub_category, index) in item.sub_categorys">
+        sub_category.id" v-for="(sub_category, index) in item.sub_categorys">
                 <div @click.prevent="$emit('open_sub_detail', sub_category.id)" class="absolute top-0 w-full h-full">
 
                 </div>
-                <div id="modal-activity" style="z-index: 10; display: none;" ref="showActivity" class="absolute shadow-md rounded-2xl overflow-hidden bg-white p-4">
+                <div id="modal-activity" style="z-index: 10;" v-show="selectedModalActivity == index"  ref="showActivity" class="absolute shadow-md rounded-2xl overflow-hidden bg-white p-4">
                     <simple-modal >
                         <template #content>
                             <div class="pb-4 px-2">
@@ -177,7 +177,7 @@
                                 </thead>
                                 
                                 <tbody>
-                                    <tr class="pb-2" :key="activity" v-for="activity in activities">
+                                    <tr class="pb-2" :key="activity.id" v-for="activity in activities">
                                     <td style="" width="200">
                                         <span class="flex text-xs text-gray-600 items-center">
                                             {{activity.created_at}}
@@ -260,6 +260,7 @@ export default {
             dropdownSubCategory: false,
             showActivity: false,
             activities: null,
+            selectedModalActivity: null,
             modalSubCategoryName: false,
 
             form: {
@@ -412,14 +413,6 @@ export default {
                 this.error = null;
                 this.showSubCategory = false;
             }
-  
-          for(let i=0; i < refs.length; i++ ) 
-            {   
-                 if (refs[i] !== target && !refs.contains(target)) {
-                        refs[i].style.display = 'none';
-                    }
-                
-            } 
 
 
         },
@@ -441,15 +434,17 @@ export default {
             });  
         },
           showModalActivity(index, sub_id, event) {
+            this.selectedModalActivity = index;
             this.activities = this.activitiesBySub(sub_id);
+            console.log(this.activitiesBySub(sub_id));
             const refs = this.$refs.showActivity;
             console.log(refs);
             console.log('open_modal');
 
-            for(let i=0; i < refs.length; i++ ) 
-            {
-                refs[i].style.display = 'none';
-            }
+            // for(let i=0; i < refs.length; i++ ) 
+            // {
+            //     refs[i].style.display = 'none';
+            // }
 
             this.$refs.showActivity[index].style.display = "block" ; 
 

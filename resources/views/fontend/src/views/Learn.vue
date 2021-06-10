@@ -1,5 +1,5 @@
 <template>
-  <div id="learn">
+  <div id="content" class="md:py-20 py-12">
       <router-view>
           
       </router-view>

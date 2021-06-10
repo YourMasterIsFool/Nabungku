@@ -1,5 +1,5 @@
 <template>
-    <div id="home">
+    <div id="home" class="md:py-20 py-12">
         <Register
             v-show="showRegister"
             @close="showRegister = false"

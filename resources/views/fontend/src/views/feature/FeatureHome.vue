@@ -1,5 +1,5 @@
 <template>
-    <div id="features">
+    <div id="features" class="">
         <div id="hero" class="w-full  md:flex pt-8 justify-center ">
             <div class="md:w-3/4 w-full flex flex-col items-center">
                 <h1
@@ -15,22 +15,24 @@
                 </h2>
                 <div class="grid grid-cols-3 gap-8">
                     <card-vue
-                        v-for="(item) in 3"
-                        :key="item"
-                        class="bg-gray-100 shadow-xl p-8 rounded-xl hover:shadow-2xl transition-all duration-300"
+                        v-for="(quis) in quises"
+                        :key="quis.id"
+                        class="hover:bg-gray-100 shadow-xl p-8 rounded-xl hover:shadow-2xl transition-all duration-300"
                     >
                         <template v-slot:content>
                             <div class="flex flex-col items-center">
-                                <div class="image lg:mb-8 md:mb-6 mb-4">
-                                    <img :src="notes" alt="" />
-                                </div>
-                                <p
-                                    class="text-center lg:mb-6 md:mb-4 mb-2 text-base font-semibold"
-                                >
-                                    Quiz {{ item }}
-                                </p>
+                               <div class="h-48 md:mb-12">
+                                    <div class="image lg:mb-8 md:mb-6 mb-4">
+                                        <img :src="quis.image" class="md:h-32" alt="" />
+                                    </div>
+                                    <p
+                                        class="text-center h-2 lg:mb-6 md:mb-4 mb-2 text-base font-semibold"
+                                    >
+                                        {{quis.name}}
+                                    </p>
+                               </div>
                                 <a
-                                    @click="$router.push('/feature/quiz'+item).catch(()=> {})"
+                                    @click="$router.push('/feature/feature-quiz'+1).catch(()=> {})"
                                     class="py-2 text-sm px-12 rounded-3xl  bg-blue-400 hover:bg-blue-500 duration-300 transition-all text-white"
                                 >
                                     Coba Quiz
@@ -376,6 +378,10 @@
 <script>
 import notes from "../../assets/images/notes.png";
 import FormatRupiah from '../../components/FormatRupiah';
+import quisimage1 from '../../assets/images/quis1.png';
+import quisimage2 from '../../assets/images/quis2.png';
+import quisimage3 from '../../assets/images/quis3.png';
+
 import CardVue from "../../components/Card.vue";
 export default {
     components: {
@@ -385,6 +391,26 @@ export default {
     data() {
         return {
             notes: notes,
+            quises: [
+                {   
+                    id: 1,
+                    name: 'Tipe Kepribadian Finansial',
+                    image: quisimage1,
+                }
+                ,
+                 {   
+                     id: 2,
+                    name: 'Kemampuan Mengelola Keuangan',
+                    image: quisimage2,
+                }
+                ,
+                 {   
+                     id: 3,
+                    name: 'Gaya Menabung',
+                    image: quisimage3,
+                }
+                
+            ],
             
             goals: {
                 start_balance: 0,
