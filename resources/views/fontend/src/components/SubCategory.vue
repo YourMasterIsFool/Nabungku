@@ -202,7 +202,6 @@ export default {
 
             }
             else {
-                 this.isSelect = false;
                  this.showModalBudgeted = false; 
                  this.showModalActivity= false;
                  this.showModalAvailable= false;

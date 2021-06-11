@@ -161,13 +161,15 @@
                         <p
                             class="text-center md:mb-8 lg:mb-12 mb-4 text-gray-700 lg:text-base md:text-sm text-xs"
                         >
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit ut aliquam, purus sit amet luctus venenatis,
-                            lectus magna fringilla urna
+                            Saving isn't hard. Nabung bukan berarti harus hidup 
+                            hemat, selama kamu tau cara gunain uang yang benar 
+                            dengan bantuan platform yang mendukung, dijamin deh 
+                            ga lagi bokek ditanggal tua!
                         </p>
                         <div class="flex justify-center">
                             <a
-                                @click="showRegister = true"
+
+                                @click="$store.state.auth.showAuth = true, $store.state.auth.selectedIndex = 1"
                                 class="md:px-8 text-sm capitalize cursor-pointer font-semibold rounded-3xl lg:px-12 px-8  lg:py-4 py-3 lg:text-base md:text-sm text-xs bg-indigo-600 hover:bg-indigo-500 transition-all duration-300 text-white"
                             >
                                 get started

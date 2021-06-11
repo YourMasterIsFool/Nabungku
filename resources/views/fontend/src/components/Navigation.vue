@@ -53,7 +53,7 @@
                     </a>
                     <button
                         @click="$store.state.auth.showAuth = true, $store.state.auth.selectedIndex = 1"
-                        class="px-6 mx-2 cursor-pointer font-semibold border-2 hover:border-none text-blue-400 hover:text-white transition-all duration-300 rounded-2xl py-2 bg-none text-black text-sm capitalize"
+                        class="px-6 mx-2 cursor-pointer font-semibold border-2 hover:border-none text-white bg-blue-500 hover:text-white transition-all duration-300 rounded-2xl py-2 bg-none text-black text-sm capitalize"
                        
                     >
                         sign up

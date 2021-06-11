@@ -707,7 +707,7 @@
                                 >
                                     <li v-for="row in budgets" :key="row.id">
                                         <a
-                                            @click="fetchCategory(row.id)"
+                                            @click="fetchCategory(row.id), showProfileMenu = false"
                                             class="py-4 cursor-pointer flex px-4 items-center block hover:bg-gray-200"
                                             ><span class="">
                                                 <svg

@@ -1,9 +1,9 @@
 <template>
     <div id="features" class="">
-        <div id="hero" class="w-full  md:flex pt-8 justify-center ">
+        <div id="hero" class="w-full  md:flex py-20 md:py-28 justify-center ">
             <div class="md:w-3/4 w-full flex flex-col items-center">
                 <h1
-                    class="text-3xl text-center font-bold mb-4 md:mb-6 lg:mb-20"
+                    class="text-3xl text-center font-bold mb-4 md:mb-6 lg:mb-12"
                 >
                     Quiz
                 </h1>
@@ -111,11 +111,11 @@
                                 </div>
                             </div>
 
-                            <button v-show="showAmount" @click="calculateAmount()" class="mt-16 px-8 py-3 rounded-lg bg-purple-600 text-white">
+                            <button v-show="showAmount" @click="calculateAmount()" class="mt-16 px-8 py-3 rounded-lg bg-purple-500 text-white hover:text-white">
                                 Hitung
                             </button>
 
-                             <button v-show="showAmount == false" @click="showAmount=true" class="mt-16 px-8 py-3 text-xl font-bold rounded-lg text-indigo-400">
+                             <button v-show="showAmount == false" @click="showAmount=true" class="mt-16 px-8 py-3 text-xl font-bold rounded-lg text-indigo-400 hover:bg-indigio-400 hover:text-white">
                                 Hitung Ulang
                             </button>
                         </div>

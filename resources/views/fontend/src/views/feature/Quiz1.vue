@@ -6,7 +6,7 @@
 				uang untuk ditabung sebesar...
 			</h1>
 			<div class="mt-4 grid grid-cols-2 gap-6">
-				<div class="p-8 cursor-pointer hover:shadow-lg bg-yellow-200 rounded-2xl text-center" v-for="quiz in quizes">
+				<div :key="index" class="p-8 cursor-pointer hover:shadow-lg bg-yellow-200 rounded-2xl text-center" v-for="(quiz, index) in quizes">
 					{{quiz.title}}
 				</div>
 			</div>
