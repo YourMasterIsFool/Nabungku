@@ -57,9 +57,7 @@ class AuthController extends Controller
             $photos->move(public_path('avatars'), $filename);
         }
       
-        
-
-        if($request->input('password') != null) {
+        if($request->filled('password')) {
            if($request->file('photos') == null) {
             User::where('id', $request->user()->id)->update([
                 'firstname' => $request->input('firstname'),
@@ -76,6 +74,7 @@ class AuthController extends Controller
             ]);
            }
         }
+        else {
             if($request->file('photos')){
                 User::where('id', $request->user()->id)->update([
                     'firstname' => $request->input('firstname'),
@@ -89,8 +88,10 @@ class AuthController extends Controller
                     'lastname' => $request->input('lastname'),
                 ]);
             }
+        }
 
         $user = User::findOrFail($request->user()->id);
+        // $request->input('password')
         return response()->json([
             'data' => $user
         ]);

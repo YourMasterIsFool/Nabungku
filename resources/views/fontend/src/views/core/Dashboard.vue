@@ -488,7 +488,8 @@
 
                                                 <a
                                                     @click="
-                                                        showProfileSetting = false
+                                                        showProfileSetting = false,
+                                                        editPassword = false
                                                     "
                                                     class="cursor-pointer hover:text-gray-800 duration-300 transition-all text-gray-700"
                                                 >
@@ -636,10 +637,10 @@
                                                     class="flex items-center justify-end"
                                                 >
                                                     <button
-                                                        :disabled="correctPassword"
+                                                        :disabled="notCorrectPassword"
                                                         @click="updateUser()"
                                                         class="uppercase cursor-pointer rounded-2xl font-bold bg-blue-400 hover:bg-blue-500 text-white py-2 px-6"
-                                                    >
+                                                    >   
                                                         save
                                                     </button>
                                                 </div>
@@ -666,7 +667,8 @@
                                     </p>
                                 </div>
                             </div>
-                            <a
+                          <div ref="profileMenu">
+                                <a
                                 class="cursor-pointer transition-all duration-500 "
                                 :style="[
                                     showProfileMenu
@@ -674,11 +676,12 @@
                                         : { transform: 'rotate(180deg)' }
                                 ]"
                                 @click="showProfileMenu = !showProfileMenu"
-                                ref="profileMenu"
+                                
                             >
                                 <i class="fas fa-chevron-down"> </i>
                             </a>
                             <div
+                                
                                 :style="[
                                     showProfileMenu
                                         ? {
@@ -810,6 +813,7 @@
                                     </li>
                                 </ul>
                             </div>
+                          </div>
                         </div>
                         <div ref="subCategoryDetail"  v-if="$store.state.modal.showSubCategoryDetail" class=" mt-4 md:mt-8 relative  bg-gray w-full h-full">
              
@@ -1463,16 +1467,25 @@ export default {
         },
         updateUser() {
             const formData = new FormData()
+
+            if(this.form.user.password != undefined || this.form.user.password != null)
+            {
+                formData.append('password', this.form.user.password);
+            }
             formData.append('photos', this.avatar);
             formData.append('firstname', this.form.user.firstname)
             formData.append('lastname', this.form.user.lastname)
-            formData.append('password', this.form.user.password)
+            
+
             // const data = this.form.user
             // data.photos = this.avatar
             // console.log(data);
+            // console.log(this.form.user.password);
             this.userUpdate(formData)
-            .then(() => {
+            .then((resp) => {
                 this.showProfileSetting = false
+                this.editPassword = false
+                console.log(resp)
             })
         },
         userLogout() {
@@ -1776,9 +1789,12 @@ budget khusus untuk hal yang kamu inginkan.`
              let subCategoryDetail = this.$refs.subCategoryDetail;
             
             let target = event.target;
+            
 
-            if (profile_menu !== target && !profile_menu.contains(target)) {
-                this.showProfileMenu = false
+            if(profile_menu != undefined) {
+                 if (profile_menu !== target && !profile_menu.contains(target)) {
+                    this.showProfileMenu = false
+                }
             }
 
             
@@ -2159,9 +2175,9 @@ budget khusus untuk hal yang kamu inginkan.`
         // new Chart(pieChart, this.dataChart);
         
 
-            
+      
 
-        
+         document.addEventListener('click', this.closeModal);
   
         
         this.updateSavingGoals()
@@ -2173,7 +2189,10 @@ budget khusus untuk hal yang kamu inginkan.`
           if (this.budgets.length == 0) {
                 this.fetchData();
             }
-
+            
+            if(this.$route.name == 'Dashboard') {
+                
+            }
             this.fetchCategoryData(localStorage.getItem("budget_id"));
          
             const dateNow = this.$moment().format('YYYY-MM');
@@ -2185,7 +2204,7 @@ budget khusus untuk hal yang kamu inginkan.`
         
         this.updateChart();
 
-        document.addEventListener('click', this.closeModal);
+       
     },
     mixins: [BudgetDetail],
 
