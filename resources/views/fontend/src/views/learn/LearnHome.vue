@@ -116,7 +116,7 @@
                 </div>
             </div>
         </section>
-        <editor-plugin :categorys="cat_materis"></editor-plugin>
+        <!-- <editor-plugin :categorys="cat_materis"></editor-plugin> -->
     </div>
     
 </template>
@@ -169,7 +169,7 @@ export default {
     },
     mounted(){
          if (this.cat_materis == null) {
-            axios.get('api/category_pembelajaran')
+            axios.get('api/category_pembelajaran', )
             .then((resp) => {
                 this.cat_materis = resp.data.data;
                 console.log(this.cat_materis);
@@ -177,7 +177,11 @@ export default {
         }
 
         if(this.materiData.materis.length == 0) {
-            axios.get('api/materi_pembelajaran')
+            axios.get('api/materi_pembelajaran', {
+                params: {
+                    "limit": this.limit
+                }
+            })
             .then((resp) => {
                 this.materiData = resp.data.data
                 console.log(resp);
@@ -192,8 +196,15 @@ export default {
         selectCategory(index, id) {
             this.selectedCatIndex = index;
             this.selectedCatId = id;
+            
             if(id == 1) {
-                 axios.get('api/materi_pembelajaran')
+                 axios.get('api/materi_pembelajaran',
+                    {
+                        params: {
+                            "limit": this.limit
+                        }
+                    }
+                 )
                 .then((resp) => {
                      this.materiData = resp.data.data
                  })
@@ -205,7 +216,8 @@ export default {
             else {
                 axios.get('api/materi_pembelajaran', {
                     params: {
-                        'cat_id': id
+                        'cat_id': id,
+                      "limit": this.limit
                     }
                 })
                 .then((resp) => {
@@ -222,7 +234,8 @@ export default {
            if(this.selectedCatId == 1) {
                 axios.get('api/materi_pembelajaran', {
                     params: {
-                        'page': this.page
+                        'page': this.page,
+                        "limit": this.limit
                     }
                 })
                 .then((resp) => {
@@ -237,7 +250,8 @@ export default {
                 axios.get('api/materi_pembelajaran', {
                     params: {
                         'cat_id': this.selectedCatId,
-                        'page': this.page
+                        'page': this.page,
+                        "limit": this.limit
                     }
                 })
                 .then((resp) => {

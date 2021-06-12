@@ -15,7 +15,7 @@ class MateriPembelajaranController extends Controller
      */
     public function index(Request $request)
     {
-        $limit = 6;
+        $limit = $request->input('limit');
         $materi = MateriPembelajaran::select('id', 'title', 'images_url')
         ->limit($limit)
         ->get();

@@ -120,7 +120,28 @@
             <div
                 class="md:gap-4 lg:mb-12  relative lg:gap-10 gap-6 grid grid-cols-1"
             >
-                <div class="grid  grid-cols-4 ml-56">
+                <div class="ml-52 grid grid-cols-4 gap-6">
+                    <div v-for="(materi) in materis.slice(0,4)" class="cursor-pointer transition-all duration-500 hover:shadow-lg" @click="$router.push({ name: 'LearnArticle', params:{ article_id: materi.id}})" :key="materi.id">
+                        <div class="relative  flex flex-col justify-end items-center" style="height:140px;">
+                            <img :src="'/images/'+materi.images_url" class="absolute rounded-xl hover:shadow-md w-full h-full -z-1 top-0" alt="">
+                            <span class="text-xs text-gray-800 mb-4" style="z-index: 10;">
+                                {{materi.title.slice(0,20)}} ...
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mr-52 grid grid-cols-4 gap-6">
+                    <div v-for="(materi) in materis.slice(5,9)" class="cursor-pointer transition-all duration-500 hover:shadow-lg" @click="$router.push({ name: 'LearnArticle', params:{ article_id: materi.id}})"  :key="materi.id">
+                        <div class="relative  flex flex-col justify-end items-center " style="height:140px;">
+                            <img :src="'/images/'+materi.images_url" class="absolute rounded-xl hover:shadow-md w-full h-full -z-1 top-0" alt="">
+                            <span class="text-xs text-gray-800 mb-4" style="z-index: 10;">
+                                {{materi.title.slice(0,20)}} ...
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="grid  grid-cols-4 ml-56">
                     <div class="w-60 h-32 rounded-xl bg-red-100"></div>
                     <div class="w-60 h-32 rounded-xl bg-red-200"></div>
                     <div class="w-60 h-32 rounded-xl bg-blue-200"></div>
@@ -131,12 +152,14 @@
                     <div class="w-60 h-32 rounded-xl bg-red-400"></div>
                     <div class="w-60 h-32 rounded-xl bg-blue-300"></div>
                     <div class="w-60 h-32 rounded-xl bg-blue-200"></div>
-                </div>
+                </div> -->
             </div>
             <div class="w-full flex justify-center">
                 <a
-                    href=""
-                    class="text-center capitalize text-blue-500 hover:text-blue-400  duration-300 transition-colors"
+                    @click="$router.push({
+                        path:'/learn'
+                    })"
+                    class="text-center cursor-pointer capitalize text-blue-500 hover:text-blue-400  duration-300 transition-colors"
                 >
                     lihat semua
                 </a>
@@ -218,6 +241,7 @@ export default {
             showLogin: false,
             desc2_img: desc2_1,
             desc3_img: desc3_img,
+            materis: [],
             description1: [
                 {
                     img: des1,
@@ -256,10 +280,28 @@ export default {
            ] 
         };
     },
+    mounted(){
+        this.fetchMateri()
+    },
     methods: {
         imageChange(id) {
             this.desc2_img = this.desc2[id].img;
+        },
+        fetchMateri() {
+            axios.get('api/materi_pembelajaran')
+            .then((resp) => {   
+                this.materis = resp.data.data.materis
+                console.log(this.materis);
+            })
+            .catch((err)=> {
+                console.log(err);
+            })
+        },
+        truncateText(text){
+
+            return text.slice
         }
+ 
     },
     components: {
         Card,
