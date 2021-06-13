@@ -36,7 +36,7 @@ export default {
     },
     methods: {
         scrollingDown(event) {
-            if(window.scrollY > 50) {
+            if(window.scrollY > 30) {
                 this.stickyNavbar = true
             }
             else {

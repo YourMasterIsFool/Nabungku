@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import Home from "../views/Home.vue";
 import Learn from "../views/Learn";
-import Register from "../views/Register.vue";
-import Login from "../views/Login.vue";
+// import Register from "../views/Register.vue";
+// import Login from "../views/Login.vue";
 import About from "../views/About";
 import Feature from "../views/Feature";
 

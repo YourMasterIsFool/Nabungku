@@ -1,5 +1,7 @@
 // axios.defaults.baseURL = "localhost:8000";
+
 const mix = require("laravel-mix");
+
 
 /*
  |--------------------------------------------------------------------------

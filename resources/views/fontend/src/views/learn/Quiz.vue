@@ -6,7 +6,7 @@
             Apa Yang kamu ingin perbaiki
           </h1>
           <div class="grid md:mt-8 mt-4 md:gap-x-16 md:gap-y-8 md:grid-cols-2 grid-cols-1">
-            <div :key="index" v-for="(quiz, index) in quises" class="bg-yellow-100 cursor-pointer rounded-xl h-24 w-full flex justify-center items-center">
+            <div @click="$router.push({ name: 'LearnResult'} )" :key="index" v-for="(quiz, index) in quises" class="bg-yellow-100 cursor-pointer rounded-xl h-24 w-full flex justify-center items-center">
               {{quiz.name}}
             </div>
            
