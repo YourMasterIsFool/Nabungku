@@ -21,7 +21,7 @@
                     >
                         <template v-slot:content>
                             <div class="flex flex-col items-center">
-                               <div class="h-48 md:mb-12">
+                               <div class="h-48 md:mb-12 flex flex-col items-center">
                                     <div class="image lg:mb-8 md:mb-6 mb-4">
                                         <img :src="quis.image" class="md:h-32" alt="" />
                                     </div>
@@ -33,7 +33,7 @@
                                </div>
                                 <a
                                     @click="$router.push('/feature/feature-quiz'+1).catch(()=> {})"
-                                    class="py-2 text-sm px-12 rounded-3xl  bg-blue-400 hover:bg-blue-500 duration-300 transition-all text-white"
+                                    class="py-1 text-sm px-8 rounded-3xl  bg-blue-400 hover:bg-blue-500 duration-300 transition-all text-white"
                                 >
                                     Coba Quiz
                                 </a>
@@ -217,7 +217,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div  id="pengeluaran" v-show="financial.pengeluaran.modal" class="p-12 rounded-2xl bg-red-100">
+                        <div  id="pengeluaran" v-show="financial.pengeluaran.modal" class="p-12 rounded-2xl bg-blue-100">
                             <h3
                                 class="capitalize text-lg block mb-4 md:mb-6"
                             >
@@ -295,7 +295,7 @@
                         </div>
 
 
-                        <div  id="calc-finansial" v-show="financial.modal" class="p-12 rounded-2xl bg-red-100">
+                        <div  id="calc-finansial" v-show="financial.modal" class="p-12 rounded-2xl bg-blue-100">
                              <h3
                                 class="capitalize text-lg block mb-4 md:mb-6"
                             >

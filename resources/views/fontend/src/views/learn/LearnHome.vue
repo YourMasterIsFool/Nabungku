@@ -124,7 +124,7 @@
 <script>
 import EditorPlugin  from '../../components/Editor.vue';
 import icon2 from "../../assets/images/icon2.png";
-import icon1 from '../../assets/images/icon_learn_1.png';
+import icon1 from '../../assets/images/learn_rev.png';
 import axios from 'axios';
 import Pagination from "../../components/Pagination.vue";
 export default {

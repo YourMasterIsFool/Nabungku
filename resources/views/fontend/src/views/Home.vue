@@ -10,11 +10,11 @@
             <div class="w-3/4 flex justify-center  relative">
                 <img
                     :src="hero1"
-                    style=""
-                    class="top-0 z-0  left-0 absolute w-full"
+                    style="height:95vh; "
+                    class="top-0 z-0 w-auto  left-0 absolute "
                     alt=""
                 />
-                <div class="w-3/5 z-10 text-center lg:mt-28 md:mt-20">
+                <div class="w-3/5 z-10 text-center md:mt-32">
                     <h1
                         class="block text-gray-900 font-bold md:mb-4 lg:mb-10 text-3xl"
                     >
@@ -47,17 +47,18 @@
             </h1>
             <div class="w-full md:w-3/4 flex-col items-center">
                 <div
-                    class="grid lg:grid-cols-4 lg:gap-12 md:grid-cols-2 gap-4 md:gap-6 "
+                    class="grid lg:grid-cols-4 md:grid-cols-2 gap-4 md:gap-6 "
                 >
                     <card
-                        class="bg-blue-100 rounded-2xl"
+                        class=""
+                        style=""
                         v-for="desc in description1"
                         :key="desc"
                     >
                         <template v-slot:content>
                             <div class="">
-                                <div style="min-height: 200px;" class="relative ">
-                                    <div style="bottom: 0px;" class="absolute flex flex-col items-center p-6">
+                                <div style=" height:300px;" class="relative bg-blue-100 rounded-2xl  ">
+                                    <div style="bottom: 0px;" class=" absolute flex flex-col items-center p-6">
                                              <div style="">
                                                 <img
                                                 class="rounded-lg mb-4 transition-all duration-500 "
@@ -89,17 +90,17 @@
             <div class="w-full md:w-3/4 flex-col items-center">
                 <div class="grid grid-cols-1 md:grid-cols-12  md:gap-8 ">
                     <div
-                        class="col-span-full md:col-span-6 flex mb-4 md:mb-0 justify-center"
+                        class="col-span-full md:col-span-6 flex items-center mb-4 md:mb-0 justify-center"
                     >
-                        <img :src="desc2_img" class=" " alt="" />
+                        <img :src="desc2_img" style="height:300px;" alt="" />
                     </div>
 
                     <div class="flex-col  md:col-span-6">
-                        <div id="desc2" :class="[ index == 1 ? 'ml-10': '']" :key="desc" class=" py-4 md:py-8 grid grid-cols-12" @mouseover="imageChange(index)" v-for="(desc, index) in desc2">
+                        <div id="desc2" :class="[ index == 1 ? 'ml-10': '']" :key="desc" class=" cursor-pointer py-4 md:py-8 gap-8 grid grid-cols-12" @mouseover="imageChange(index)" v-for="(desc, index) in desc2">
                             <div
-                                class="hover:h-20 text-center hover:w-20 w-16 h-16 col-span-3 md:col-span-2 rounded-full  bg-red-400"
+                                class="hover:h-20 text-center hover:w-20 w-16 h-16 col-span-3 md:col-span-3 rounded-full  bg-red-400"
                             ></div>
-                            <h1 class="col-span-8 text-center text-sm">
+                            <h1 class="col-span-8 text-justify text-sm">
                                 {{desc.text}}
                             </h1>
                         </div>
@@ -120,9 +121,9 @@
             <div
                 class="md:gap-4 lg:mb-12  relative lg:gap-10 gap-6 grid grid-cols-1"
             >
-                <div class="ml-52 grid grid-cols-4 gap-6">
+                <div class="ml-48 grid grid-cols-4 gap-6">
                     <div v-for="(materi) in materis.slice(0,4)" class="cursor-pointer transition-all duration-500 hover:shadow-lg" @click="$router.push({ name: 'LearnArticle', params:{ article_id: materi.id}})" :key="materi.id">
-                        <div class="relative  flex flex-col justify-end items-center" style="height:140px;">
+                        <div class="relative  flex flex-col justify-end items-center" style="height:150px;">
                             <img :src="'/images/'+materi.images_url" class="absolute rounded-xl hover:shadow-md w-full h-full -z-1 top-0" alt="">
                             <span class="text-xs text-gray-800 mb-4" style="z-index: 10;">
                                 {{materi.title.slice(0,20)}} ...
@@ -131,9 +132,9 @@
                     </div>
                 </div>
 
-                <div class="mr-52 grid grid-cols-4 gap-6">
+                <div class="mr-48 grid grid-cols-4 gap-6">
                     <div v-for="(materi) in materis.slice(5,9)" class="cursor-pointer transition-all duration-500 hover:shadow-lg" @click="$router.push({ name: 'LearnArticle', params:{ article_id: materi.id}})"  :key="materi.id">
-                        <div class="relative  flex flex-col justify-end items-center " style="height:140px;">
+                        <div class="relative  flex flex-col justify-end items-center " style="height:150px;">
                             <img :src="'/images/'+materi.images_url" class="absolute rounded-xl hover:shadow-md w-full h-full -z-1 top-0" alt="">
                             <span class="text-xs text-gray-800 mb-4" style="z-index: 10;">
                                 {{materi.title.slice(0,20)}} ...
@@ -219,14 +220,14 @@ import des2 from "../assets/images/description1_2.png"
 import des3 from "../assets/images/description1_3.png"
 import des4 from "../assets/images/description1_4.png";
 
-import desc2_1 from "../assets/images/desc2_1.png";
-import desc2_2 from "../assets/images/desc2_2.png";
-import desc2_3 from "../assets/images/desc2_3.png";
+import desc2_1 from "../assets/images/rev_home_tips1.png";
+import desc2_2 from "../assets/images/rev_home_tips2.png";
+import desc2_3 from "../assets/images/rev_home_tips3.png";
 
 import desc3_img from '../assets/images/desc3.png';
 import Card from "../components/Card";
 import noteImage from "../assets/images/notes.png";
-import hero1 from "../assets/images/hero1.png";
+import hero1 from "../assets/images/rev_home.png";
 import Login from "./Login.vue";
 export default {
     name: "Home",

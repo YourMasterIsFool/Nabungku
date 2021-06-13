@@ -11,6 +11,12 @@
                     <div v-html="article.body" class="leading-8 text-justify"></div>
                     
                 </div>
+                
+               <div class="flex justify-center">
+                    <a  @click="$router.push({ path:'/learn' })"  class="mt-12 text-blue-400 hover:text-blue-500 cursor-pointer text-center">
+                    Back
+                </a>
+               </div>
             </div>
           </div>
       </div>
