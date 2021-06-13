@@ -160,7 +160,7 @@ export default {
             axios.get('api/materi_pembelajaran')
             .then((resp) => {
                 this.materiData = resp.data.data
-                console.log(resp);
+                // console.log(resp);
             })
             .catch((err) => {
                 console.log(err.response);

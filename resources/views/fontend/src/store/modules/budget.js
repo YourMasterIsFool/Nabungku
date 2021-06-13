@@ -21,7 +21,7 @@ export default {
                 .get("api/budget")
                 .then(res => {
                     commit(SET_BUGDET, res.data.data);
-                    console.log(res.data.data);
+                    // console.log(res.data.data);
                     
                      if(!res.data.data.length == 0) {
                         
@@ -37,7 +37,7 @@ export default {
         },
         createBudget({ commit }, data) {
             return new Promise((resolve, reject) => {
-                console.log(data);
+                // console.log(data);
                 axios
                     .post("api/budget", data)
                     .then(res => {

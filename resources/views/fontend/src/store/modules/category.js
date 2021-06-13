@@ -22,7 +22,7 @@ export default {
             state.categories = data;
         },
         [ADD_CATEGORY](state, data) {
-            console.log(data);
+            // console.log(data);
             state.categories.push(data);
         },
         [REMOVE_CATEGORY](state, id) {
@@ -50,11 +50,11 @@ export default {
             state.categories[index].sub_categories.push(data);
         },
         [UPDATE_SUB_CATEGORY](state, payload) {
-            console.log(`sub category ${payload}`);
+            // console.log(`sub category ${payload}`);
             const index = state.categories.findIndex(
                 item => item.id == payload.category_id
             );
-            console.log(index)
+            // console.log(index)
             const subCategoryIndex = state.categories[index].sub_categories.findIndex(
                 item => item.id === payload.id
             );
@@ -66,7 +66,7 @@ export default {
       
         },
         [UPDATE_CATEGORY](state, payload) {
-            console.log(payload);
+            // console.log(payload);
             const index = state.categories.findIndex(
                 item => item.id == payload.id
             );
@@ -84,7 +84,7 @@ export default {
     },
     actions: {
         fetchData({ commit, dispatch, state }, budget_id) {
-            console.log(budget_id);
+            // console.log(budget_id);
             return new Promise((resolve, reject) => {
                 localStorage.setItem("budget_id", budget_id);
                 axios
@@ -157,7 +157,7 @@ export default {
                 axios
                     .delete("api/category/" + id)
                     .then(res => {
-                        console.log(res);
+                        // console.log(res);
                         commit(REMOVE_CATEGORY, id);
                         resolve(res);
                     })
@@ -168,7 +168,7 @@ export default {
             });
         },
         addNewCategory({ commit }, data) {
-             console.log(data);
+            //  console.log(data);
             return new Promise((resolve, reject) => {
                 axios
                     .post("api/category", data)

@@ -84,12 +84,11 @@ export default {
         }),
         register(e) {
             e.preventDefault();
-            console.log(this.form);
-            console.log(this.errors);
+          
             this.createUser(this.form).then(res => {
                 this.$parent.$parent.selectTab(0)
             }).catch ((err) => {
-                console.log(err.response.data);
+              
                 this.errors = err.response.data.message
             });
         },

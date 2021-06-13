@@ -1430,7 +1430,7 @@ export default {
         },
         formatDate(value){
             const date = new Date(value);
-            console.log(date);
+            // console.log(date);
             const dd = date.getDay();
             const mm = date.getMonth()+1;
             const yy = date.getFullYear();
@@ -1451,7 +1451,7 @@ export default {
             
         },
         subCategoryDetail(id) {
-            console.log(id);
+            // console.log(id);
             this.$store.state.modal.showSubCategoryDetail = true
             this.sub_category_id = id
             
@@ -1485,7 +1485,7 @@ export default {
             .then((resp) => {
                 this.showProfileSetting = false
                 this.editPassword = false
-                console.log(resp)
+                // console.log(resp)
             })
         },
         userLogout() {
@@ -1494,7 +1494,7 @@ export default {
             })
         },
         addTransaction() {
-            console.log(this.form.transaction);
+            // console.log(this.form.transaction);
             const transaction = this.form.transaction
                   
 
@@ -1504,7 +1504,7 @@ export default {
                           transaction[key] = null  
                         }
                         
-                        console.log(transaction[key]);
+                        // console.log(transaction[key]);
                    }
             });
         },
@@ -1514,7 +1514,7 @@ export default {
             };
             this.createBudget(data)
                 .then(res => {
-                    console.log(res.data);
+                    // console.log(res.data);
                     this.showNewBudget = false;
                 })
                 .catch(err => {
@@ -1528,7 +1528,7 @@ export default {
               console.log(res);
             });
             
-            console.log(this.category)
+            // console.log(this.category)
         },
         addCategory() {
             const data = {
@@ -1541,7 +1541,7 @@ export default {
         },
          password_confirmation(key) {
 
-            console.log(key);
+            // console.log(key);
             // if(this.form.user.password != this.form.user.password_confirmation) {
             //     console.log("password salah");
             //     this.error = "password confirmation incorrected"
@@ -1584,7 +1584,7 @@ export default {
             window.scrollTo(0, 0);
 
             const faqTransaction = this.$refs.transaction.getBoundingClientRect()
-             console.log(faqTransaction);
+            //  console.log(faqTransaction);
             for (let key in faqTransaction) {
                 faq[key] = faqTransaction[key]+'px';
             }
@@ -1875,7 +1875,7 @@ budget khusus untuk hal yang kamu inginkan.`
                             return a + parseInt(act.income)
                         }, 0)
                     }
-                    console.log(total);
+                    // console.log(total);
                     return acc+parseInt(total)
                 },0): 0
                 
@@ -1912,7 +1912,7 @@ budget khusus untuk hal yang kamu inginkan.`
                 return total + parseInt(amount);
             }, 0);
 
-            console.log('total amount', total);
+            // console.log('total amount', total);
             return total;
         },
         totalSaving() {
@@ -1977,7 +1977,7 @@ budget khusus untuk hal yang kamu inginkan.`
                 return total + parseInt(totalSub);
             }, 0) : 0;
 
-            console.log(category);
+            // console.log(category);
 
             return total;
         },
@@ -2048,7 +2048,7 @@ budget khusus untuk hal yang kamu inginkan.`
         },
 
         total_available() {
-            console.log()
+            // console.log()
             return this.total_budget + this.total_activity;
         },
         daily_spend_limit() {
@@ -2200,7 +2200,7 @@ budget khusus untuk hal yang kamu inginkan.`
             this.filterCategoryByMonth = dateNow;
             // this.categories = this.category
         this.form.user = this.user;
-        console.log(this.sub_category_detail);
+        // console.log(this.sub_category_detail);
         
         this.updateChart();
 

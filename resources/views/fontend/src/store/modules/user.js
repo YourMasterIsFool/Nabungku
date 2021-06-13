@@ -22,7 +22,7 @@ export default {
                 axios
                     .post("api/register", data)
                     .then(res => {
-                        console.log(data);
+                        // console.log(data);
 
                         commit(SET_USER, res.data);
                         resolve(res);
@@ -34,7 +34,7 @@ export default {
         },
 
         login({ commit, dispatch }, data) {
-            console.log(data);
+            // console.log(data);
             return new Promise((resolve, reject) => {
                 axios
                     .post("api/login/", data)
@@ -42,13 +42,13 @@ export default {
                         commit(SET_USER, res.data.data.user_detail);
                         dispatch("attempt", res.data.data.token);
                         resolve(res.data);
-                        console.log(res.data);
+                        // console.log(res.data);
                     })
                     .catch(err => {
                         if (err.response) {
                             reject(err.response.data);
                         } 
-                        console.log(err.response);
+                        // console.log(err.response);
                     });
             });
         },
@@ -59,8 +59,8 @@ export default {
 
             try {
                 let response = await axios.get('api/users_me');
-                console.log(token);
-                console.log(response.data);
+                // console.log(token);
+                // console.log(response.data);
                 commit(SET_USER, response.data.data);
             }
             catch (e) {
@@ -75,7 +75,7 @@ export default {
                 commit(SET_USER, null);
             } catch(e) {
                 // statements
-                console.log(e);
+                // console.log(e);
             }
         },
 
@@ -88,12 +88,12 @@ export default {
                 })
                 .then((res) => {
                     commit(SET_USER, res.data.data);
-                    console.log(data)
-                    console.log(res)
+                    // console.log(data)
+                    // console.log(res)
                     resolve(res)
                 })
                 .catch((err) => {
-                    console.log(err.response.data);
+                    // console.log(err.response.data);
                 }) 
             })
         } 

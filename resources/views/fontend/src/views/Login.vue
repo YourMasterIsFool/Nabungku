@@ -68,8 +68,7 @@ export default {
             login: "user/login"
         }),
         loginUser() {
-            console.log('dqwjqwd');
-            console.log(this.form);
+            
             this.login(this.form)
                 .then(res => {
                     this.$store.state.auth.showAuth = false
@@ -88,8 +87,8 @@ export default {
                         this.errors = err.message;
                     }
                     
-                    console.log(this.error)
-                    console.log(this.$root);
+                    // console.log(this.error)
+                    // console.log(this.$root);
                 });
         },
         register() {
