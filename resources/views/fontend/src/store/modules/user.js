@@ -47,9 +47,10 @@ export default {
                     })
                     .catch(err => {
                         if (err.response) {
-                            reject(err.response.data);
+                            reject(err.response);
                         } 
-                        console.log(err.response.data)
+                        console.log(err)
+                        console.log(err.response)
                         // console.log(err.response);
                     });
             });
