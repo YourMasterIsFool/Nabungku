@@ -68,13 +68,15 @@ export default {
             login: "user/login"
         }),
         loginUser() {
-            
+
             this.login(this.form)
                 .then(res => {
                     this.$store.state.auth.showAuth = false
                     this.$router.replace({
                         name: "dashboard"
                     });
+
+                    console.log(res)
                    
                 })
                 .catch(err => {

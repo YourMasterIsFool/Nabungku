@@ -56,6 +56,7 @@ export default {
                         if (err.response) {
                             reject(err.response);
                         } 
+                        reject(err)
                         console.log(err)
                         console.log(err.response)
                         // console.log(err.response);
