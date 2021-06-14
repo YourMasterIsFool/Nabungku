@@ -37,7 +37,7 @@ export default {
             // console.log(data);
             return new Promise((resolve, reject) => {
                 axios
-                    .post("api/login/", data,
+                    .post("api/token", data,
                         {
                             headers:{
                                 'Access-Control-Allow-Origin': '*',
