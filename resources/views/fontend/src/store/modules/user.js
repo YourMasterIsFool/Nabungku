@@ -49,7 +49,7 @@ export default {
                         if (err.response) {
                             reject(err.response.data);
                         } 
-                        console.log(response)
+                        console.log(erro.response.data)
                         // console.log(err.response);
                     });
             });
