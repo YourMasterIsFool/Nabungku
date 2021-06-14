@@ -87,8 +87,6 @@ export default {
                         this.errors = err.message;
                     }
                     
-                    // console.log(this.error)
-                    // console.log(this.$root);
                 });
         },
         register() {
