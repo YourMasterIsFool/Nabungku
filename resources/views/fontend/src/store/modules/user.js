@@ -42,12 +42,14 @@ export default {
                         commit(SET_USER, res.data.data.user_detail);
                         dispatch("attempt", res.data.data.token);
                         resolve(res.data);
+                        console.log(resolve)
                         // console.log(res.data);
                     })
                     .catch(err => {
                         if (err.response) {
                             reject(err.response.data);
                         } 
+                        console.log(response)
                         // console.log(err.response);
                     });
             });
@@ -90,6 +92,7 @@ export default {
                     commit(SET_USER, res.data.data);
                     // console.log(data)
                     // console.log(res)
+
                     resolve(res)
                 })
                 .catch((err) => {
