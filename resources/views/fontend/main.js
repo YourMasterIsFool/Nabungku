@@ -15,7 +15,7 @@ Vue.prototype.$moment = moment
 console.log(process.env.MIX_BASE_URL)
 console.log(process.env.MIX_BASE_URL)
 
-axios.defaults.baseURL = "https://www.nabungyuk.id/"
+axios.defaults.baseURL = "/"
 
 
 
