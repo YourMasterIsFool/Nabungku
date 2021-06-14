@@ -24,11 +24,12 @@ export default {
 		}
 	},
 	actions: {
-		storeActivity({commit}, data) {
+		storeActivity({commit, state}, data) {
+			
 			return new Promise((resolve, reject) => {
 				axios.post('api/activity', data)
 				.then((res) => {
-					commit(STORE_ACTIVITY, res.data.data)
+					commit(STORE_ACTIVITY, data)
 					resolve(res)
 				})
 				.catch((err) => {
@@ -49,11 +50,12 @@ export default {
 	},
 	getters: {
 
-		activities: state=> {
+		activities: (state) => {
+			
 			return state.activities
 		},
 		activitiesBySubCategory: state => sub_category_id => {
-			return state.activities.filter(item => item.sub_category_id === sub_category_id);
+			return state.activities.filter(item => item.sub_category_id == sub_category_id);
 		}
 	},
 };

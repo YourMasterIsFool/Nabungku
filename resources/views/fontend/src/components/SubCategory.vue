@@ -45,12 +45,11 @@
                     <input type="number" v-on:blur="focusChanged" v-show="showModalBudgeted" v-model="form.inputBudgeted"  style="top:-5px;" class="py-1 w-full outline-none pl-4 absolute focus:bg-gray-100 rounded-lg border-2 border-gray-100">
                 </div>
             </div>
-            <div class="col-span-2"  @click="openModalActivity" >
-                
+            <div class="col-span-2"  @click="openModalActivity" >        
                  <div class="relative" ref="modalActivity" >
                     <a class="capitalize "
                     >
-
+                        
                         <format-rupiah :item="activity"></format-rupiah>
                     </a>
                      <input type="number" v-on:blur="focusChanged" v-show="showModalActivity"  v-model="form.inputActivity"  style="top:-5px;" class="py-1 w-full outline-none pl-4 absolute focus:bg-gray-100 rounded-lg border-2 border-gray-100">
@@ -77,7 +76,7 @@
 
 <script>
 import FormatRupiah from './FormatRupiah';
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapState, mapGetters } from "vuex";
 
 export default {
     props: ["item", 'selected'],
@@ -90,6 +89,7 @@ export default {
             showModalSubCategory: false,
             showModalActivity : false,
             isSelect:false,
+            sub_category: null,
             showModalAvailable : false,
             form: {
                 inputBudgeted : this.item.budgeted,
@@ -101,20 +101,23 @@ export default {
           }
     },
     computed: {
+        ...mapGetters({
+            activities : 'activity/activities',
+        }),
         activity() {
-            const activity = this.$store.state.activity.activities.filter(
-                    item => item.sub_category_id === this.item.id
+            const activity = this.activities.filter(
+                    item => item.sub_category_id == this.sub_category.id
                 );
-            if(activity.length > 0) {
-                const total = activity.reduce((acc, obj) => {
-                    return acc+(obj.income-obj.expense);
-                }, 0);
-                return total 
-            }
-           return 0
+                if(activity.length > 0) {
+                    const total = activity.reduce((acc, obj) => {
+                        return parseInt(acc+(obj.income-obj.expense));
+                    }, 0);
+                    return parseInt(total) 
+                }
+           return activity
         },
         available() {
-            return this.item.budgeted + this.activity;
+            return this.activity + parseInt(this.sub_category.budgeted);
         },
         precentage() {
             const precentage = this.available/this.item.budgeted * 100;
@@ -224,8 +227,8 @@ export default {
 
     created() {
         document.addEventListener('click', this.closeModal)
-       
-       
+        this.sub_category = this.item
+    
     }
 };
 </script>

@@ -240,7 +240,7 @@ export default {
                 cat => ({
                     ...cat,
                     sub_categorys: rootGetters['sub_category/sub_categories'].filter(
-                        sub => sub.category_id === cat.id
+                        sub => sub.category_id == cat.id
                     )
                 })
             );

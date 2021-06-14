@@ -118,13 +118,13 @@ export default {
             });
         },
         updateSubCategory({commit, dispatch}, payload) {
-            
+            commit(UPDATE_SUB_CATEGORY, payload);
             return new Promise((resolve, reject) => {
-
+                commit(UPDATE_SUB_CATEGORY, payload);
                 axios.patch('api/sub_category/'+payload.id, payload)
                 .then((res) => {
                     
-                   commit(UPDATE_SUB_CATEGORY, res.data.data);
+                  
                    resolve(res);
                 })
                 .catch((err) => {
@@ -143,11 +143,12 @@ export default {
             commit(REMOVE_ALL_SUB_CATEGORY);
         },
         removeSub({commit}, id) {
+            commit(REMOVE_SUB_CATEGORY, id);
            return new Promise((resolve, reject) => {
              axios.delete('api/sub_category/'+id)
             .then((res) => {
                 resolve(res);
-                commit(REMOVE_SUB_CATEGORY, id);
+                
             })
             .catch((err) => {
                 reject(err);
@@ -167,7 +168,7 @@ export default {
                 sub => ({
                     ...sub,
                     activities: rootGetters['activity/activities'].filter(
-                        act => act.sub_category_id === sub.id
+                        act => act.sub_category_id == sub.id
                     )
                 })
             )

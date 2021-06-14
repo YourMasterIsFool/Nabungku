@@ -202,6 +202,7 @@
                                             >
                                             <input
                                                 type="number"
+
                                                 v-model="form.transaction.expense"
                                                 style="border-width:1px;"
                                                 class="w-full text-gray-600 bg-gray-50 rounded-lg border-gray-200 text-xs py-1 focus:outline-none px-3 "
@@ -1383,8 +1384,8 @@ export default {
                 },
                 transaction: {
                     date: moment().format('YYYY-MM-DD'),
-                    expense: null,
-                    income: null,
+                    expense: 0,
+                    income: 0,
                     sub_category:null,
                 },
                 user: {
@@ -1499,16 +1500,11 @@ export default {
         addTransaction() {
             // console.log(this.form.transaction);
             const transaction = this.form.transaction
-                  
-
+            
+            console.log(transaction);
+             
             this.storeActivity(this.form.transaction).then((res)=> {
-                     for (const key of Object.keys(transaction)) {
-                        if(transaction[key] !== 'date') {
-                          transaction[key] = null  
-                        }
-                        
-                        // console.log(transaction[key]);
-                   }
+               window.location.reload();
             });
         },
         createNewBudget(e) {

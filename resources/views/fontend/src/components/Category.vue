@@ -151,7 +151,7 @@
                 <div @click.prevent="$emit('open_sub_detail', sub_category.id)" class="absolute top-0 w-full h-full">
 
                 </div>
-                <div id="modal-activity" style="z-index: 10;" v-show="selectedModalActivity == index"  ref="showActivity" class="absolute shadow-md rounded-2xl overflow-hidden bg-white p-4">
+                <div id="modal-activity" style="z-index: 10; height: 250px;" v-show="selectedModalActivity == index"  ref="showActivity" class="absolute shadow-md rounded-2xl overflow-hidden bg-white p-4">
                     <simple-modal >
                         <template #content>
                             <div class="pb-4 px-2">
@@ -164,9 +164,9 @@
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                             </a>
                         </div>
-                        <div style="height: 200px;" class="mt-3  pb-4 overflow-scroll h-full">
+                        <div style="height:200px;" class="mt-3 mb-20 overflow-scroll h-full">
 
-                            <table class="w-full ">
+                            <table class="w-full pb-10 ">
                                 <thead>
                                     
                                     <tr class="text-left ">
@@ -177,6 +177,7 @@
                                 </thead>
                                 
                                 <tbody>
+                                    
                                     <tr class="pb-2" :key="activity.id" v-for="activity in activities">
                                     <td style="" width="200">
                                         <span class="flex text-xs text-gray-600 items-center">
@@ -282,12 +283,12 @@ export default {
         }),
         sub() {
             const sub = this.$store.state.sub_category.sub_categories.filter(
-                sub => sub.category_id === this.item.id
+                sub => sub.category_id == this.item.id
             ).map(
                 sub => ({
                     ...sub,
                     activity_total: this.$store.state.activity.activities.filter(
-                        act => act.sub_category_id === sub.id
+                        act => act.sub_category_id == sub.id
                     ).reduce((act, obj) => {
                         return act + (obj.income - obj.expense);
                     }, 0),
@@ -439,6 +440,7 @@ export default {
             console.log(this.activitiesBySub(sub_id));
             const refs = this.$refs.showActivity;
             console.log(refs);
+            console.log(this.activities);
             console.log('open_modal');
 
             // for(let i=0; i < refs.length; i++ ) 
