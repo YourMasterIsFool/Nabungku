@@ -13,10 +13,10 @@ import CKEditor from '@ckeditor/ckeditor5-vue2';
 Vue.prototype.$moment = moment
 
 console.log(process.env.MIX_BASE_URL)
-console.log(process.ENV_BASE_URL)
+console.log(process.MIX_BASE_URL)
 
 if(process.env.MIX_ENV_MODE == "production") {
-    axios.defaults.baseURL = process.env.ENV_BASE_URL
+    axios.defaults.baseURL = process.env.MIX_BASE_URL
     Vue.config.devtools = false;
     Vue.config.debug = false;
     Vue.config.silent = true; 
