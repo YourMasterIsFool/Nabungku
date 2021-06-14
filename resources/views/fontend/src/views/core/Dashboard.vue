@@ -1487,6 +1487,9 @@ export default {
                 this.editPassword = false
                 // console.log(resp)
             })
+            .catch((err) => {
+                console.log(err.response)
+            })
         },
         userLogout() {
             this.logout().then(()=> {
