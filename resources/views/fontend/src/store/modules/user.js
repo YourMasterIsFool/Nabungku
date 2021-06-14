@@ -37,7 +37,14 @@ export default {
             // console.log(data);
             return new Promise((resolve, reject) => {
                 axios
-                    .post("api/login/", data)
+                    .post("api/login/", data,
+                        {
+                            headers:{
+                                'Access-Control-Allow-Origin': '*',
+                                'Content-Type': 'application/json'
+                            }
+                        }
+                    )
                     .then(res => {
                         commit(SET_USER, res.data.data.user_detail);
                         dispatch("attempt", res.data.data.token);
