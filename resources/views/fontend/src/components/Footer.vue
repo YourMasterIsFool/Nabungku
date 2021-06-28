@@ -1,10 +1,10 @@
 <template>
     <div id="footer">
         <div
-            class="w-full lg:h-40 md:flex md:items-center md:justify-center  p-6 md:p-0 md:h-36 h-28 bg-indigo-500 text-white"
+            class="w-full lg:h-40 md:flex md:items-center md:justify-center  p-6 md:p-0 md:h-36 h-28 bg-blue-500 text-white"
         >
             <div class="flex md:w-3/4 justify-between">
-                <div>
+                <div> 
                     <div class="brand block lg:mb-4  mb-2">
                         <h2
                             class="font-semibold md:text-base text-sm lg:text-xl capitalize"

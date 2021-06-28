@@ -16,28 +16,13 @@ class MateriPembelajaranController extends Controller
     public function index(Request $request)
     {
         $limit = $request->input('limit');
-        $materi = MateriPembelajaran::select('id', 'title', 'images_url')
-        ->limit($limit)
-        ->get();
-        
-        if($request->exists('page')) {
-            $page = $request->input('page');
-            $materi = MateriPembelajaran::select('id', 'title', 'images_url')
-            ->limit(6)
-            ->skip($page*$limit)
-            ->get();
-        }
+        $materi = MateriPembelajaran::get();
+    
         
 
         $materi_count = MateriPembelajaran::count();
 
-        if($request->exists('cat_id')){
-            $materi = MateriPembelajaran::where('category_pembelajaran_id', $request->input('cat_id'))
-            ->select('id', 'title', 'images_url')
-            ->get();
-
-            $materi_count = MateriPembelajaran::where('category_pembelajaran_id', $request->input('cat_id'))->count();
-        }
+     
 
         return response()->json([
             'data' => [

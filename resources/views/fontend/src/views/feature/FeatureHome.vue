@@ -1,6 +1,6 @@
 <template>
     <div id="features" class="">
-        <div id="hero" class="w-full  md:flex py-20 md:py-28 justify-center ">
+        <div id="hero" class="w-full  md:flex pb-12 pt-28 justify-center ">
             <div class="md:w-3/4 w-full flex flex-col items-center">
                 <h1
                     class="text-3xl text-center font-bold mb-4 md:mb-6 lg:mb-12"
@@ -35,13 +35,13 @@
                                     @click="$router.push('/feature/feature-quiz'+1).catch(()=> {})"
                                     class="py-1 text-sm px-8 rounded-3xl  bg-blue-400 hover:bg-blue-500 duration-300 transition-all text-white"
                                 >
-                                    Coba Quiz
+                                    Coba Quiz {{quis.id}}
                                 </a>
                             </div>
                         </template>
                     </card-vue>
                 </div>
-                <section class="py-16 flex-col items-center">
+                <section class="pt-16 pb-8 flex-col items-center">
                     <h1 class="text-center capitalize font-bold text-2xl">
                         Saving Calculator
                     </h1>
@@ -76,7 +76,7 @@
                                         <h1
                                             class="font-semibold focus:outline-none lg:mb-6 md:mb-4 mb-2 text-gray-800 text-lg"
                                         >
-                                            Start Balancae
+                                            Start Balance
                                         </h1>
                                         <input
                                             v-model="goals.start_balance"
@@ -123,7 +123,7 @@
                 </section>
             </div>
         </div>
-        <section class="py-16 flex justify-center">
+        <section class="py-8 flex justify-center">
             <div class="w-full md:w-3/4">
                 <div class="grid grid-cols-2 gap-8">
                     <div class="flex flex-col justify-center">

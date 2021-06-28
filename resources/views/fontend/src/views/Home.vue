@@ -30,7 +30,7 @@
                     </h2>
                     <a
                         @click="$store.state.auth.showAuth = true"
-                        class="px-10 py-3 hover:bg-indigo-400 transition-all duration-300 cursor-pointer font-semibold  capitalize rounded-3xl bg-indigo-500 text-white "
+                        class="px-10 py-3 hover:bg-indigo-400 transition-all duration-300 cursor-pointer font-semibold  capitalize rounded-3xl bg-blue-500 text-white "
                     >
                         get started
                     </a>
@@ -194,7 +194,7 @@
                             <a
 
                                 @click="$store.state.auth.showAuth = true, $store.state.auth.selectedIndex = 1"
-                                class="md:px-8 text-sm capitalize cursor-pointer font-semibold rounded-3xl lg:px-12 px-8  lg:py-4 py-3 lg:text-base md:text-sm text-xs bg-indigo-600 hover:bg-indigo-500 transition-all duration-300 text-white"
+                                class="md:px-8 text-sm capitalize cursor-pointer font-semibold rounded-3xl lg:px-12 px-8  lg:py-4 py-3 lg:text-base md:text-sm text-xs bg-blue-500 hover:bg-blue-400 transition-all duration-300 text-white"
                             >
                                 get started
                             </a>

@@ -1,5 +1,5 @@
 <template>
-    <div id="about" class="md:py-20 py-12">
+    <div id="about" class="py-32">
     	
     	<div class="w-full flex flex-col items-center ">
     		<div class="w-3/4 md:px-8 px-4">
@@ -250,18 +250,22 @@
 				</div>
 			</div>
 		</div>
-		<div style="" class="relative flex flex-col items-center justify-center -mt-5  py-40 w-full">
+		<div style="height:600px;" class="relative flex flex-col items-center justify-center -mt-5  w-full">
 			<div class=" bg-blue-about absolute w-full h-full top-0 left-0" >
 				
 			</div>
-			<h1 class="text-2xl font-bold capitalize mb-12">
+			<div style="height:400px" class="flex flex-col items-center">
+				<h1 class="text-2xl font-bold capitalize mb-12">
 				Frequently Asked Questions
 			</h1>
-			<div style="font-family: Poppins; z-index: 1; height: 325px;"  class="w-3/4   rounded-3xl bg-white shadow-lg pt-6 pb-10 px-8">
-				<Accordion :item="item" v-for="(item, index) in faqs" :key="item.id">
-					
-				</Accordion>
+			
+				<div style="font-family: Poppins;"  class="w-3/4 h-auto rounded-3xl bg-white shadow-lg pt-6  px-8">
+					<Accordion :item="item" v-for="(item, index) in faqs" :key="item.id">
+						
+					</Accordion>
 				</div>
+			
+			</div>
 		</div>
 		
 		<div style="" class="relative flex flex-col items-center justify-center -mt-5  py-40 w-full bg-white">
@@ -274,7 +278,7 @@
 					or you have any other questions.
 				</p>
 			</div>
-			<div class="mt-6">
+			<div class="mt-6 w-1/3">
 				<div class="form-group">
 					<input type="text" class="input" v-model="form.name">
 					<label  :class="[form.name == '' ? 'label' : 'inputHasValue']" class="">
@@ -301,7 +305,7 @@
 				</div>
 
 				<div class="mt-8 flex justify-center">
-					<button class="bg-indigo-400 hover:bg-indigo-500 px-6 py-2 text-white rounded-2xl capitalize">
+					<button class="bg-blue-400 hover:bg-blue-500 px-6 py-2 text-white rounded-2xl capitalize">
 						send
 					</button>
 				</div>
@@ -379,7 +383,8 @@ export default {
 	}
 	.form-group .label {
 		position: absolute;
-		top:8px;
+		top:8px;	
+		z-index:1;
 		text-transform: capitalize;
 		transition: all;
 		transition-duration: .3s;
@@ -387,6 +392,7 @@ export default {
 	}
 	.form-group .input {
 		display: block;
+		z-index: 10;
 		width:100%;
 		padding: 8px 16px;
 		outline: none;

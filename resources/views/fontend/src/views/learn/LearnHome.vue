@@ -56,7 +56,7 @@
                                 <!-- {{cat_materis}} -->
                                 <li class="transition-all duration-500" :class="[ selectedCatIndex == index ? 'active': '']" @click="selectCategory(index, cat.id)" v-for="(cat, index) in cat_materis" :key="
                                 cat.id">
-                                   <a class="cursor-pointer"> {{cat.name}}</a> 
+                                   <a class="cursor-pointer"> {{cat.name}} {{cat.id}}</a> 
                                 </li>
                                 <!-- <li><a href="">General</a></li>
                                 <li><a href="">Financial Planning</a></li>
@@ -76,13 +76,14 @@
                                 </option>
                         </select>
                     </div>
+                    
                    <div class="md:col-span-9 mt-4 md:mt-0" >
                         <div
                         class="grid md:gap-x-4 md:gap-y-2 gap-2 lg:grid-cols-3 grid-cols-2"
                     >
                         <div class="cursor-pointer" @click="$router.push({ name: 'LearnArticle', params: {
                             article_id: materi.id
-                        }})" v-for="materi in materiData.materis" :key="materi.id"> 
+                        }})" v-for="materi in materis" :key="materi.id"> 
                             <img class="rounded-lg w-full md:h-32" :src="'/images/'+materi.images_url" alt="">
                             <div class="md:mt-4 font-semibold text-xs text-gray-600 text-center">
                                 {{materi.title}}
@@ -91,7 +92,7 @@
                     </div>
                     <div class="page flex justify-end md:mt-4">
                         
-                        <ul v-show="materiData.materi_count>6" class="pagination flex">
+                        <ul v-show="materis.length>6" class="pagination flex">
                             <li @click="previousPaginate()" v-show="offset!=1">
                                 <a  class="transition-all hover:bg-blue-500 duration-300 w-6 h-6 flex justify-center items-center rounded-full bg-blue-400 text-white">
                                     <span class="material-icons">
@@ -137,37 +138,22 @@ export default {
             icon2: icon2,
             page: 1,
             offset: 6,
+            start: 0,
             limit:6,
+            materis_length: 0,
             icon1: icon1,
             cat_materis: null,
             materiData: {
                 materis: [],
                 materi_count: 0,
             },
+            materis: null,
             selectedCatIndex: 0,
             selectedCatId:1,
         };
     },
-    created() {
-        // if (this.cat_materis == null) {
-        //     axios.get('api/category_pembelajaran')
-        //     .then((resp) => {
-        //         this.cat_materis = resp.data.data;
-        //         console.log(this.cat_materis);
-        //     })
-        // }
-          if(this.materiData.materis.length == 0) {
-            axios.get('api/materi_pembelajaran')
-            .then((resp) => {
-                this.materiData = resp.data.data
-                // console.log(resp);
-            })
-            .catch((err) => {
-                console.log(err.response);
-            })
-        }
-    },
-    mounted(){
+    
+    created(){
          if (this.cat_materis == null) {
             axios.get('api/category_pembelajaran', )
             .then((resp) => {
@@ -178,9 +164,6 @@ export default {
 
         if(this.materiData.materis.length == 0) {
             axios.get('api/materi_pembelajaran', {
-                params: {
-                    "limit": this.limit
-                }
             })
             .then((resp) => {
                 this.materiData = resp.data.data
@@ -190,81 +173,70 @@ export default {
                 console.log(err.response);
             })
         }
+
+        if(this.selectedCatId == 1 ){
+            const materis = this.materiData.materis
+
+            this.materis = materis
+        }
         
     },
+    computed: {
+        materi_data() {
+            this.offset = this.page * this.limit;
+            this.start = this.offset - this.limit;
+
+            let space = this.materi.length - this.offset
+            if( space < 6) {
+                  return this.materis.splice(this.start, this.offset)
+             }
+
+            return this.materis.splice()
+          
+
+        }
+    },      
     methods: {
-        selectCategory(index, id) {
+    selectCategory(index, id) {
             this.selectedCatIndex = index;
             this.selectedCatId = id;
             
-            if(id == 1) {
-                 axios.get('api/materi_pembelajaran',
-                    {
-                        params: {
-                            "limit": this.limit
-                        }
-                    }
-                 )
-                .then((resp) => {
-                     this.materiData = resp.data.data
-                 })
-                .catch((err) => {
-                    console.log(err.response);
+            
+            this.page = 1
+            
+
+            if(id == 1 ) {
+
+                this.materis = this.materiData.materis;
+            }
+
+            else {
+                const materis = this.materiData.materis.filter((item, index) => {
+                    return item.category_pembelajaran_id == this.selectedCatId
                 })
+                this.materis = materis.splice(this.start, this.offset);
+
+                
             }
             
-            else {
-                axios.get('api/materi_pembelajaran', {
-                    params: {
-                        'cat_id': id,
-                      "limit": this.limit
-                    }
-                })
-                .then((resp) => {
-                    this.materiData = resp.data.data
-                })
-                .catch((err)=> {
-                    console.log(err.response);
-                })
-            }
             
         },
         fetchPerPage() {
-            this.offset = this.limit *  this.page
-           if(this.selectedCatId == 1) {
-                axios.get('api/materi_pembelajaran', {
-                    params: {
-                        'page': this.page,
-                        "limit": this.limit
-                    }
-                })
-                .then((resp) => {
-                    this.materiData = resp.data.data
-                    console.log(resp.data.data)
-                })
-                .catch((err)=> {
-                    console.log(err.response);
-                })
-           }
-           else {
-                axios.get('api/materi_pembelajaran', {
-                    params: {
-                        'cat_id': this.selectedCatId,
-                        'page': this.page,
-                        "limit": this.limit
-                    }
-                })
-                .then((resp) => {
-                    this.materiData = resp.data.data
-                    console.log(resp.data.data)
-                })
-                .catch((err)=> {
-                    console.log(err.response);
-                })
-           }
+            if(this.start > 0) {
+                this.start = 0
+            }
+            else {
+                this.offset = this.limit * this.page
+                this.start = this.offset - this.limit
+            }
+            
+
+
         },
         nextPaginate() {
             this.page++
+            
+
             this.fetchPerPage()
 
         },
