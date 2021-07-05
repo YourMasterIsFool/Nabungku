@@ -83,17 +83,18 @@
                     >
                         <div class="cursor-pointer" @click="$router.push({ name: 'LearnArticle', params: {
                             article_id: materi.id
-                        }})" v-for="materi in materis" :key="materi.id"> 
+                        }})" v-for="materi in materi_data" :key="materi.id"> 
                             <img class="rounded-lg w-full md:h-32" :src="'/images/'+materi.images_url" alt="">
                             <div class="md:mt-4 font-semibold text-xs text-gray-600 text-center">
                                 {{materi.title}}
+                           
                             </div>
                         </div>
                     </div>
                     <div class="page flex justify-end md:mt-4">
                         
-                        <ul v-show="materis.length>6" class="pagination flex">
-                            <li @click="previousPaginate()" v-show="offset!=1">
+                        <ul v-show="materis.length > 6" class="pagination flex">
+                            <li @click="previousPaginate()" v-show="page != 1">
                                 <a  class="transition-all hover:bg-blue-500 duration-300 w-6 h-6 flex justify-center items-center rounded-full bg-blue-400 text-white">
                                     <span class="material-icons">
                                         chevron_left
@@ -102,7 +103,7 @@
                                 </a>
                             </li>
 
-                            <li v-show="offset < materiData.materi_count && materiData.materis.length == 6 "  @click="nextPaginate()">
+                            <li v-show="offset < materis.length"  @click="nextPaginate()">
                                  <a  class="w-6 h-6 flex hover:bg-blue-500 transition-all duration-300 justify-center items-center rounded-full bg-blue-400 text-white">
                                 
                                     <span class="material-icons">
@@ -167,6 +168,7 @@ export default {
             })
             .then((resp) => {
                 this.materiData = resp.data.data
+
                 console.log(resp);
             })
             .catch((err) => {
@@ -174,25 +176,16 @@ export default {
             })
         }
 
-        if(this.selectedCatId == 1 ){
-            const materis = this.materiData.materis
-
-            this.materis = materis
-        }
+        this.selectCategory(0, 1)
+       
         
     },
     computed: {
         materi_data() {
             this.offset = this.page * this.limit;
             this.start = this.offset - this.limit;
-
-            let space = this.materi.length - this.offset
-            if( space < 6) {
-                  return this.materis.splice(this.start, this.offset)
-             }
-
-            return this.materis.splice()
           
+            return this.materis.slice(this.start, this.offset)
 
         }
     },      
@@ -201,23 +194,19 @@ export default {
             this.selectedCatIndex = index;
             this.selectedCatId = id;
             
-            
+            this.start = 0
             this.page = 1
-            
+            this.offset = this.limit
 
-            if(id == 1 ) {
-
-                this.materis = this.materiData.materis;
+            if(this.selectedCatId == 1 ) {
+                this.materis = this.materiData.materis
             }
-
             else {
-                const materis = this.materiData.materis.filter((item, index) => {
+                this.materis = this.materiData.materis.filter((item, index) => {
                     return item.category_pembelajaran_id == this.selectedCatId
                 })
-                this.materis = materis.splice(this.start, this.offset);
-
-                
             }
+            console.log(this.materiData.materis) //
             
             
         },
@@ -235,8 +224,6 @@ export default {
         },
         nextPaginate() {
             this.page++
-            
-
             this.fetchPerPage()
 
         },
