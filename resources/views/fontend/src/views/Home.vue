@@ -169,11 +169,6 @@
         <div
             class="w-full items-center flex-col flex px-4 md:justify-start md:items-center lg:py-12 md:py-8 py-6 "
         >
-            <h1
-                class="block text-center mb-12 md:mb-20 lg:mb-24 text-gray-900 font-bold md:mb-4 lg:mb-6 text-2xl"
-            >
-                Beberapa tips berguna buat kamu!
-            </h1>
             <div class="w-full md:w-3/4 flex-col items-center">
                 <div class="md:grid flex flex-col md:grid-cols-2  md:gap-2 ">
                     <div class="flex flex-col md:p-8 justify-center">
