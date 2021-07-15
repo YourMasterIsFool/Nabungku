@@ -10,8 +10,8 @@
             <div class="w-3/4 flex justify-center  relative">
                 <img
                     :src="hero1"
-                    style="height:95vh; "
-                    class="top-0 z-0 w-auto  left-0 absolute "
+                    style="height:95vh;  "
+                    class="top-0 z-0 w-auto  left-8 absolute "
                     alt=""
                 />
                 <div class="w-3/5 z-10 text-center md:mt-32">
