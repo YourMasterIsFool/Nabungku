@@ -126,7 +126,7 @@
                         <div class="relative  flex flex-col justify-end items-center" style="height:150px;">
                             <img :src="'/images/'+materi.images_url" class="absolute rounded-xl hover:shadow-md w-full h-full -z-1 top-0" alt="">
                             <span class="text-xs text-gray-800 mb-4" style="z-index: 10;">
-                                {{materi.title.slice(0,20)}} ...
+                                
                             </span>
                         </div>
                     </div>
@@ -137,7 +137,7 @@
                         <div class="relative  flex flex-col justify-end items-center " style="height:150px;">
                             <img :src="'/images/'+materi.images_url" class="absolute rounded-xl hover:shadow-md w-full h-full -z-1 top-0" alt="">
                             <span class="text-xs text-gray-800 mb-4" style="z-index: 10;">
-                                {{materi.title.slice(0,20)}} ...
+                                
                             </span>
                         </div>
                     </div>

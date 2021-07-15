@@ -170,13 +170,14 @@ export default {
                 this.materiData = resp.data.data
 
                 console.log(resp);
+                this.selectCategory(0, 1)
             })
             .catch((err) => {
                 console.log(err.response);
             })
         }
 
-        this.selectCategory(0, 1)
+        
        
         
     },
