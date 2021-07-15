@@ -186,7 +186,9 @@ export default {
             this.offset = this.page * this.limit;
             this.start = this.offset - this.limit;
           
-            return this.materis.slice(this.start, this.offset)
+            if(this.materis != null) {
+                return this.materis.slice(this.start, this.offset)
+            } 
 
         }
     },      
