@@ -50,7 +50,7 @@ const routers = [
         beforeEnter:(to, from, next) => {
             if(!store.getters['user/token']) {
                 return next({
-                    name: 'login'
+                    name: 'home'
                 })
             }
             next()

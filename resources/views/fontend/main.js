@@ -15,7 +15,9 @@ Vue.prototype.$moment = moment
 console.log(process.env.MIX_BASE_URL)
 console.log(process.MIX_BASE_URL)
 
-axios.defaults.baseURL = "http://www.nabungyuk.id/"
+// axios.defaults.baseURL = "http://www.nabungyuk.id/"
+axios.defaults.baseURL = "http://localhost:8000/"
+
 
 // if(process.env.MIX_ENV_MODE == "production") {
 //     axios.defaults.baseURL = process.env.MIX_BASE_URL
