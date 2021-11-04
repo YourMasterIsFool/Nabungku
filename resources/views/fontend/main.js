@@ -15,7 +15,7 @@ Vue.prototype.$moment = moment
 console.log(process.env.MIX_BASE_URL)
 console.log(process.MIX_BASE_URL)
 
-axios.defaults.baseURL = "http://www.nabungyuk.id/"
+axios.defaults.baseURL = "https://laravel-project-nabung.herokuapp.com/"
 // axios.defaults.baseURL = "http://localhost:8000/"
 
 
