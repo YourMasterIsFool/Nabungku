@@ -33,14 +33,17 @@ export default {
   methods: {
   	close(e) {
   		const accordion = this.$refs.accordion
-  		if(accordion !== e.target && !accordion.contains(e.target) ) {
-  			this.show = false
-  			console.log('close');
+  		if(accordion) {
+  			if(accordion !== e.target && !accordion.contains(e.target) ) {
+	  			this.show = false
+	  			console.log('close');
+  			}
   		}
   	}
   },
   created(){
   	document.addEventListener('click', this.close)
+  	this.$refs.accordion
   }
 }
 </script>
