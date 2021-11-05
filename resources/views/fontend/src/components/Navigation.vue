@@ -19,14 +19,6 @@
                     >
                         <li class="px-6">
                             <router-link
-                                to="/learn"
-                                class="capitalize hover:text-black transition-all duration-300"
-                            >
-                                Learn
-                            </router-link>
-                        </li>
-                        <li class="px-6">
-                            <router-link
                                 to="/feature/"
                                 class="capitalize hover:text-black transition-all duration-300"
                             >
