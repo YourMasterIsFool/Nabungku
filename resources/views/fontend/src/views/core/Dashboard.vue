@@ -837,7 +837,9 @@
                                                         </h1>
 
                                                         <span class="text-xs font-normal">
-                                                            <format-rupiah :item="totalSubAvailable"></format-rupiah>
+
+                                                           
+                                                            <format-rupiah :item="sub_available"></format-rupiah>
                                                         </span>
                                                 </div>
                                                  <div class="flex py-3 items-center justify-between">
@@ -846,7 +848,10 @@
                                                         </h1>
 
                                                         <span class="text-xs font-normal">
-                                                            <format-rupiah :item="periodSaving"></format-rupiah>
+                                                            <format-rupiah v-if="periodSaving > 0" :item="periodSaving"></format-rupiah>
+                                                            <span class="capitalize text-green-400" v-else>
+                                                                success
+                                                            </span>
                                                         </span>
                                                 </div>
 
@@ -1725,6 +1730,21 @@ budget khusus untuk hal yang kamu inginkan.`
             user: 'user/user',
             budgetsById: 'budget/fetchBudgetById',
         }),
+         sub_activity() {
+            const activity = this.activities.filter(
+                    item => item.sub_category_id == this.$store.state.modal.showSubCategoryId
+                );
+                if(activity.length > 0) {
+                    const total = activity.reduce((acc, obj) => {
+                        return parseInt(acc+(obj.income-obj.expense));
+                    }, 0);
+                    return parseInt(total) 
+                }
+           return 0
+        },
+        sub_available() {
+            return this.sub_activity + parseInt(this.sub_category_detail.budgeted);
+        },
         categories() {
 
                 const filteredCat = this.categorys.filter( cat => {
@@ -1739,14 +1759,14 @@ budget khusus untuk hal yang kamu inginkan.`
                 return filteredCat;
         },
         savingGoalsBar() {
-            const percentage = (this.totalSubAvailable / this.sub_category_detail.amount) * 100;
+            const percentage = (this.sub_available / this.sub_category_detail.amount) * 100;
 
             return parseInt(percentage)
         },
 
         periodSaving() {
             const sub_detail = this.sub_category_detail;
-            const available = this.totalSubAvailable;
+            const available = this.sub_available;
             const currentDate = new Date();
             const periodDate = new Date(this.sub_category_detail.finishBy);
             const days = Math.abs(periodDate-currentDate)/(1000*3600*24);

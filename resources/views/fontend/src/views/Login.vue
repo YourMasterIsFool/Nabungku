@@ -1,7 +1,7 @@
 <template>
     <div id="login" class="w-full">
-        <span  class="text-xs text-red-400 py-4">
-            {{errors}}
+        <span v-if="errors"  class="text-xs text-red-400 py-4">
+            {{errors.data.message}}
         </span>
         <div class="w-full grid grid-cols-2 gap-8">
             <div class="form-group" :class="[ errors == null ? 'border-gray-200' : 'border-red-400']">
@@ -79,17 +79,9 @@ export default {
                     console.log(res)
                    
                 })
-                .catch(err => {
-                    console.log(err);
-                    
-                    if(err.data) {
-                        this.errors = err.data.message;
-                    }
-                    else {
-                        this.errors = err.message;
-                    }
-                    
-                });
+                .catch((err) => {
+                    this.errors = err.data
+                })
         },
         register() {
             this.$parent.$parent.selectTab(1)
